@@ -4,6 +4,7 @@ public interface JoinModelCallback {
     interface RegularCallback {
         void isEmailValidation(boolean b);
         void isPasswordValidation(boolean b);
+        void isPasswordConfirmValidation(boolean b);
         void isNicknameValidation(boolean b);
     }
 }

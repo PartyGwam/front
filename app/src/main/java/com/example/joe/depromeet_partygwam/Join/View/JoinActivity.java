@@ -30,6 +30,10 @@ public class JoinActivity extends AppCompatActivity implements JoinContract.View
     @BindView(R.id.join_nicknameEdit)
     EditText editNickName;
     private JoinPresenter presenter;
+    private boolean isEmail;
+    private boolean isPassword;
+    private boolean isPasswordConfirm;
+    private boolean isNickname;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,10 +50,51 @@ public class JoinActivity extends AppCompatActivity implements JoinContract.View
         presenter.emailValidation(editEmail.getText().toString());
     }
 
+    @OnTextChanged(R.id.join_pwEdit)
+    public void passwordTextChange() {
+        presenter.passwordValidation(editPw.getText().toString());
+    }
+
+    @OnTextChanged(R.id.join_pwConfirmEdit)
+    public void passwordConfirmTextChange() {
+        presenter.passwordConfirmValidation(editPwConfirm.getText().toString());
+    }
+
+    @OnTextChanged(R.id.join_nicknameEdit)
+    public void nicknameTextChange() {
+        presenter.nicknameValidation(editNickName.getText().toString());
+    }
+
     @OnClick(R.id.join_joinBtn)
     public void joinButtonClick() {
+        if (!isEmail) {
+            toast("이메일을 다시 확인해주세요.");
+            return;
+        }
+
+        if (!isPassword) {
+            toast("비밀번호를 다시 확인해주세요.");
+            return;
+        }
+
+        if (!isPasswordConfirm) {
+            toast("비밀번호 중복 확인해주세요.");
+            return;
+        }
+
+        if (!isNickname) {
+            toast("닉네임을 다시 확인해주세요.");
+            return;
+        }
+
         startActivity(new Intent(JoinActivity.this, LoginActivity.class));
         finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.detachView();
     }
 
     @Override
@@ -58,5 +103,29 @@ public class JoinActivity extends AppCompatActivity implements JoinContract.View
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         };
         runOnUiThread(r);
+    }
+
+    @Override
+    public void isEmail(boolean b) {
+        isEmail = b;
+        Log.d(TAG, "isEmail : " + isEmail);
+    }
+
+    @Override
+    public void isPassword(boolean b) {
+        isPassword = b;
+        Log.d(TAG, "isPassword : " + isPassword);
+    }
+
+    @Override
+    public void isPasswordConfirm(boolean b) {
+        isPasswordConfirm = b;
+        Log.d(TAG, "isPasswordConfirm : " + isPasswordConfirm);
+    }
+
+    @Override
+    public void isNickname(boolean b) {
+        isNickname = b;
+        Log.d(TAG, "isNickname : " + isNickname);
     }
 }

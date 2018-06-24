@@ -34,22 +34,32 @@ public class JoinPresenter implements JoinContract.Presenter, JoinModelCallback.
     }
 
     @Override
+    public void passwordConfirmValidation(String password) {
+        regularExpModel.passwordConfirmValidation(password);
+    }
+
+    @Override
     public void nicknameValidation(String nickname) {
         regularExpModel.nicknameValidation(nickname);
     }
 
     @Override
     public void isEmailValidation(boolean b) {
-
+        view.isEmail(b);
     }
 
     @Override
     public void isPasswordValidation(boolean b) {
+        view.isPassword(b);
+    }
 
+    @Override
+    public void isPasswordConfirmValidation(boolean b) {
+        view.isPasswordConfirm(b);
     }
 
     @Override
     public void isNicknameValidation(boolean b) {
-
+        view.isNickname(b);
     }
 }
