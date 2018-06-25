@@ -2,20 +2,18 @@ package com.example.joe.depromeet_partygwam.Main.View;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.example.joe.depromeet_partygwam.Login.View.TabFragment.JoinedParty;
-import com.example.joe.depromeet_partygwam.Login.View.TabFragment.MyParty;
-import com.example.joe.depromeet_partygwam.Login.View.TabFragment.PartyEventMessage;
-import com.example.joe.depromeet_partygwam.Login.View.TabFragment.PartyList;
-import com.example.joe.depromeet_partygwam.Login.View.TabFragment.SettingProfile;
+import com.example.joe.depromeet_partygwam.Main.View.TabFragment.JoinedParty;
+import com.example.joe.depromeet_partygwam.Main.View.TabFragment.MyParty;
+import com.example.joe.depromeet_partygwam.Main.View.TabFragment.PartyEventMessage;
+import com.example.joe.depromeet_partygwam.Main.View.TabFragment.PartyList;
+import com.example.joe.depromeet_partygwam.Main.View.TabFragment.SettingProfile;
 import com.example.joe.depromeet_partygwam.R;
 
 public class MainActivity extends AppCompatActivity {
