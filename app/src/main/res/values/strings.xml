@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Depromeet_PartyGwam</string>
+    <string name="server_url">http://www.mocky.io/v2/5b31c8ce310000123b1293c0</string>
 </resources>

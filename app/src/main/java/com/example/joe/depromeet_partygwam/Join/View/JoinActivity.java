@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -12,10 +13,13 @@ import com.example.joe.depromeet_partygwam.Join.Presenter.JoinContract;
 import com.example.joe.depromeet_partygwam.Join.Presenter.JoinPresenter;
 import com.example.joe.depromeet_partygwam.Login.View.LoginActivity;
 import com.example.joe.depromeet_partygwam.R;
+import com.example.joe.depromeet_partygwam.Retrofit.ResponseCode;
+import com.example.joe.depromeet_partygwam.Retrofit.RetrofitMessage;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnFocusChange;
 import butterknife.OnTextChanged;
 
 public class JoinActivity extends AppCompatActivity implements JoinContract.View{
@@ -42,12 +46,21 @@ public class JoinActivity extends AppCompatActivity implements JoinContract.View
         ButterKnife.bind(this);
         presenter = new JoinPresenter();
         presenter.attachView(this);
+        //presenter.getMembers();
     }
 
     @OnTextChanged(R.id.join_emailEdit)
     public void emailTextChange() {
         Log.i(TAG, "emailTextChange");
         presenter.emailValidation(editEmail.getText().toString());
+    }
+
+    @OnFocusChange(R.id.join_emailEdit)
+    public void emailFocusChange(View v, boolean isFocus) {
+        if (isFocus && !editEmail.getText().toString().equals("")) {
+            Log.d(TAG, "emailFocusChange");
+
+        }
     }
 
     @OnTextChanged(R.id.join_pwEdit)
@@ -103,6 +116,20 @@ public class JoinActivity extends AppCompatActivity implements JoinContract.View
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         };
         runOnUiThread(r);
+    }
+
+    @Override
+    public void connectStatus(int code) {
+        switch (code) {
+            case ResponseCode.SUCCESS:
+                break;
+            case ResponseCode.BAD_REQUEST:
+            case ResponseCode.FORBIDDEN:
+            case ResponseCode.NOT_FOUND:
+
+                toast(RetrofitMessage.ERROR_MESSAGE);
+                break;
+        }
     }
 
     @Override

@@ -1,16 +1,22 @@
 package com.example.joe.depromeet_partygwam.Join.Presenter;
 
+import com.example.joe.depromeet_partygwam.Join.Data.Member;
 import com.example.joe.depromeet_partygwam.Join.Model.JoinModelCallback;
+import com.example.joe.depromeet_partygwam.Join.Model.JoinRetrofitModel;
 import com.example.joe.depromeet_partygwam.Join.Model.RegularExpModel;
 
-public class JoinPresenter implements JoinContract.Presenter, JoinModelCallback.RegularCallback {
+public class JoinPresenter implements JoinContract.Presenter,
+        JoinModelCallback.RegularCallback, JoinModelCallback.RetrofitCallback {
 
     private JoinContract.View view;
     private RegularExpModel regularExpModel;
+    private JoinRetrofitModel retrofitModel;
 
     public JoinPresenter() {
         regularExpModel = new RegularExpModel();
         regularExpModel.setCallback(this);
+        retrofitModel = new JoinRetrofitModel();
+        retrofitModel.setCallback(this);
     }
 
     @Override
@@ -21,6 +27,26 @@ public class JoinPresenter implements JoinContract.Presenter, JoinModelCallback.
     @Override
     public void detachView() {
         this.view = null;
+    }
+
+    @Override
+    public void validationMember() {
+        retrofitModel.validationMember();
+    }
+
+    @Override
+    public void InsertMember(Member member) {
+        retrofitModel.insertMember(member);
+    }
+
+    @Override
+    public void onSuccess(int code) {
+
+    }
+
+    @Override
+    public void onFailure(int code) {
+
     }
 
     @Override
