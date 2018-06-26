@@ -1,6 +1,6 @@
 package com.example.joe.depromeet_partygwam.Join.Presenter;
 
-import com.example.joe.depromeet_partygwam.Join.Data.Member;
+import com.example.joe.depromeet_partygwam.Data.User;
 
 public interface JoinContract {
     interface View {
@@ -15,11 +15,11 @@ public interface JoinContract {
     interface Presenter {
         void attachView(View view);
         void detachView();
-        void validationMember();
-        void InsertMember(Member member);
-        void emailValidation(String email);
-        void passwordValidation(String password);
-        void passwordConfirmValidation(String password);
-        void nicknameValidation(String nickname);
+        void validateMember();
+        void InsertMember(User user);
+        void validateEmail(String email);
+        void validatePassword(String password);
+        void validatePasswordConfirm(String password);
+        void validateNickname(String nickname);
     }
 }

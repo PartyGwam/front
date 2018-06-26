@@ -52,7 +52,7 @@ public class JoinActivity extends AppCompatActivity implements JoinContract.View
     @OnTextChanged(R.id.join_emailEdit)
     public void emailTextChange() {
         Log.i(TAG, "emailTextChange");
-        presenter.emailValidation(editEmail.getText().toString());
+        presenter.validateEmail(editEmail.getText().toString());
     }
 
     @OnFocusChange(R.id.join_emailEdit)
@@ -65,17 +65,24 @@ public class JoinActivity extends AppCompatActivity implements JoinContract.View
 
     @OnTextChanged(R.id.join_pwEdit)
     public void passwordTextChange() {
-        presenter.passwordValidation(editPw.getText().toString());
+        presenter.validatePassword(editPw.getText().toString());
     }
 
     @OnTextChanged(R.id.join_pwConfirmEdit)
     public void passwordConfirmTextChange() {
-        presenter.passwordConfirmValidation(editPwConfirm.getText().toString());
+        presenter.validatePasswordConfirm(editPwConfirm.getText().toString());
     }
 
     @OnTextChanged(R.id.join_nicknameEdit)
     public void nicknameTextChange() {
-        presenter.nicknameValidation(editNickName.getText().toString());
+        presenter.validateNickname(editNickName.getText().toString());
+    }
+
+    @OnFocusChange(R.id.join_nicknameEdit)
+    public void nicknameFocusChange(View v, boolean isFocus) {
+        if (isFocus && !editNickName.getText().toString().equals("")) {
+            Log.d(TAG, "nicknameFocusChange");
+        }
     }
 
     @OnClick(R.id.join_joinBtn)

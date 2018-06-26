@@ -1,6 +1,6 @@
 package com.example.joe.depromeet_partygwam.Join.Presenter;
 
-import com.example.joe.depromeet_partygwam.Join.Data.Member;
+import com.example.joe.depromeet_partygwam.Data.User;
 import com.example.joe.depromeet_partygwam.Join.Model.JoinModelCallback;
 import com.example.joe.depromeet_partygwam.Join.Model.JoinRetrofitModel;
 import com.example.joe.depromeet_partygwam.Join.Model.RegularExpModel;
@@ -30,13 +30,13 @@ public class JoinPresenter implements JoinContract.Presenter,
     }
 
     @Override
-    public void validationMember() {
+    public void validateMember() {
         retrofitModel.validationMember();
     }
 
     @Override
-    public void InsertMember(Member member) {
-        retrofitModel.insertMember(member);
+    public void InsertMember(User user) {
+        retrofitModel.insertMember(user);
     }
 
     @Override
@@ -50,22 +50,22 @@ public class JoinPresenter implements JoinContract.Presenter,
     }
 
     @Override
-    public void emailValidation(String email) {
+    public void validateEmail(String email) {
         regularExpModel.emailValidation(email);
     }
 
     @Override
-    public void passwordValidation(String password) {
+    public void validatePassword(String password) {
         regularExpModel.passwordValidation(password);
     }
 
     @Override
-    public void passwordConfirmValidation(String password) {
+    public void validatePasswordConfirm(String password) {
         regularExpModel.passwordConfirmValidation(password);
     }
 
     @Override
-    public void nicknameValidation(String nickname) {
+    public void validateNickname(String nickname) {
         regularExpModel.nicknameValidation(nickname);
     }
 

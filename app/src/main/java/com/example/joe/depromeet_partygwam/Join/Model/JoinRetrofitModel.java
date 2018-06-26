@@ -1,7 +1,7 @@
 package com.example.joe.depromeet_partygwam.Join.Model;
 
 
-import com.example.joe.depromeet_partygwam.Join.Data.Member;
+import com.example.joe.depromeet_partygwam.Data.User;
 import com.example.joe.depromeet_partygwam.Retrofit.ResponseCode;
 import com.example.joe.depromeet_partygwam.Retrofit.RetrofitService;
 import com.example.joe.depromeet_partygwam.Retrofit.RetrofitServiceManager;
@@ -23,17 +23,17 @@ public class JoinRetrofitModel {
     }
 
     public void validationMember() {
-        Call<Member> call = retrofitService.validationMember();
-        call.enqueue(new Callback<Member>() {
+        Call<User> call = retrofitService.validateUser();
+        call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<Member> call, Response<Member> response) {
-                Member member =  response.body();
+            public void onResponse(Call<User> call, Response<User> response) {
+                User user =  response.body();
                 if (response.code() != ResponseCode.SUCCESS) {
                     callback.onFailure(response.code());
                     return;
                 }
 
-                if (member != null) {
+                if (user != null) {
 
                     return;
                 }
@@ -42,14 +42,14 @@ public class JoinRetrofitModel {
             }
 
             @Override
-            public void onFailure(Call<Member> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 t.printStackTrace();
-                callback.onFailure(ResponseCode.NOT_FOUND);
+                callback.onFailure(ResponseCode.UNkNOWN);
             }
         });
     }
 
-    public void insertMember(Member member) {
+    public void insertMember(User user) {
 
     }
 }
