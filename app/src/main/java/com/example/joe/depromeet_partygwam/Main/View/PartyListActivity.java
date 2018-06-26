@@ -2,21 +2,20 @@ package com.example.joe.depromeet_partygwam.Main.View;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 
 import com.example.joe.depromeet_partygwam.Main.View.TabFragment.JoinedParty;
 import com.example.joe.depromeet_partygwam.Main.View.TabFragment.MyParty;
 import com.example.joe.depromeet_partygwam.Main.View.TabFragment.PartyEventMessage;
-import com.example.joe.depromeet_partygwam.Main.View.TabFragment.PartyList;
+import com.example.joe.depromeet_partygwam.Main.View.TabFragment.PartyListFragment;
 import com.example.joe.depromeet_partygwam.Main.View.TabFragment.SettingProfile;
 import com.example.joe.depromeet_partygwam.R;
 
-public class MainActivity extends AppCompatActivity {
+public class PartyListActivity extends AppCompatActivity {
+
     Fragment fragment1;
     Fragment fragment2;
     Fragment fragment3;
@@ -28,9 +27,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.party_list_activity);
 
-        fragment1 = new PartyList();
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment tab1_fragment = fm.findFragmentById(R.id.fragment_container);
+
+        //첫번째 탭 프래그먼트 보이기 이전에 액티비티의 레이아웃 보여주기 방지
+        if(tab1_fragment == null){
+            tab1_fragment = new PartyListFragment();
+            fm.beginTransaction()
+                    .add(R.id.fragment_container, tab1_fragment)
+                    .commit();
+        }
+
+        fragment1 = tab1_fragment;
         fragment2 = new JoinedParty();
         fragment3 = new MyParty();
         fragment4 = new PartyEventMessage();
@@ -68,7 +78,9 @@ public class MainActivity extends AppCompatActivity {
                     selected = fragment5;
                 }
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, selected).commit();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, selected).commit();
             }
 
             @Override
@@ -82,13 +94,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    /*
     //메뉴 아이템 생성
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.menu_main, menu);
+        //getMenuInflater().inflate(R.menu.party_list_menu, menu);
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_main, menu);
+        menuInflater.inflate(R.menu.party_list_menu, menu);
         return true;
     }
 
@@ -100,4 +112,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    */
 }
