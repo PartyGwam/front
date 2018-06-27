@@ -6,9 +6,10 @@
         android:icon="@drawable/menu_search_icon"
         android:title="검색"
         app:showAsAction="always"/>
+
     <item
         android:id="@+id/menu_add_write"
         android:title="새글 등록"
         android:icon="@drawable/menu_add_icon"
-        app:showAsAction="always|withText"/>
+        app:showAsAction="always"/>
 </menu>
