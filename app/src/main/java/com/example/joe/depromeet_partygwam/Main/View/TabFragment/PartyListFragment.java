@@ -1,12 +1,12 @@
 package com.example.joe.depromeet_partygwam.Main.View.TabFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,14 +17,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.joe.depromeet_partygwam.Main.View.Party.Party;
-import com.example.joe.depromeet_partygwam.Main.View.PartyListActivity;
+import com.example.joe.depromeet_partygwam.Main.View.Party.PartyActivity;
+import com.example.joe.depromeet_partygwam.Main.View.Party.PartyLab;
 import com.example.joe.depromeet_partygwam.R;
 
 import java.util.List;
 
 public class PartyListFragment extends Fragment {
 
-    //private RecyclerView partyListRecyclerView;
+    private RecyclerView partyListRecyclerView;
+    private PartyAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -35,10 +37,10 @@ public class PartyListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.party_list_fragment, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_party_list, container, false);
 
-        //partyListRecyclerView = (RecyclerView)rootView.findViewById(R.id.party_list_recycler_view);
-        //partyListRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        partyListRecyclerView = (RecyclerView)rootView.findViewById(R.id.party_list_recycler_view);
+        partyListRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return rootView;
     }
@@ -63,30 +65,49 @@ public class PartyListFragment extends Fragment {
 
             case R.id.menu_search:
                 Toast.makeText(getActivity(), "모임 찾기 메뉴", Toast.LENGTH_LONG).show();
-            case R.id.menu_add_write:
+                return true;
+            case R.id.menu_add_party:
                 Toast.makeText(getActivity(), "모임 추가 메뉴", Toast.LENGTH_LONG).show();
+                Party party = new Party();
+                PartyLab.get(getActivity()).addParty(party);
+                Intent intent = PartyActivity
+                        .newIntent(getActivity(), party.getpId());
+                startActivity(intent);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-/*
+
     private class PartyHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private Party partyEvent;
-        private TextView partyLocationTextView;
-        private TextView partyTitleTextView;
+        private Party party;
         private TextView partyDateTextView;
+        private TextView partyStartTimeTextView;
+        private TextView partyPlaceTextView;
+        private TextView partyTitleTextView;
 
 
-        public PartyHolder(View itemView){
+        private PartyHolder(View itemView){
             super(itemView);
             itemView.setOnClickListener(this);
-        }
-        public void bindParty(Party party){
 
+            partyDateTextView = (TextView)itemView.findViewById(R.id.party_date);
+            partyStartTimeTextView = (TextView) itemView.findViewById(R.id.party_time);
+            partyPlaceTextView = (TextView)itemView.findViewById(R.id.party_place);
+            partyTitleTextView = (TextView) itemView.findViewById(R.id.party_title);
+        }
+
+        public void bindParty(Party partyEvent){
+            party = partyEvent;
+            partyDateTextView.setText(party.getpDate().toString());
+            partyStartTimeTextView.setText(party.getpTime().toString());
+            partyPlaceTextView.setText(party.getpPlace());
+            partyTitleTextView.setText(party.getpTitle());
         }
 
         @Override
         public void onClick(View view){
+            //클릭됬을 때 액티비티? or Fragment? 실행
         }
     }
 
@@ -110,6 +131,4 @@ public class PartyListFragment extends Fragment {
         @Override
         public int getItemCount(){return partyEvents.size();}
     }
-*/
-
 }

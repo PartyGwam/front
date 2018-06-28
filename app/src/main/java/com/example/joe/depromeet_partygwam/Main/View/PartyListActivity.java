@@ -27,7 +27,7 @@ public class PartyListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.party_list_activity);
+        setContentView(R.layout.activity_party_list);
 
         FragmentManager fm = getSupportFragmentManager();
         Fragment tab1_fragment = fm.findFragmentById(R.id.fragment_container);
@@ -94,23 +94,4 @@ public class PartyListActivity extends AppCompatActivity {
             }
         });
     }
-    /*
-    //메뉴 아이템 생성
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.party_list_menu, menu);
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.party_list_menu, menu);
-        return true;
-    }
-
-    //menu item 이 클릭됬을 때 호출되는 메소드
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int curId = item.getItemId();
-        switch (curId) {
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    */
 }

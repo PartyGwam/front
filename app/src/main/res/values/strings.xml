@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Depromeet_PartyGwam</string>
+    <string name="create_new_party">새 모임 만들기</string>
 </resources>
