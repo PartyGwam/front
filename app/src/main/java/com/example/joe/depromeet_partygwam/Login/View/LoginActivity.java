@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.example.joe.depromeet_partygwam.Data.User;
 import com.example.joe.depromeet_partygwam.Join.View.JoinActivity;
+import com.example.joe.depromeet_partygwam.Login.Presenter.LoginContract;
+import com.example.joe.depromeet_partygwam.Login.Presenter.LoginPresenter;
 import com.example.joe.depromeet_partygwam.Main.View.PartyListActivity;
 import com.example.joe.depromeet_partygwam.R;
 
@@ -16,6 +19,7 @@ import butterknife.OnClick;
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
 
     private LoginPresenter presenter;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

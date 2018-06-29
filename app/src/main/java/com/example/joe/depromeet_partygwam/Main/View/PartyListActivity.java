@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.widget.TableLayout;
 
 import com.example.joe.depromeet_partygwam.Main.View.TabFragment.JoinedParty;
 import com.example.joe.depromeet_partygwam.Main.View.TabFragment.MyParty;
@@ -49,6 +50,7 @@ public class PartyListActivity extends AppCompatActivity {
         //툴바로 적용
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         //탭생성
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);

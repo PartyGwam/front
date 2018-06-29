@@ -3,7 +3,6 @@
           package="com.example.joe.depromeet_partygwam">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,5 +23,4 @@
         <activity android:name=".Main.View.Party.PartyActivity">
         </activity>
     </application>
-
 </manifest>

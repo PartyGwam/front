@@ -23,29 +23,6 @@ public class LoginRetrofitModel {
     }
 
     public void getUser() {
-        Call<User> call = retrofitService.getUser();
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                User user = response.body();
-                if (response.code() == ResponseCode.UNAUTHORIZED) {
 
-                    return;
-                }
-
-                if (response.code() != ResponseCode.SUCCESS) {
-
-                    return;
-                }
-
-                callback.onSuccess(user);
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                t.printStackTrace();
-                callback.onFailure(ResponseCode.UNkNOWN);
-            }
-        });
     }
 }

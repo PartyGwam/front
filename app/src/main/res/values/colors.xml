@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="joinTextColor">#505050</color>
+    <color name="joinHintColor">#a7a7a7</color>
+    <color name="joinEditColor">#5e5e5e</color>
+    <color name="joinEditBorder">#7b7b7b</color>
+    <color name="joinInvalid">#e86761</color>
 </resources>

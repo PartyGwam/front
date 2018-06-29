@@ -4,7 +4,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitServiceManager {
-    private static String url = "http://211.38.86.93/query/";
+    private static String url = "https://partygwam-staging.herokuapp.com";
     private static Retrofit retrofit;
     private static RetrofitService retrofitService;
 
