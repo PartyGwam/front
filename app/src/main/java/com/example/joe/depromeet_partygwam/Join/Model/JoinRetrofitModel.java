@@ -3,7 +3,6 @@ package com.example.joe.depromeet_partygwam.Join.Model;
 
 import android.util.Log;
 
-import com.example.joe.depromeet_partygwam.Data.ResponseData;
 import com.example.joe.depromeet_partygwam.Data.User;
 import com.example.joe.depromeet_partygwam.Retrofit.ResponseCode;
 import com.example.joe.depromeet_partygwam.Retrofit.RetrofitService;
@@ -55,8 +54,11 @@ public class JoinRetrofitModel {
         });
     }
 
-    public void validateNickname() {
-        Call<Void> call = retrofitService.validateNickname();
+    public void validateNickname(String nickname) {
+        String jsonStr = "{'username': '" + nickname + "'}";
+        JsonParser jsonParser = new JsonParser();
+        JsonObject jsonObject = (JsonObject) jsonParser.parse(jsonStr);
+        Call<Void> call = retrofitService.validateNickname(jsonObject);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -78,7 +80,30 @@ public class JoinRetrofitModel {
         });
     }
 
-    public void insertMember(User user) {
+    public void insertUser(User user) {
+        String jsonStr = "{" +
+                "'email': '" + user.getEmail() + "'," +
+                "'username': '" + user.getUsername() + "'," +
+                "'password': ':" + user.getPassword() + "'" +
+                "}";
+        JsonParser jsonParser = new JsonParser();
+        JsonObject jsonObject = (JsonObject) jsonParser.parse(jsonStr);
+        Call<Void> call = retrofitService.insertUser(jsonObject);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == ResponseCode.BAD_REQUEST) {
+                    callback.onSuccessJoin(ResponseCode.BAD_REQUEST);
+                    return;
+                }
+                callback.onSuccessJoin(ResponseCode.SUCCESS);
+            }
 
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                t.printStackTrace();
+                callback.onFailure();
+            }
+        });
     }
 }

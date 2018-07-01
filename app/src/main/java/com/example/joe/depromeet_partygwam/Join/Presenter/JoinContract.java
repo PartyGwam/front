@@ -12,14 +12,15 @@ public interface JoinContract {
         void isPasswordConfirm(boolean b);
         void isNickname(boolean b);
         void setProgressbar(boolean b);
+        void startLoginActivity(int code);
     }
 
     interface Presenter {
         void attachView(View view);
         void detachView();
         void validateExistEmail(String email);
-        void validateExistNickname();
-        void InsertMember(User user);
+        void validateExistNickname(String nickname);
+        void insertUser(User user);
         void validateRegularExpEmail(String email);
         void validateRegularExpPassword(String password);
         void validateRegularExpPasswordConfirm(String password);

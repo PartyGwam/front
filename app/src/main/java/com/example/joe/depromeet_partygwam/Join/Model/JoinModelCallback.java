@@ -11,6 +11,7 @@ public interface JoinModelCallback {
     interface RetrofitCallback {
         void onSuccessValidateEmail(int code);
         void onSuccessValidateNickname(int code);
+        void onSuccessJoin(int code);
         void onFailure();
     }
 }

@@ -35,13 +35,13 @@ public class JoinPresenter implements JoinContract.Presenter,
     }
 
     @Override
-    public void validateExistNickname() {
-        retrofitModel.validateNickname();
+    public void validateExistNickname(String nickname) {
+        retrofitModel.validateNickname(nickname);
     }
 
     @Override
-    public void InsertMember(User user) {
-        retrofitModel.insertMember(user);
+    public void insertUser(User user) {
+        retrofitModel.insertUser(user);
     }
 
     @Override
@@ -52,6 +52,11 @@ public class JoinPresenter implements JoinContract.Presenter,
     @Override
     public void onSuccessValidateNickname(int code) {
         view.isExistNickname(code);
+    }
+
+    @Override
+    public void onSuccessJoin(int code) {
+        view.startLoginActivity(code);
     }
 
     @Override

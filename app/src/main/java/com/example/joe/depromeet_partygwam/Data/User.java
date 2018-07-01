@@ -23,6 +23,12 @@ public class User {
         this.is_admin = is_admin;
     }
 
+    public User(String password, String email, String username) {
+        this.password = password;
+        this.email = email;
+        this.username = username;
+    }
+
     public String getUuid() {
         return uuid;
     }

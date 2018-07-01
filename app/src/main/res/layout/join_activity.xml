@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite">
+    android:background="@color/colorWhite"
+    android:id="@+id/join_background">
 
     <ProgressBar
         android:id="@+id/join_pb"
@@ -63,7 +64,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="7dp"
-            android:src="@drawable/default_img" />
+            android:src="@drawable/email_icon" />
 
         <TextView
             android:layout_width="match_parent"
@@ -80,6 +81,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:hint="이메일을 입력해주세요."
+        android:maxLines="1"
         android:textSize="13sp"
         android:textColorHint="@color/joinHintColor"
         android:textColor="@color/joinEditColor"
@@ -118,7 +120,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="7dp"
-            android:src="@drawable/default_img" />
+            android:src="@drawable/password_icon" />
 
         <TextView
             android:layout_width="match_parent"
@@ -135,6 +137,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:hint="비밀번호를 입력해주세요(6자~15자 영문자, 숫자)"
+        android:maxLines="1"
+        android:maxLength="15"
         android:textSize="13sp"
         android:textColorHint="@color/joinHintColor"
         android:textColor="@color/joinEditColor"
@@ -173,7 +177,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="7dp"
-            android:src="@drawable/default_img" />
+            android:src="@drawable/password_icon" />
 
         <TextView
             android:layout_width="match_parent"
@@ -190,6 +194,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:hint="비밀번호를 다시 입력해주세요"
+        android:maxLines="1"
+        android:maxLength="15"
         android:textSize="13sp"
         android:textColorHint="@color/joinHintColor"
         android:textColor="@color/joinEditColor"
@@ -228,7 +234,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="7dp"
-            android:src="@drawable/default_img" />
+            android:src="@drawable/nickname_icon" />
 
         <TextView
             android:layout_width="match_parent"
@@ -245,6 +251,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:hint="닉네임을 입력해주세요"
+        android:maxLines="1"
+        android:maxLength="8"
         android:textSize="13sp"
         android:textColorHint="@color/joinHintColor"
         android:textColor="@color/joinEditColor"
@@ -280,7 +288,7 @@
             android:id="@+id/join_check"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:src="@drawable/default_img" />
+            android:src="@drawable/checkbox_icon" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -290,7 +298,7 @@
             android:textColor="@color/joinTextColor" />
     </LinearLayout>
 
-    <Button
+    <ImageView
         android:id="@+id/join_joinBtn"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -300,5 +308,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/join_termOfUse_layout"
-        android:text="회원가입"/>
+        android:scaleType="fitXY"
+        android:src="@drawable/button"/>
 </android.support.constraint.ConstraintLayout>
