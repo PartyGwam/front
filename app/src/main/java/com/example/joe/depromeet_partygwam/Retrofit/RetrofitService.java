@@ -1,5 +1,7 @@
 package com.example.joe.depromeet_partygwam.Retrofit;
 
+import com.example.joe.depromeet_partygwam.Data.LoginResponse;
+import com.example.joe.depromeet_partygwam.Data.User;
 import com.google.gson.JsonObject;
 
 import retrofit2.Call;
@@ -22,6 +24,11 @@ public interface RetrofitService {
 
     @POST("/api/users/")
     Call<Void> insertUser(
-            @Body JsonObject userdata
+            @Body JsonObject userData
+    );
+
+    @POST("/api/users/login/")
+    Call<LoginResponse> login(
+            @Body JsonObject loginData
     );
 }

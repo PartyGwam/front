@@ -1,5 +1,6 @@
 package com.example.joe.depromeet_partygwam.Login.Presenter;
 
+import com.example.joe.depromeet_partygwam.Data.LoginResponse;
 import com.example.joe.depromeet_partygwam.Data.User;
 import com.example.joe.depromeet_partygwam.Login.Model.LoginRetrofitModel;
 import com.example.joe.depromeet_partygwam.Login.Model.LoginModelCallback;
@@ -15,13 +16,13 @@ public class LoginPresenter implements LoginContract.Presenter, LoginModelCallba
     }
 
     @Override
-    public void onSuccess(User user) {
-        view.onSuccess(user);
+    public void onSuccess(int code, LoginResponse response) {
+        view.startMainActivity(code, response);
     }
 
     @Override
-    public void onFailure(int code) {
-
+    public void onFailure() {
+        view.connectFail();
     }
 
     @Override
@@ -35,7 +36,7 @@ public class LoginPresenter implements LoginContract.Presenter, LoginModelCallba
     }
 
     @Override
-    public void validateUser(User user) {
-        retrofitModel.getUser();
+    public void login(String email, String password) {
+        retrofitModel.login(email, password);
     }
 }
