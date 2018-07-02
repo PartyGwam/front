@@ -13,10 +13,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.joe.depromeet_partygwam.Main.View.Party.Party;
+import com.example.joe.depromeet_partygwam.Data.Party;
 import com.example.joe.depromeet_partygwam.Main.View.Party.PartyActivity;
 import com.example.joe.depromeet_partygwam.Main.View.Party.PartyLab;
 import com.example.joe.depromeet_partygwam.R;
@@ -28,6 +31,8 @@ public class PartyListFragment extends Fragment {
     private RecyclerView partyListRecyclerView;
     private PartyAdapter adapter;
 
+    String[] items = {"정렬기준", "마감임박순", "등록순"};
+
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -37,11 +42,36 @@ public class PartyListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        //서버에 파티가 존재하는 지 요청하는 코드 필요
+        //파티가 하나라도 존재하면
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_party_list, container, false);
 
         partyListRecyclerView = (RecyclerView)rootView.findViewById(R.id.party_list_recycler_view);
         partyListRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        Spinner spinner = (Spinner) rootView.findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, items
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //
+            }
+        });
+
+        //파티가 하나도 존재하지 않으면
+        /*
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_none_party_list, container, false);
+        */
         return rootView;
     }
 
@@ -68,11 +98,11 @@ public class PartyListFragment extends Fragment {
                 return true;
             case R.id.menu_add_party:
                 Toast.makeText(getActivity(), "모임 추가 메뉴", Toast.LENGTH_LONG).show();
-                Party party = new Party();
+                /*Party party = new Party();
                 PartyLab.get(getActivity()).addParty(party);
                 Intent intent = PartyActivity
                         .newIntent(getActivity(), party.getpId());
-                startActivity(intent);
+                startActivity(intent);*/
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -107,7 +137,7 @@ public class PartyListFragment extends Fragment {
 
         @Override
         public void onClick(View view){
-            //클릭됬을 때 액티비티? or Fragment? 실행
+            //파티 항목 선택시 파티 상세 페이지!
         }
     }
 

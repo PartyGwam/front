@@ -11,7 +11,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
-public interface RetrofitService {
+public interface  RetrofitService {
     @Headers(
             "Content-Type: application/json"
     )

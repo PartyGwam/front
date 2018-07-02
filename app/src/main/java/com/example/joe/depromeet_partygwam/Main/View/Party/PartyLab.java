@@ -1,7 +1,8 @@
 package com.example.joe.depromeet_partygwam.Main.View.Party;
 
-import android.content.ContentValues;
 import android.content.Context;
+
+import com.example.joe.depromeet_partygwam.Data.Party;
 
 import java.util.ArrayList;
 import java.util.List;
