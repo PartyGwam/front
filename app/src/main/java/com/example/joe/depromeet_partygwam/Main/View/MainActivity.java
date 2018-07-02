@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         fragment2 = new JoinedParty();
         fragment3 = new MyParty();
         fragment4 = new PartyEventMessage();
-        fragment5 = new SettingProfile();
+        fragment5 = new SettingProfile(); 
 
         View tabView1 = getLayoutInflater().inflate(R.layout.tab_layout, null);
         View tabView2 = getLayoutInflater().inflate(R.layout.tab_layout, null);
