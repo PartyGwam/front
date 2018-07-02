@@ -7,23 +7,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
-import com.example.joe.depromeet_partygwam.Main.View.TabFragment.JoinedParty;
-import com.example.joe.depromeet_partygwam.Main.View.TabFragment.MyParty;
-import com.example.joe.depromeet_partygwam.Main.View.TabFragment.PartyEventMessage;
-import com.example.joe.depromeet_partygwam.Main.View.TabFragment.PartyListFragment;
-import com.example.joe.depromeet_partygwam.Main.View.TabFragment.SettingProfile;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.JoinedParty;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.MyParty;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyEventMessage;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.PartyListFragment;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.SettingProfile;
 import com.example.joe.depromeet_partygwam.R;
 
-public class PartyListActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
+<<<<<<< HEAD:app/src/main/java/com/example/joe/depromeet_partygwam/Main/View/MainActivity.java
+    private Fragment fragment1;
+    private Fragment fragment2;
+    private Fragment fragment3;
+    private Fragment fragment4;
+    private Fragment fragment5;
+=======
     Fragment fragment1;
     Fragment fragment2;
     Fragment fragment3;
@@ -31,11 +33,13 @@ public class PartyListActivity extends AppCompatActivity {
     Fragment fragment5;
 
     Toolbar toolbar;
+>>>>>>> origin/develop:app/src/main/java/com/example/joe/depromeet_partygwam/Main/View/PartyListActivity.java
 
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_party_list);
+        setContentView(R.layout.main_activity);
 
         FragmentManager fm = getSupportFragmentManager();
         Fragment tab1_fragment = fm.findFragmentById(R.id.fragment_container);
@@ -85,11 +89,11 @@ public class PartyListActivity extends AppCompatActivity {
         tabImage5.setImageDrawable(getResources().getDrawable(R.drawable.set_icon));
 
         //툴바로 적용
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar)findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
         //탭생성
-        TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabs = (TabLayout) findViewById(R.id.main_tabs);
         //탭 버튼 추가하기
         tabs.addTab(tabs.newTab().setCustomView(tabView1));
         tabs.addTab(tabs.newTab().setCustomView(tabView2));

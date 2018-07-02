@@ -17,10 +17,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Main.View.PartyListActivity"/>
+        <activity android:name=".Main.View.MainActivity"/>
         <activity android:name=".Login.View.LoginActivity"/>
         <activity android:name=".Join.View.JoinActivity"/>
-        <activity android:name=".Main.View.Party.PartyActivity">
+        <activity android:name=".Main.Party.PartyActivity">
         </activity>
     </application>
 </manifest>

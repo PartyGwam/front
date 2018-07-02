@@ -84,8 +84,9 @@ public class JoinRetrofitModel {
         String jsonStr = "{" +
                 "'email': '" + user.getEmail() + "'," +
                 "'username': '" + user.getUsername() + "'," +
-                "'password': ':" + user.getPassword() + "'" +
+                "'password': '" + user.getPassword() + "'" +
                 "}";
+        Log.d(TAG, jsonStr);
         JsonParser jsonParser = new JsonParser();
         JsonObject jsonObject = (JsonObject) jsonParser.parse(jsonStr);
         Call<Void> call = retrofitService.insertUser(jsonObject);
