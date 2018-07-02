@@ -19,7 +19,7 @@ public class RegularExpModel {
     public void passwordValidation(String password) {
         this.password = password;
         boolean b = Pattern
-                .matches("^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?~`]+$", password);
+                .matches("^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?~`]{6,15}+$", password);
         callback.isPasswordValidation(b);
     }
 
@@ -29,7 +29,7 @@ public class RegularExpModel {
     }
 
     public void nicknameValidation(String nickname) {
-        boolean b = Pattern.matches("^([a-zA-Z0-9]{3,6})+$", nickname);
+        boolean b = Pattern.matches("^([a-zA-Z0-9]{2,8})+$", nickname);
         callback.isNicknameValidation(b);
     }
 }
