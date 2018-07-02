@@ -1,17 +1,7 @@
-package com.example.joe.depromeet_partygwam.Main.View.Model;
+package com.example.joe.depromeet_partygwam.Main.Model;
 
-import android.util.Log;
-
-import com.example.joe.depromeet_partygwam.Data.User;
-import com.example.joe.depromeet_partygwam.Join.Model.JoinModelCallback;
-import com.example.joe.depromeet_partygwam.Retrofit.ResponseCode;
 import com.example.joe.depromeet_partygwam.Retrofit.RetrofitService;
 import com.example.joe.depromeet_partygwam.Retrofit.RetrofitServiceManager;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
-import retrofit2.Call;
-import retrofit2.Response;
 
 public class MainRetrofitModel {
     private static final String TAG = MainRetrofitModel.class.getSimpleName();

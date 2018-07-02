@@ -14,7 +14,7 @@ import com.example.joe.depromeet_partygwam.Data.User;
 import com.example.joe.depromeet_partygwam.Join.View.JoinActivity;
 import com.example.joe.depromeet_partygwam.Login.Presenter.LoginContract;
 import com.example.joe.depromeet_partygwam.Login.Presenter.LoginPresenter;
-import com.example.joe.depromeet_partygwam.Main.View.PartyListActivity;
+import com.example.joe.depromeet_partygwam.Main.View.MainActivity;
 import com.example.joe.depromeet_partygwam.R;
 import com.example.joe.depromeet_partygwam.Retrofit.ResponseCode;
 
@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             toast("아이디 / 비밀번호를 다시 확인해 주세요.");
             return;
         }
-        Intent intent = new Intent(LoginActivity.this, PartyListActivity.class);
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         intent.putExtra("Token", response.getResult().getToken());
         startActivity(intent);
         finish();

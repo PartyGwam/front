@@ -1,4 +1,4 @@
-package com.example.joe.depromeet_partygwam.Main.View.Model;
+package com.example.joe.depromeet_partygwam.Main.Model;
 
 public interface MainModelCallback {
 

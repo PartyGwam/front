@@ -1,4 +1,4 @@
-package com.example.joe.depromeet_partygwam.Main.View.Party;
+package com.example.joe.depromeet_partygwam.Main.Party;
 
 import android.content.Context;
 

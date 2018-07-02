@@ -33,6 +33,7 @@ public class LoginRetrofitModel {
                 "'email': '" + email + "'," +
                 "'password': '" + password + "'" +
                 "}";
+        Log.d(TAG, jsonStr);
         JsonParser jsonParser = new JsonParser();
         JsonObject jsonObject = (JsonObject) jsonParser.parse(jsonStr);
         Call<LoginResponse> call = retrofitService.login(jsonObject);
