@@ -19,11 +19,21 @@ import com.example.joe.depromeet_partygwam.R;
 
 public class MainActivity extends AppCompatActivity {
 
+<<<<<<< HEAD:app/src/main/java/com/example/joe/depromeet_partygwam/Main/View/MainActivity.java
     private Fragment fragment1;
     private Fragment fragment2;
     private Fragment fragment3;
     private Fragment fragment4;
     private Fragment fragment5;
+=======
+    Fragment fragment1;
+    Fragment fragment2;
+    Fragment fragment3;
+    Fragment fragment4;
+    Fragment fragment5;
+
+    Toolbar toolbar;
+>>>>>>> origin/develop:app/src/main/java/com/example/joe/depromeet_partygwam/Main/View/PartyListActivity.java
 
     private Toolbar toolbar;
     @Override
