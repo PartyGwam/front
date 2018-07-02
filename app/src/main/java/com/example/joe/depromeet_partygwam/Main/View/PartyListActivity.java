@@ -31,7 +31,6 @@ public class PartyListActivity extends AppCompatActivity {
     Fragment fragment5;
 
     Toolbar toolbar;
-    View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

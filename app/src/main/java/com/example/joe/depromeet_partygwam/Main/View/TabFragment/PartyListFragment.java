@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +28,6 @@ import com.example.joe.depromeet_partygwam.R;
 import java.util.List;
 
 public class PartyListFragment extends Fragment {
-
     private RecyclerView partyListRecyclerView;
     private PartyAdapter adapter;
 
@@ -36,7 +36,7 @@ public class PartyListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+        //setHasOptionsMenu(true);
     }
 
     @Nullable
@@ -49,6 +49,22 @@ public class PartyListFragment extends Fragment {
 
         partyListRecyclerView = (RecyclerView)rootView.findViewById(R.id.party_list_recycler_view);
         partyListRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        ImageView searchButton = (ImageView)rootView.findViewById(R.id.search_icon);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "모임 찾기 메뉴", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        ImageView createNewPartyButton = (ImageView)rootView.findViewById(R.id.create_new_party_icon);
+        createNewPartyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "모임 만들기 메뉴", Toast.LENGTH_LONG).show();
+            }
+        });
 
         Spinner spinner = (Spinner) rootView.findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, items
@@ -81,7 +97,7 @@ public class PartyListFragment extends Fragment {
         // destroy all menu and re-call onCreateOptionsMenu
         getActivity().invalidateOptionsMenu();
     }
-
+/*
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -98,16 +114,17 @@ public class PartyListFragment extends Fragment {
                 return true;
             case R.id.menu_add_party:
                 Toast.makeText(getActivity(), "모임 추가 메뉴", Toast.LENGTH_LONG).show();
-                /*Party party = new Party();
+                Party party = new Party();
                 PartyLab.get(getActivity()).addParty(party);
                 Intent intent = PartyActivity
                         .newIntent(getActivity(), party.getpId());
-                startActivity(intent);*/
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+    */
 
     private class PartyHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private Party party;
