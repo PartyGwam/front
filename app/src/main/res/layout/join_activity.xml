@@ -18,33 +18,11 @@
         app:layout_constraintTop_toTopOf="@+id/join_toolbar"
         android:visibility="invisible"/>
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/join_toolbar"
+    <include
         android:layout_width="match_parent"
         android:layout_height="59dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:contentInsetLeft="0dp"
-        app:contentInsetStart="0dp"
-        app:contentInsetRight="0dp"
-        app:contentInsetEnd="0dp">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:textColor="@color/joinTextColor"
-                tools:text="회원가입"
-                android:layout_centerInParent="true"/>
-        </RelativeLayout>
-
-    </android.support.v7.widget.Toolbar>
+        layout="@layout/join_toolbar"
+        android:id="@+id/join_toolbar"/>
 
 
     <LinearLayout
