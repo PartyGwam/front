@@ -81,7 +81,7 @@ public class JoinActivity extends AppCompatActivity
         setContentView(R.layout.join_activity);
         ButterKnife.bind(this);
 
-        initToolbar();
+        setSupportActionBar(toolbar);
         isExistEmail = new AtomicBoolean(Boolean.FALSE);
         isExistNickname = new AtomicBoolean(Boolean.FALSE);
         isEmail = new AtomicBoolean(Boolean.FALSE);
@@ -103,10 +103,10 @@ public class JoinActivity extends AppCompatActivity
         presenter.attachView(this);
     }
 
-    private void initToolbar() {
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+    @OnClick(R.id.join_toolbar_back)
+    public void toolbackBackClick() {
+        startActivity(new Intent(JoinActivity.this, LoginActivity.class));
+        finish();
     }
 
     @OnTouch(R.id.join_background)
