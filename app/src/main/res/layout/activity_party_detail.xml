@@ -14,7 +14,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="51dp"
+        android:layout_height="59dp"
         android:background="#ffffff"
         app:contentInsetEnd="0dp"
         app:contentInsetLeft="0dp"
@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.constraint.ConstraintLayout
-            android:layout_width="368dp"
+            android:layout_width="match_parent"
             android:layout_height="22dp"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="115dp">
@@ -53,6 +53,7 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
+                android:id="@+id/party_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="모각코"
@@ -70,7 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="51dp"
-        android:layout_marginTop="51dp"
+        android:layout_marginTop="59dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -94,10 +95,10 @@
                     android:layout_height="0dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:text="TextView"
+                    android:layout_marginTop="9dp"
+                    android:text="역삼마루 180"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.521"
+                    app:layout_constraintHorizontal_bias="0.444"
                     app:layout_constraintStart_toEndOf="@+id/view2"
                     app:layout_constraintTop_toBottomOf="@+id/imageView5"/>
 
@@ -106,8 +107,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    android:text="TextView"
+                    android:layout_marginTop="9dp"
+                    android:text="오늘 18:00"
                     app:layout_constraintEnd_toStartOf="@+id/view2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView4"/>
@@ -128,17 +129,21 @@
                     android:id="@+id/view2"
                     android:layout_width="0.5dp"
                     android:layout_height="50dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="38dp"
                     android:background="#8d8d8d"
-                    tools:layout_editor_absoluteX="192dp"
-                    tools:layout_editor_absoluteY="38dp"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <ImageView
                     android:id="@+id/imageView4"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="69dp"
+                    android:layout_marginStart="85dp"
+                    android:layout_marginTop="40dp"
                     app:layout_constraintEnd_toStartOf="@+id/view2"
                     app:layout_constraintHorizontal_bias="0.539"
                     app:layout_constraintStart_toStartOf="parent"
@@ -149,9 +154,9 @@
                     android:id="@+id/imageView5"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="88dp"
+                    android:layout_marginStart="71dp"
+                    android:layout_marginTop="40dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.503"
                     app:layout_constraintStart_toEndOf="@+id/view2"
@@ -174,7 +179,7 @@
                     app:layout_constraintVertical_bias="0.0"/>
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/join_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
@@ -196,11 +201,11 @@
                     android:textColor="#828282"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView6"
+                    app:layout_constraintStart_toEndOf="@+id/join_number"
                     app:layout_constraintTop_toBottomOf="@+id/view"/>
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/max_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="24dp"
@@ -243,20 +248,20 @@
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/party_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="21dp"
                     android:layout_marginStart="21dp"
-                    android:layout_marginTop="32dp"
-                    android:text="TextView"
+                    android:layout_marginTop="26dp"
+                    android:text="오늘 6시 역삼 마루 180에서 모각코 하실 분들 있나요? 오시는 분들에게 맥주 한병 씩 무료로 쏠게요. 원하시는 분들에게는 스터디 진행 해드려요! 회비나 입장료 없습니다."
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView9"/>
 
                 <ImageView
-                    android:id="@+id/imageView7"
+                    android:id="@+id/party_leader_profile"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginBottom="12dp"
@@ -264,11 +269,11 @@
                     android:layout_marginTop="51dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView10"
+                    app:layout_constraintTop_toBottomOf="@+id/party_content"
                     app:srcCompat="@drawable/default_img"/>
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/party_leader_nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="17dp"
@@ -276,7 +281,7 @@
                     android:text="곰개발"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView7"/>
+                    app:layout_constraintStart_toEndOf="@+id/party_leader_profile"/>
 
                 <TextView
                     android:id="@+id/textView12"
@@ -287,10 +292,10 @@
                     android:text="|"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView11"/>
+                    app:layout_constraintStart_toEndOf="@+id/party_leader_nickname"/>
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/party_start_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="17dp"
@@ -309,10 +314,10 @@
                     android:text="|"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView13"/>
+                    app:layout_constraintStart_toEndOf="@+id/party_start_time"/>
 
                 <TextView
-                    android:id="@+id/textView15"
+                    android:id="@+id/view_"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="17dp"
@@ -323,6 +328,7 @@
                     app:layout_constraintStart_toEndOf="@+id/textView14"/>
 
                 <TextView
+                    android:id="@+id/view_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="17dp"
@@ -330,10 +336,10 @@
                     android:text="120"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView15"/>
+                    app:layout_constraintStart_toEndOf="@+id/view_"/>
 
                 <ImageView
-                    android:id="@+id/imageView9"
+                    android:id="@+id/join_button"
                     android:layout_width="118.9dp"
                     android:layout_height="35dp"
                     android:layout_marginBottom="13dp"
@@ -371,7 +377,7 @@
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
-                    android:id="@+id/textView17"
+                    android:id="@+id/num_of_reply"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
