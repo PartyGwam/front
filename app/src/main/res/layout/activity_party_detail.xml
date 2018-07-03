@@ -141,8 +141,8 @@
 
                 <ImageView
                     android:id="@+id/imageView4"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="69dp"
                     android:layout_marginStart="85dp"
                     android:layout_marginTop="40dp"
@@ -154,8 +154,8 @@
 
                 <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="88dp"
                     android:layout_marginStart="71dp"
                     android:layout_marginTop="40dp"
@@ -230,8 +230,8 @@
 
                 <ImageView
                     android:id="@+id/imageView6"
-                    android:layout_width="11.6dp"
-                    android:layout_height="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="21dp"
                     android:layout_marginTop="13dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -256,7 +256,8 @@
                     android:layout_marginEnd="21dp"
                     android:layout_marginStart="21dp"
                     android:layout_marginTop="26dp"
-                    android:text="오늘 6시 역삼 마루 180에서 모각코 하실 분들 있나요? 오시는 분들에게 맥주 한병 씩 무료로 쏠게요. 원하시는 분들에게는 스터디 진행 해드려요! 회비나 입장료 없습니다."
+                    android:text="오늘 6시 역삼 마루 180에서 모각코 하실 분들 있나요? 오시는 분들에게 맥주 한병 씩 무료로 쏠게요. 원하시는 분들에게는 스터디 진행 해드려요! 회비나 입장료 없습니다. 오늘 6시 역삼 마루 180에서 모각코 하실 분들 있나요? 오시는 분들에게 맥주 한병 씩 무료로 쏠게요. 원하시는 분들에게는 스터디 진행 해드려요! 회비나 입장료 없습니다. 오늘 6시 역삼 마루 180에서 모각코 하실 분들 있나요? 오시는 분들에게 맥주 한병 씩 무료로 쏠게요. 원하시는 분들에게는 스터디 진행 해드려요! 회비나 입장료 없습니다.  "
+                    android:textSize="13.5sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -264,8 +265,8 @@
 
                 <ImageView
                     android:id="@+id/party_leader_profile"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     android:layout_marginStart="21dp"
                     android:layout_marginTop="51dp"
@@ -276,10 +277,10 @@
 
                 <TextView
                     android:id="@+id/party_leader_nickname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="34dp"
+                    android:layout_height="18dp"
                     android:layout_marginBottom="17dp"
-                    android:layout_marginStart="7dp"
+                    android:layout_marginStart="8dp"
                     android:text="곰개발"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -290,7 +291,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="17dp"
-                    android:layout_marginStart="7dp"
+                    android:layout_marginStart="8dp"
                     android:text="|"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -301,7 +302,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="17dp"
-                    android:layout_marginStart="7dp"
+                    android:layout_marginStart="8dp"
                     android:text="11:00"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -312,7 +313,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="17dp"
-                    android:layout_marginStart="7dp"
+                    android:layout_marginStart="8dp"
                     android:text="|"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -323,7 +324,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="17dp"
-                    android:layout_marginStart="7dp"
+                    android:layout_marginStart="8dp"
                     android:text="조회수"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -334,7 +335,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="17dp"
-                    android:layout_marginStart="3dp"
+                    android:layout_marginStart="4dp"
                     android:text="120"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -342,10 +343,10 @@
 
                 <ImageView
                     android:id="@+id/join_button"
-                    android:layout_width="118.9dp"
-                    android:layout_height="35dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="13dp"
-                    android:layout_marginEnd="14dp"
+                    android:layout_marginEnd="21dp"
                     android:background="@drawable/yellowbox"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
@@ -360,10 +361,10 @@
 
                 <ImageView
                     android:id="@+id/imageView10"
-                    android:layout_width="15.4dp"
-                    android:layout_height="15.4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="21dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="13dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/communicate"/>
@@ -373,7 +374,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="13dp"
                     android:text="댓글"
                     app:layout_constraintStart_toEndOf="@+id/imageView10"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -383,7 +384,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="13dp"
                     android:text="2"
                     app:layout_constraintStart_toEndOf="@+id/textView16"
                     app:layout_constraintTop_toTopOf="parent"/>
