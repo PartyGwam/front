@@ -28,7 +28,7 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="22dp"
+            android:layout_height="wrap_content"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="115dp">
 
@@ -45,11 +45,11 @@
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="26dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/write_icon"
+                android:src="@drawable/threedot"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -70,9 +70,10 @@
     </android.support.v7.widget.Toolbar>
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="51dp"
+        android:layout_marginBottom="59dp"
         android:layout_marginTop="59dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -397,6 +398,8 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
+                    android:scrollbarThumbVertical="@drawable/scroll2"
+                    android:scrollbarTrackVertical="@drawable/scroll"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -405,6 +408,67 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/reply_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:layout_constraintVertical_bias="1.0">
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="3dp"
+            android:layout_weight="0"
+            android:backgroundTint="@android:color/transparent"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:maxLines="4"
+            android:paddingRight="0dp"
+            android:scrollbarAlwaysDrawVerticalTrack="false"
+            android:scrollbarSize="12dp"
+            android:scrollbarStyle="insideInset"
+            android:scrollbarThumbVertical="@drawable/scroll2"
+            android:scrollbarTrackVertical="@drawable/scroll"
+            android:scrollbars="vertical"
+            android:text="글씨가 몇자까지 써질까요 이렇게 칸이 늘어난다 늘어나 네줄이 넘어가면  더이상 늘어나지 않고 스크롤이 생긴다고 하는데 그럼 제가 스크롤을 넣었습니다. 글씨가 몇자까지 써질까요 이렇게 칸이 늘어난다 늘어나 네줄이 넘어가면  더이상 늘어나지 않고 스크롤이 생긴다고 하는데 그럼 제가 스크롤을 넣었습니다. "
+            android:textColor="#656565"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="59dp"
+            android:layout_height="0dp"
+            android:layout_gravity="right"
+            android:layout_weight="0"
+            android:background="#c2c2c2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:background="@drawable/right"/>
+
+        </FrameLayout>
+
+    </android.support.constraint.ConstraintLayout>
 
 
 </android.support.constraint.ConstraintLayout>
