@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,7 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.joe.depromeet_partygwam.Data.User;
+import com.example.joe.depromeet_partygwam.Data.LoginResponse.User;
 import com.example.joe.depromeet_partygwam.Join.Presenter.JoinContract;
 import com.example.joe.depromeet_partygwam.Join.Presenter.JoinPresenter;
 import com.example.joe.depromeet_partygwam.Login.View.LoginActivity;
@@ -31,7 +30,6 @@ import butterknife.OnClick;
 import butterknife.OnFocusChange;
 import butterknife.OnTextChanged;
 import butterknife.OnTouch;
-import retrofit2.http.POST;
 
 public class JoinActivity extends AppCompatActivity
         implements JoinContract.View, ObserverCallback{

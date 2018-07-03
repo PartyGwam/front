@@ -1,11 +1,7 @@
-package com.example.joe.depromeet_partygwam.Data.PartyList;
+package com.example.joe.depromeet_partygwam.Data.Parties;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.sql.Time;
-import java.util.Date;
-import java.util.UUID;
 
 public class PartyResponse {
     @SerializedName("success")

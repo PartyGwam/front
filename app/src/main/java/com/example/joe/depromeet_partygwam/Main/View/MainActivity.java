@@ -1,5 +1,7 @@
 package com.example.joe.depromeet_partygwam.Main.View;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.JoinedParty;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.MyParty;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyEventMessage;
@@ -17,7 +20,9 @@ import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.Party
 import com.example.joe.depromeet_partygwam.Main.TabFragment.SettingProfile;
 import com.example.joe.depromeet_partygwam.R;
 
-public class MainActivity extends AppCompatActivity {
+import butterknife.BindView;
+
+public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
     private Fragment fragment1;
     private Fragment fragment2;
@@ -26,11 +31,23 @@ public class MainActivity extends AppCompatActivity {
     private Fragment fragment5;
 
     private Toolbar toolbar;
+    private String token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
+        Intent intent = getIntent();
+        token = "PG " + intent.getStringExtra("Token");
+
+        SharePreferenceManager.getInstance(this);
+        SharePreferenceManager.putString("Token", token);
+
+        initView();
+    }
+
+    private void initView() {
         FragmentManager fm = getSupportFragmentManager();
         Fragment tab1_fragment = fm.findFragmentById(R.id.fragment_container);
 
@@ -46,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         fragment2 = new JoinedParty();
         fragment3 = new MyParty();
         fragment4 = new PartyEventMessage();
-        fragment5 = new SettingProfile(); 
+        fragment5 = new SettingProfile();
 
         View tabView1 = getLayoutInflater().inflate(R.layout.tab_layout, null);
         View tabView2 = getLayoutInflater().inflate(R.layout.tab_layout, null);
@@ -92,38 +109,44 @@ public class MainActivity extends AppCompatActivity {
         tabs.addTab(tabs.newTab().setCustomView(tabView5));
 
         //탭 화면 전환
-        tabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                int position = tab.getPosition();
+        tabs.setOnTabSelectedListener(this);
+    }
 
-                Fragment selected = null;
-                if (position == 0) {
-                    selected = fragment1;
-                } else if (position == 1) {
-                    selected = fragment2;
-                } else if (position == 2) {
-                    selected = fragment3;
-                } else if (position == 3){
-                    selected = fragment4;
-                } else if (position == 4){
-                    selected = fragment5;
-                }
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        int position = tab.getPosition();
 
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, selected).commit();
-            }
+        Fragment selected = null;
+        if (position == 0) {
+            selected = fragment1;
+        } else if (position == 1) {
+            selected = fragment2;
+        } else if (position == 2) {
+            selected = fragment3;
+        } else if (position == 3){
+            selected = fragment4;
+        } else if (position == 4){
+            selected = fragment5;
+        }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, selected).commit();
+    }
 
-            }
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
 
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+    }
 
-            }
-        });
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SharePreferenceManager.remove("Token");
     }
 }

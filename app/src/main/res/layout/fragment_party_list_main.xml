@@ -1,20 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <Spinner
+        android:id="@+id/party_list_main_spinner"
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="23dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:entries="@array/parties_sort" />
 
-    </Spinner>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/party_list_main_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/party_list_main_spinner">
+
+    </android.support.v7.widget.RecyclerView>
+
+   <!-- <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="만들어진 파티가 없습니다.\n제일 먼저 파티를 만들어 보세요!"
+        android:visibility="invisible" />-->
+
+    <ProgressBar
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/party_list_main_pb"
+        android:visibility="invisible" />
 
 </android.support.constraint.ConstraintLayout>
 

@@ -1,6 +1,6 @@
 package com.example.joe.depromeet_partygwam.Join.Presenter;
 
-import com.example.joe.depromeet_partygwam.Data.User;
+import com.example.joe.depromeet_partygwam.Data.LoginResponse.User;
 
 public interface JoinContract {
     interface View {

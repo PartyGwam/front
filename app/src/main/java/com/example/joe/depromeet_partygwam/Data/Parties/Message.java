@@ -1,4 +1,4 @@
-package com.example.joe.depromeet_partygwam.Data.PartyList;
+package com.example.joe.depromeet_partygwam.Data.Parties;
 
 public class Message {
 }

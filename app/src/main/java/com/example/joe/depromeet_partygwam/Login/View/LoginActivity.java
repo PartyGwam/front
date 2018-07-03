@@ -9,8 +9,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.joe.depromeet_partygwam.Data.LoginResponse;
-import com.example.joe.depromeet_partygwam.Data.User;
+import com.example.joe.depromeet_partygwam.Data.LoginResponse.LoginResponse;
 import com.example.joe.depromeet_partygwam.Join.View.JoinActivity;
 import com.example.joe.depromeet_partygwam.Login.Presenter.LoginContract;
 import com.example.joe.depromeet_partygwam.Login.Presenter.LoginPresenter;
