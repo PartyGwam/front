@@ -1,7 +1,6 @@
 package com.example.joe.depromeet_partygwam.Login.Presenter;
 
-import com.example.joe.depromeet_partygwam.Data.LoginResponse;
-import com.example.joe.depromeet_partygwam.Data.User;
+import com.example.joe.depromeet_partygwam.Data.LoginResponse.LoginResponse;
 
 public interface LoginContract {
     interface View {

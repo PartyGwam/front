@@ -1,4 +1,4 @@
-package com.example.joe.depromeet_partygwam.Data;
+package com.example.joe.depromeet_partygwam.Data.LoginResponse;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

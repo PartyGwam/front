@@ -1,4 +1,4 @@
-package com.example.joe.depromeet_partygwam.Data;
+package com.example.joe.depromeet_partygwam.Data.LoginResponse;
 
 public class Result {
     private String token;

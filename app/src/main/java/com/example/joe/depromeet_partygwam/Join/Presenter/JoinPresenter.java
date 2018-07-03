@@ -1,6 +1,6 @@
 package com.example.joe.depromeet_partygwam.Join.Presenter;
 
-import com.example.joe.depromeet_partygwam.Data.User;
+import com.example.joe.depromeet_partygwam.Data.LoginResponse.User;
 import com.example.joe.depromeet_partygwam.Join.Model.JoinModelCallback;
 import com.example.joe.depromeet_partygwam.Join.Model.JoinRetrofitModel;
 import com.example.joe.depromeet_partygwam.Join.Model.RegularExpModel;

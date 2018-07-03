@@ -3,7 +3,7 @@ package com.example.joe.depromeet_partygwam.Join.Model;
 
 import android.util.Log;
 
-import com.example.joe.depromeet_partygwam.Data.User;
+import com.example.joe.depromeet_partygwam.Data.LoginResponse.User;
 import com.example.joe.depromeet_partygwam.Retrofit.ResponseCode;
 import com.example.joe.depromeet_partygwam.Retrofit.RetrofitService;
 import com.example.joe.depromeet_partygwam.Retrofit.RetrofitServiceManager;

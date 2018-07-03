@@ -2,7 +2,7 @@ package com.example.joe.depromeet_partygwam.Main.Party;
 
 import android.content.Context;
 
-import com.example.joe.depromeet_partygwam.Data.Party;
+import com.example.joe.depromeet_partygwam.Data.Parties.PartyResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 public class PartyLab {
     private static PartyLab sPartyLab;
     private Context context;
-    private List<Party> parties;
+    private List<PartyResponse> parties;
 
     public static PartyLab get(Context context){
         if(sPartyLab == null){
@@ -23,11 +23,11 @@ public class PartyLab {
         parties = new ArrayList<>();
     }
 
-    public void addParty(Party p){
+    public void addParty(PartyResponse p){
         parties.add(p);
     }
 
-    public void deleteParty(Party p){
+    public void deleteParty(PartyResponse p){
 
     }
 }
