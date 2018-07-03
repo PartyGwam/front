@@ -2,4 +2,7 @@
     <string name="app_name">Depromeet_PartyGwam</string>
     <string name="server_url">http://www.mocky.io/v2/5b31c8ce310000123b1293c0</string>
     <string name="create_new_party">새 모임 만들기</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
