@@ -13,8 +13,6 @@ import java.util.UUID;
 public class PartyActivity extends AppCompatActivity {
     Fragment fragment;
 
-
-
     public static Intent newIntent(Context packageContext, UUID partyId){
         Intent intent = new Intent(packageContext, PartyActivity.class);
         return intent;
