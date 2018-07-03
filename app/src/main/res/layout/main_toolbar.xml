@@ -11,7 +11,8 @@
     app:contentInsetLeft="0dp"
     app:contentInsetStart="0dp"
     app:contentInsetRight="0dp"
-    app:contentInsetEnd="0dp">
+    app:contentInsetEnd="0dp"
+    android:elevation="4dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

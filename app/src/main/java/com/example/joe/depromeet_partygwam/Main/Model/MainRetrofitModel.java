@@ -21,10 +21,10 @@ public class MainRetrofitModel {
 /*
     public void validationEmail(String email) {
         String jsonStr = "{'email': '" + email + "'}";
-        JsonParser jsonParser = new JsonParser();
+        JsonParser jsonParser = new_noshadow JsonParser();
         JsonObject jsonObject = (JsonObject) jsonParser.parse(jsonStr);
         Call<Void> call = retrofitService.validateEmail(jsonObject);
-        call.enqueue(new Callback<Void>() {
+        call.enqueue(new_noshadow Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Log.i(TAG, response.code() + "/");
@@ -48,7 +48,7 @@ public class MainRetrofitModel {
 
     public void validateNickname() {
         Call<Void> call = retrofitService.validateNickname();
-        call.enqueue(new Callback<Void>() {
+        call.enqueue(new_noshadow Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.code() == ResponseCode.BAD_REQUEST) {
