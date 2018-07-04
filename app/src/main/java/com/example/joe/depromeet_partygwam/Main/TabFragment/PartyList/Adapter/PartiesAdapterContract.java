@@ -13,5 +13,6 @@ public interface PartiesAdapterContract {
         ArrayList getItems();
         void setItems(ArrayList items);
         void addItems(ArrayList items);
+        void clearItem();
     }
 }

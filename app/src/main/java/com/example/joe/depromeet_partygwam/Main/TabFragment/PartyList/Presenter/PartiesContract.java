@@ -12,7 +12,7 @@ public interface PartiesContract {
     }
 
     interface Presenter {
-        void getParties(int sort, int page);
+        void getParties(int sort);
         void attchView(View view);
         void detachView();
         void setAdapterView(PartiesAdapterContract.View adapterView);

@@ -50,6 +50,7 @@ public class PartyListFragment extends Fragment
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        //spinner.setSelection(0, false);
         spinner.setOnItemSelectedListener(this);
 
         presenter = new PartiesPresenter();
@@ -62,7 +63,7 @@ public class PartyListFragment extends Fragment
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Log.d(TAG, "p " + position);
         pb.setVisibility(View.VISIBLE);
-        presenter.getParties(position, 1);
+        presenter.getParties(position);
     }
 
     @Override
@@ -105,5 +106,6 @@ public class PartyListFragment extends Fragment
     public void onDetach() {
         super.onDetach();
         presenter.detachView();
+        Log.d(TAG, "onDetach");
     }
 }

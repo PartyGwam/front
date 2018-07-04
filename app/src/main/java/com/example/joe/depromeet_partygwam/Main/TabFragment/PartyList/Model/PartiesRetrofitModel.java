@@ -32,12 +32,15 @@ public class PartiesRetrofitModel {
         call.enqueue(new Callback<PartyResponse>() {
             @Override
             public void onResponse(Call<PartyResponse> call, Response<PartyResponse> response) {
-                List<Data> datas = response.body().getResult().getData();
-
+                if (response.code() == ResponseCode.NOT_FOUND) {
+                    callback.onSuccess(ResponseCode.NOT_FOUND, null);
+                    return;
+                }
                 if (response.code() == ResponseCode.UNAUTHORIZED) {
                     callback.onSuccess(ResponseCode.UNAUTHORIZED, null);
                     return;
                 }
+                List<Data> datas = response.body().getResult().getData();
                 callback.onSuccess(ResponseCode.SUCCESS, datas);
             }
 
