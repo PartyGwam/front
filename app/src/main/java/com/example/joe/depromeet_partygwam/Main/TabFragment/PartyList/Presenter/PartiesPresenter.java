@@ -3,7 +3,9 @@ package com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Presenter
 import android.util.Log;
 
 import com.example.joe.depromeet_partygwam.Data.Parties.Data;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Adapter.OnItemClickListener;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Adapter.PartiesAdapterContract;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Adapter.OnPositionListener;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Model.PartiesModelCallback;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Model.PartiesRetrofitModel;
 import com.example.joe.depromeet_partygwam.Retrofit.ResponseCode;
@@ -12,12 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PartiesPresenter
-        implements PartiesContract.Presenter, PartiesModelCallback.RetrofitCallback {
+        implements PartiesContract.Presenter, PartiesModelCallback.RetrofitCallback,
+        OnItemClickListener, OnPositionListener {
     private static final String TAG = PartiesPresenter.class.getSimpleName();
     private PartiesContract.View view;
     private PartiesRetrofitModel retrofitModel;
     private PartiesAdapterContract.View adapterView;
     private PartiesAdapterContract.Model adapterModel;
+    private int sort;
+    private int page;
 
     public PartiesPresenter() {
         retrofitModel = new PartiesRetrofitModel();
@@ -25,7 +30,10 @@ public class PartiesPresenter
     }
 
     @Override
-    public void getParties(int sort, int page) {
+    public void getParties(int sort) {
+        this.sort = sort;
+        page = 1;
+        adapterModel.clearItem();
         retrofitModel.getParties(sort, page);
     }
 
@@ -37,6 +45,8 @@ public class PartiesPresenter
     @Override
     public void setAdapterView(PartiesAdapterContract.View adapterView) {
         this.adapterView = adapterView;
+        this.adapterView.setOnClickListener(this);
+        this.adapterView.setOnPositionListener(this);
     }
 
     @Override
@@ -46,6 +56,12 @@ public class PartiesPresenter
 
     @Override
     public void onSuccess(int code, List<Data> data) {
+
+        if (code == ResponseCode.NOT_FOUND && data == null) {
+            view.toast("게시글이 없습니다.");
+            return;
+        }
+
         if (code == ResponseCode.UNAUTHORIZED && data == null) {
             view.onUnauthorizedError();
             return;
@@ -53,7 +69,7 @@ public class PartiesPresenter
 
         if (code == ResponseCode.SUCCESS && data != null) {
             Log.d(TAG, data.get(0).getTitle());
-            adapterModel.setItems(new ArrayList(data));
+            adapterModel.addItems(new ArrayList(data));
             view.onSuccessGetList();
             return;
         }
@@ -68,5 +84,19 @@ public class PartiesPresenter
     @Override
     public void detachView() {
         this.view = null;
+    }
+
+    @Override
+    public void onItemClick(Data item, int position) {
+        Log.d(TAG, "onItemClick " + position);
+    }
+
+    @Override
+    public void onLoad(int page) {
+        if (this.page == page)
+            return;
+        this.page = page;
+        Log.d(TAG, "page : " + page);
+        retrofitModel.getParties(sort, page);
     }
 }

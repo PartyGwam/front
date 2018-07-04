@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="90dp"
     android:layout_marginBottom="9dp"
+    android:id="@+id/list_party_item"
     android:background="@android:color/transparent">
 
     <RelativeLayout
@@ -21,7 +22,7 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="1dp"
         android:layout_marginBottom="1dp"
-        android:elevation="1dp">
+        android:elevation="3dp">
 
         <ImageView
             android:layout_width="15dp"
@@ -80,7 +81,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.76"
         app:layout_constraintHeight_percent="1"
-        android:elevation="1dp"
+        android:elevation="3dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginTop="1dp"
@@ -91,15 +92,15 @@
             android:layout_width="12dp"
             android:layout_height="8dp"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/new_noshadow"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_place_gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:layout_toRightOf="@id/list_party_item_location_icon"
             android:text="장소"
             android:textColor="#4b4b4b"
@@ -139,7 +140,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/people_red"
+            android:background="@drawable/people_pink"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -152,6 +153,7 @@
                 android:layout_marginTop="5dp"
                 android:text="10"
                 android:textSize="12dp"
+                android:textAlignment="viewEnd"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -162,7 +164,8 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginEnd="5dp"
                 android:text="100"
-                android:textSize="12dp"
+                android:textSize="10dp"
+                android:textAlignment="viewStart"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 

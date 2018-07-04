@@ -15,9 +15,15 @@ public class Data {
     @SerializedName("participants")
     @Expose
     private List<Participant> participants = null;
+    @SerializedName("comment_set")
+    @Expose
+    private List<CommentSet> commentSets = null;
     @SerializedName("title")
     @Expose
     private String title;
+    @SerializedName("slug")
+    @Expose
+    private String slug;
     @SerializedName("place")
     @Expose
     private String place;
@@ -51,6 +57,26 @@ public class Data {
     @SerializedName("can_join")
     @Expose
     private Boolean canJoin;
+
+    public Data(Integer id, PartyOwner partyOwner, List<Participant> participants, List<CommentSet> commentSets, String title, String slug, String place, String description, String startTime, Integer currentPeople, Integer maxPeople, String createdAt, String lastUpdated, Boolean isNew, Boolean willStartSoon, Boolean hasStarted, Boolean canJoin) {
+        this.id = id;
+        this.partyOwner = partyOwner;
+        this.participants = participants;
+        this.commentSets = commentSets;
+        this.title = title;
+        this.slug = slug;
+        this.place = place;
+        this.description = description;
+        this.startTime = startTime;
+        this.currentPeople = currentPeople;
+        this.maxPeople = maxPeople;
+        this.createdAt = createdAt;
+        this.lastUpdated = lastUpdated;
+        this.isNew = isNew;
+        this.willStartSoon = willStartSoon;
+        this.hasStarted = hasStarted;
+        this.canJoin = canJoin;
+    }
 
     public Integer getId() {
         return id;
@@ -170,5 +196,29 @@ public class Data {
 
     public void setCanJoin(Boolean canJoin) {
         this.canJoin = canJoin;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public Boolean getNew() {
+        return isNew;
+    }
+
+    public void setNew(Boolean aNew) {
+        isNew = aNew;
+    }
+
+    public List<CommentSet> getCommentSets() {
+        return commentSets;
+    }
+
+    public void setCommentSets(List<CommentSet> commentSets) {
+        this.commentSets = commentSets;
     }
 }
