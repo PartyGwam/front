@@ -3,7 +3,9 @@ package com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Presenter
 import android.util.Log;
 
 import com.example.joe.depromeet_partygwam.Data.Parties.Data;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Adapter.OnItemClickListener;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Adapter.PartiesAdapterContract;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Adapter.OnPositionListener;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Model.PartiesModelCallback;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Model.PartiesRetrofitModel;
 import com.example.joe.depromeet_partygwam.Retrofit.ResponseCode;
@@ -12,7 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PartiesPresenter
-        implements PartiesContract.Presenter, PartiesModelCallback.RetrofitCallback {
+        implements PartiesContract.Presenter, PartiesModelCallback.RetrofitCallback,
+        OnItemClickListener, OnPositionListener {
     private static final String TAG = PartiesPresenter.class.getSimpleName();
     private PartiesContract.View view;
     private PartiesRetrofitModel retrofitModel;
@@ -37,6 +40,7 @@ public class PartiesPresenter
     @Override
     public void setAdapterView(PartiesAdapterContract.View adapterView) {
         this.adapterView = adapterView;
+        this.adapterView.setOnClickListener(this);
     }
 
     @Override
@@ -68,5 +72,15 @@ public class PartiesPresenter
     @Override
     public void detachView() {
         this.view = null;
+    }
+
+    @Override
+    public void onItemClick(Data item, int position) {
+        Log.d(TAG, "onItemClick " + position);
+    }
+
+    @Override
+    public void onLoad(int page) {
+        Log.d(TAG, "page : " + page);
     }
 }
