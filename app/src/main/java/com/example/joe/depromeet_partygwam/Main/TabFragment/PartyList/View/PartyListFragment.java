@@ -1,5 +1,6 @@
 package com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,10 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.joe.depromeet_partygwam.Main.Party.PartyDetailActivity;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Adapter.PartiesAdapter;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Presenter.PartiesContract;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Presenter.PartiesPresenter;
@@ -22,6 +25,7 @@ import com.example.joe.depromeet_partygwam.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class PartyListFragment extends Fragment
         implements AdapterView.OnItemSelectedListener, PartiesContract.View {
@@ -33,9 +37,12 @@ public class PartyListFragment extends Fragment
     ProgressBar pb;
     @BindView(R.id.party_list_main_list)
     RecyclerView recyclerView;
+    @BindView(R.id.search_icon)
+    ImageView searchBtn;
+    @BindView(R.id.create_new_party_icon)
+    ImageView createNewPartyBtn;
     private PartiesAdapter adapter;
     private PartiesPresenter presenter;
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -57,6 +64,17 @@ public class PartyListFragment extends Fragment
         presenter.attchView(this);
         presenter.setAdapterModel(adapter);
         presenter.setAdapterView(adapter);
+    }
+
+    @OnClick(R.id.search_icon)
+    public void searchParty() {
+        Toast.makeText(getActivity(), "모임 찾기 메뉴", Toast.LENGTH_LONG).show();
+    }
+
+    @OnClick(R.id.create_new_party_icon)
+    public void createNewParty() {
+        Intent intent = new Intent(getActivity(), PartyDetailActivity.class);
+        startActivity(intent);
     }
 
     @Override
