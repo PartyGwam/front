@@ -17,6 +17,7 @@ public class PartiesAdapter extends RecyclerView.Adapter<PartiesViewHolder>
     private static final String TAG = PartiesAdapter.class.getSimpleName();
     private ArrayList<Data> items;
     private OnItemClickListener onItemClickListener;
+    private OnPositionListener onPositionListener;
     private Context context;
 
     public PartiesAdapter(Context context) {
@@ -26,14 +27,14 @@ public class PartiesAdapter extends RecyclerView.Adapter<PartiesViewHolder>
 
     @Override
     public PartiesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new PartiesViewHolder(context, parent, onItemClickListener);
+        return new PartiesViewHolder(context, parent, onItemClickListener, onPositionListener);
     }
 
     @Override
     public void onBindViewHolder(PartiesViewHolder holder, int position) {
         if (holder == null)
             return;
-        holder.onBind(items.get(position), position);
+        holder.onBind(items.get(position), position, getItemCount());
     }
 
     @Override
@@ -49,6 +50,11 @@ public class PartiesAdapter extends RecyclerView.Adapter<PartiesViewHolder>
     }
 
     @Override
+    public void setOnPositionListener(OnPositionListener onPositionListener) {
+        this.onPositionListener = onPositionListener;
+    }
+
+    @Override
     public void notifyAdapter() {
         notifyDataSetChanged();
     }
@@ -61,8 +67,14 @@ public class PartiesAdapter extends RecyclerView.Adapter<PartiesViewHolder>
     @Override
     public void setItems(ArrayList items) {
         Log.d(TAG, "setItems");
-        this.items.clear();;
+        this.items.clear();
         this.items = items;
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public void addItems(ArrayList items) {
+        this.items.addAll(items);
         notifyDataSetChanged();
     }
 }

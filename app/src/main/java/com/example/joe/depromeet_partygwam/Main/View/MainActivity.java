@@ -78,10 +78,15 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         TextView tabText5 = (TextView) tabView5.findViewById(R.id.textView);
 
         tabText1.setText("파티목록");
+        tabText1.setTextSize(7);
         tabText2.setText("참여한 파티");
+        tabText2.setTextSize(7);
         tabText3.setText("만든 파티");
+        tabText3.setTextSize(7);
         tabText4.setText("알림");
+        tabText4.setTextSize(7);
         tabText5.setText("설정");
+        tabText5.setTextSize(7);
 
         ImageView tabImage1 = (ImageView) tabView1.findViewById(R.id.imageView);
         ImageView tabImage2 = (ImageView) tabView2.findViewById(R.id.imageView);
