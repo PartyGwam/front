@@ -22,5 +22,6 @@
         <activity android:name=".Join.View.JoinActivity"/>
         <activity android:name=".Main.Party.PartyActivity">
         </activity>
+        <activity android:name=".Main.Party.PartyDetailActivity"/>
     </application>
 </manifest>
