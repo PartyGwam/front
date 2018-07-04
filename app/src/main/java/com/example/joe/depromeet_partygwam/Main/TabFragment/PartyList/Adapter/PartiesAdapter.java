@@ -77,4 +77,10 @@ public class PartiesAdapter extends RecyclerView.Adapter<PartiesViewHolder>
         this.items.addAll(items);
         notifyDataSetChanged();
     }
+
+    @Override
+    public void clearItem() {
+        items.clear();
+        notifyDataSetChanged();
+    }
 }

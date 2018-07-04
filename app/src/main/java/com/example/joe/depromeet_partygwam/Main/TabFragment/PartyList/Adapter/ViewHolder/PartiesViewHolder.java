@@ -93,7 +93,7 @@ public class PartiesViewHolder extends RecyclerView.ViewHolder {
         });
 
         if (position == listSize - 1) {
-            int page = listSize % 20;
+            int page = (listSize / 20) + 1;
             onPositionListener.onLoad(page);
         }
         Log.d(TAG, "position " + position + "/ max " + listSize);
