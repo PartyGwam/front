@@ -21,6 +21,8 @@ import com.example.joe.depromeet_partygwam.Main.TabFragment.SettingProfile;
 import com.example.joe.depromeet_partygwam.R;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
@@ -30,13 +32,20 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private Fragment fragment4;
     private Fragment fragment5;
 
-    private Toolbar toolbar;
+    @BindView(R.id.main_toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.main_toolbar_seach)
+    ImageView imgSearch;
+    @BindView(R.id.main_toolbar_write)
+    ImageView imgWrite;
+
     private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         token = "PG " + intent.getStringExtra("Token");
@@ -101,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         tabImage5.setImageDrawable(getResources().getDrawable(R.drawable.set_icon));
 
         //툴바로 적용
-        toolbar = (Toolbar)findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
         //탭생성
@@ -146,6 +154,16 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
+
+    }
+
+    @OnClick(R.id.main_toolbar_seach)
+    public void searchClick() {
+
+    }
+
+    @OnClick(R.id.main_toolbar_write)
+    public void writeClick() {
 
     }
 

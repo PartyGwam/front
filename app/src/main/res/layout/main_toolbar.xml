@@ -19,7 +19,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/main_toolbar_seach"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:layout_marginLeft="26dp"
@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/main_toolbar_write"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:layout_marginBottom="19dp"
@@ -48,8 +48,8 @@
             android:text="logo"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView3"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintEnd_toStartOf="@+id/main_toolbar_write"
+            app:layout_constraintStart_toEndOf="@+id/main_toolbar_seach"
             app:layout_constraintTop_toTopOf="parent"/>
     </android.support.constraint.ConstraintLayout>
 
