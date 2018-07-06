@@ -38,4 +38,10 @@ public interface RetrofitService {
             @Query("ordering") String ordering,
             @Query("page") int page
     );
+
+    @POST("/api/parties/")
+    Call<Void> insertParty(
+            @Header("Authorization") String authorization,
+            @Body JsonObject party
+    );
 }

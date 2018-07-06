@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import com.example.joe.depromeet_partygwam.Main.TabFragment.MyParty;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyEventMessage;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.PartyListFragment;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.SettingProfile;
+import com.example.joe.depromeet_partygwam.PartyWrite.View.PartyWriteActivity;
 import com.example.joe.depromeet_partygwam.R;
 
 import butterknife.BindView;
@@ -25,7 +27,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
-
+    private static final String TAG = MainActivity.class.getSimpleName();
     private Fragment fragment1;
     private Fragment fragment2;
     private Fragment fragment3;
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     ImageView imgWrite;
 
     private String token;
+    private String uuid;
+    private String profilePicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +53,13 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         Intent intent = getIntent();
         token = "PG " + intent.getStringExtra("Token");
+        uuid = intent.getStringExtra("Uuid");
+        profilePicture = intent.getStringExtra("ProfilePicture");
 
         SharePreferenceManager.getInstance(this);
         SharePreferenceManager.putString("Token", token);
+        SharePreferenceManager.putString("Uuid", uuid);
+        SharePreferenceManager.putString("ProfilePicture", profilePicture);
 
         initView();
     }
@@ -164,12 +172,15 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     @OnClick(R.id.main_toolbar_write)
     public void writeClick() {
-
+        startActivity(new Intent(MainActivity.this, PartyWriteActivity.class));
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d(TAG, "onDestroy()");
         SharePreferenceManager.remove("Token");
+        SharePreferenceManager.remove("Uuid");
+        SharePreferenceManager.remove("ProfilePicture");
     }
 }

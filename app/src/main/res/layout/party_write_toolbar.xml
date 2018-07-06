@@ -39,9 +39,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/party_write_toolbar_regist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
             android:text="등록"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"

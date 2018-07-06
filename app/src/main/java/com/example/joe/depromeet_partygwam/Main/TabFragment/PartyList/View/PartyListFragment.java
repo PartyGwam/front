@@ -1,5 +1,6 @@
 package com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -35,7 +36,7 @@ public class PartyListFragment extends Fragment
     RecyclerView recyclerView;
     private PartiesAdapter adapter;
     private PartiesPresenter presenter;
-
+    private boolean isActive = false; //첫 실행시 스피너가 자동으로 눌리는 것 방지용
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,7 +53,6 @@ public class PartyListFragment extends Fragment
         super.onActivityCreated(savedInstanceState);
         //spinner.setSelection(0, false);
         spinner.setOnItemSelectedListener(this);
-
         presenter = new PartiesPresenter();
         presenter.attchView(this);
         presenter.setAdapterModel(adapter);
@@ -60,8 +60,25 @@ public class PartyListFragment extends Fragment
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+        refreshList(0);
+        isActive = true;
+    }
+
+    @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Log.d(TAG, "p " + position);
+        if (isActive) {
+            Log.d(TAG, "isPressed");
+            refreshList(position);
+        }
+
+    }
+
+
+    private void refreshList(int position) {
         pb.setVisibility(View.VISIBLE);
         presenter.getParties(position);
     }
@@ -100,6 +117,19 @@ public class PartyListFragment extends Fragment
     @Override
     public void onSuccessGetList() {
         pb.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop");
+        //spinner.setOnItemClickListener(null);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d(TAG, "onDestroyView");
     }
 
     @Override
