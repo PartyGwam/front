@@ -89,6 +89,7 @@ public class PartiesPresenter
     @Override
     public void onItemClick(Data item, int position) {
         Log.d(TAG, "onItemClick " + position);
+        view.startDetailActivity(item);
     }
 
     @Override

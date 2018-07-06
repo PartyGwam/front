@@ -1,5 +1,6 @@
 package com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +16,8 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.joe.depromeet_partygwam.Data.Parties.Data;
+import com.example.joe.depromeet_partygwam.PartyDetail.View.PartyDetailActivity;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Adapter.PartiesAdapter;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Presenter.PartiesContract;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Presenter.PartiesPresenter;
@@ -35,7 +38,6 @@ public class PartyListFragment extends Fragment
     RecyclerView recyclerView;
     private PartiesAdapter adapter;
     private PartiesPresenter presenter;
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -107,5 +109,13 @@ public class PartyListFragment extends Fragment
         super.onDetach();
         presenter.detachView();
         Log.d(TAG, "onDetach");
+    }
+
+    @Override
+    public void startDetailActivity(Data item) {
+        Intent intent = new Intent(getContext(), PartyDetailActivity.class);
+        Integer id = item.getId();
+        intent.putExtra("item", id);
+        startActivity(intent);
     }
 }
