@@ -12,8 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Adapter.PartiesAdapter;
@@ -23,20 +25,23 @@ import com.example.joe.depromeet_partygwam.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+import static android.app.Activity.RESULT_OK;
 
 public class PartyListFragment extends Fragment
-        implements AdapterView.OnItemSelectedListener, PartiesContract.View {
+        implements PartiesContract.View {
     private static final String TAG = PartyListFragment.class.getSimpleName();
 
-    @BindView(R.id.party_list_main_spinner)
-    Spinner spinner;
+    @BindView(R.id.party_list_main_sort_text)
+    TextView textSort;
     @BindView(R.id.party_list_main_pb)
     ProgressBar pb;
     @BindView(R.id.party_list_main_list)
     RecyclerView recyclerView;
     private PartiesAdapter adapter;
     private PartiesPresenter presenter;
-    private boolean isActive = false; //첫 실행시 스피너가 자동으로 눌리는 것 방지용
+    private int sort = 0;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,40 +57,39 @@ public class PartyListFragment extends Fragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         //spinner.setSelection(0, false);
-        spinner.setOnItemSelectedListener(this);
         presenter = new PartiesPresenter();
         presenter.attchView(this);
         presenter.setAdapterModel(adapter);
         presenter.setAdapterView(adapter);
     }
 
+    @OnClick(R.id.party_list_main_sort_select)
+    public void onSelectClick() {
+        startActivityForResult(new Intent(getActivity(), PartyListSortPopup.class), 100);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(TAG, "onActivityResult");
+        if (requestCode == 100) {
+            if (resultCode == RESULT_OK) {
+                sort = data.getIntExtra("Sort", 0);
+                String sortStr = sort == 0 ? "시간순" : "등록순";
+                textSort.setText(sortStr);
+            }
+        }
+    }
+
     @Override
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume");
-        refreshList(0);
-        isActive = true;
+        refreshList(sort);
     }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Log.d(TAG, "p " + position);
-        if (isActive) {
-            Log.d(TAG, "isPressed");
-            refreshList(position);
-        }
-
-    }
-
 
     private void refreshList(int position) {
         pb.setVisibility(View.VISIBLE);
         presenter.getParties(position);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     @Override
@@ -123,6 +127,7 @@ public class PartyListFragment extends Fragment
     public void onStop() {
         super.onStop();
         Log.d(TAG, "onStop");
+
         //spinner.setOnItemClickListener(null);
     }
 

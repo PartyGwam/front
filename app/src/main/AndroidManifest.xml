@@ -22,5 +22,7 @@
         <activity android:name=".Join.View.JoinActivity"/>
         <activity android:name=".PartyWrite.View.PartyWriteActivity">
         </activity>
+        <activity android:name=".Main.TabFragment.PartyList.View.PartyListSortPopup"
+            android:theme="@style/Theme.AppCompat.Dialog"/>
     </application>
 </manifest>
