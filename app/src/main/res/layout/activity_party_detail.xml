@@ -34,8 +34,8 @@
 
             <ImageView
                 android:id="@+id/back_button"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/back_icon"
@@ -120,8 +120,8 @@
                     android:id="@+id/view"
                     android:layout_width="325dp"
                     android:layout_height="0.5dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="21dp"
                     android:background="#8d8d8d"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -220,6 +220,79 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView7"
                     app:layout_constraintTop_toBottomOf="@+id/view"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/max_number"
+                    app:layout_constraintTop_toBottomOf="@+id/view">
+
+                    <ImageView
+                        android:id="@+id/party_leader_image_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/party1"/>
+
+                    <ImageView
+                        android:id="@+id/party_member1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/party2"/>
+
+                    <ImageView
+                        android:id="@+id/party_member2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/party2"/>
+
+                    <ImageView
+                        android:id="@+id/party_member3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/party2"/>
+
+                    <ImageView
+                        android:id="@+id/party_member4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/party2"/>
+
+                    <ImageView
+                        android:id="@+id/party_member5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/party2"/>
+
+                    <ImageView
+                        android:id="@+id/view_all_member"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/right"/>
+                </LinearLayout>
 
             </android.support.constraint.ConstraintLayout>
 

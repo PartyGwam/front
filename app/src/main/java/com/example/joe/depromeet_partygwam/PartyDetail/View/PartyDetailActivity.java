@@ -1,5 +1,6 @@
 package com.example.joe.depromeet_partygwam.PartyDetail.View;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,7 @@ import com.example.joe.depromeet_partygwam.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class PartyDetailActivity extends AppCompatActivity
             implements PartyDetailContract.View{
@@ -60,8 +62,11 @@ public class PartyDetailActivity extends AppCompatActivity
         setContentView(R.layout.activity_party_detail);
         ButterKnife.bind(this);
 
+        Intent intent = getIntent();
+        Integer partyId = (Integer) intent.getIntExtra("itemId", -1);
         presenter = new PartyDetailPresenter();
         presenter.attachView(this);
+        presenter.getParty(partyId);
     }
 
     @Override
@@ -72,4 +77,18 @@ public class PartyDetailActivity extends AppCompatActivity
         runOnUiThread(r);
     }
 
+    @OnClick(R.id.back_button)
+    public void backBtnClick(){
+        updateParty();
+    }
+
+    @OnClick(R.id.edit_party)
+    public void editBtnClick(){
+        //글 수정/글 삭제 팝업? 띄우기
+    }
+
+    private void updateParty(){
+        //파티에 수정된 게 있으면 서버로 보내준다음
+        //PartyListFragment 로 돌아가기
+    }
 }

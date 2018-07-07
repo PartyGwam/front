@@ -1,17 +1,18 @@
 package com.example.joe.depromeet_partygwam.PartyDetail.Presenter;
 
-import com.example.joe.depromeet_partygwam.Data.LoginResponse.LoginResponse;
-
 public interface PartyDetailContract {
     interface View {
         void toast(String msg);
-        //void startMainActivity(int code, LoginResponse response);
+        //void onSuccessGetParty();
+        //void startCommentWriteActivity();
         //void connectFail();
     }
 
     interface Presenter {
+        void getParty(Integer partyId);
         void attachView(View view);
         void detachView();
-        //void login(String email, String password);
+        void updateParty();
+        void editParty();
     }
 }
