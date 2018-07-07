@@ -20,7 +20,6 @@
         <activity android:name=".Main.View.MainActivity"/>
         <activity android:name=".Login.View.LoginActivity"/>
         <activity android:name=".Join.View.JoinActivity"/>
-        <activity android:name=".Main.Party.PartyActivity">
-        </activity>
+        <activity android:name=".PartyDetail.View.PartyDetailActivity"/>
     </application>
 </manifest>

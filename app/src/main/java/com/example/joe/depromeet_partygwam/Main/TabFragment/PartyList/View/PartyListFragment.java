@@ -113,7 +113,7 @@ public class PartyListFragment extends Fragment
 
     @Override
     public void startDetailActivity(Data item) {
-        Intent intent = new Intent(getContext(), PartyDetailActivity.class);
+        Intent intent = new Intent(getActivity().getApplicationContext(), PartyDetailActivity.class);
         Integer id = item.getId();
         intent.putExtra("item", id);
         startActivity(intent);
