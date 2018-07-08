@@ -1,6 +1,7 @@
 package com.example.joe.depromeet_partygwam.PartyDetail.View;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,10 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.joe.depromeet_partygwam.Data.Parties.Data;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Presenter.PartiesPresenter;
 import com.example.joe.depromeet_partygwam.PartyDetail.Presenter.PartyDetailContract;
 import com.example.joe.depromeet_partygwam.PartyDetail.Presenter.PartyDetailPresenter;
 import com.example.joe.depromeet_partygwam.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,18 +60,41 @@ public class PartyDetailActivity extends AppCompatActivity
     FrameLayout replyBtn;
 
     private PartyDetailPresenter presenter;
+    private Data data;
+    private Date today;
+    private SimpleDateFormat date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_party_detail);
         ButterKnife.bind(this);
-
         Intent intent = getIntent();
-        Integer partyId = (Integer) intent.getIntExtra("itemId", -1);
+        data = intent.getParcelableExtra("item");
+
+        today = new Date();
+        date = new SimpleDateFormat("yyyy-MM-dd");
+
+        onBindView();
+
         presenter = new PartyDetailPresenter();
         presenter.attachView(this);
-        presenter.getParty(partyId);
+    }
+
+    public void onBindView(){
+        partyTitle.setText(data.getTitle());
+        partyPlace.setText(data.getPlace());
+        String startDate = data.getStartTime().split("T")[0];
+        String startTime = data.getStartTime().split("T")[1].substring(0, 5);
+        if (startDate.equals(date)) {
+            partyDate.setText("오늘 " + startTime);
+        }else {
+            partyDate.setText(startDate.split("-")[1] + "." + startDate.split("-")[2]);
+        }
+        partyDate.setText(data.getStartTime());
+        //joinNumber.setText(data.getCurrentPeople());
+        //maxNumber.setText(data.getMaxPeople());
+        partyContent.setText(data.getDescription());
     }
 
     @Override

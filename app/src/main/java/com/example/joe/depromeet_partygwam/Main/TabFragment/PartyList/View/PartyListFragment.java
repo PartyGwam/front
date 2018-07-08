@@ -114,9 +114,8 @@ public class PartyListFragment extends Fragment
     @Override
     public void startDetailActivity(Data item) {
         Intent intent = new Intent(getActivity().getApplicationContext(), PartyDetailActivity.class);
-        int id = item.getId().intValue();
-
-        intent.putExtra("itemId", id);
+        intent.putExtra("item", item);
         startActivity(intent);
+        //결과코드 받는 메서드로 바꾸기
     }
 }
