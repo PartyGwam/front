@@ -38,6 +38,20 @@ public class PartiesPresenter
     }
 
     @Override
+    public void getCreatedParties() {
+        page = 1;
+        adapterModel.clearItem();
+        retrofitModel.getCreatedParties(page);
+    }
+
+    @Override
+    public void getJoinedParties() {
+        page = 1;
+        adapterModel.clearItem();
+        retrofitModel.getJoinedParties(page);
+    }
+
+    @Override
     public void attchView(PartiesContract.View view) {
         this.view = view;
     }

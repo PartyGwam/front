@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Adapter.PartiesAdapter;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Presenter.PartiesContract;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Presenter.PartiesPresenter;
+import com.example.joe.depromeet_partygwam.Main.View.MainActivity;
 import com.example.joe.depromeet_partygwam.R;
 
 import butterknife.BindView;
@@ -29,24 +31,28 @@ import butterknife.OnClick;
 
 import static android.app.Activity.RESULT_OK;
 
-public class PartyListFragment extends Fragment
-        implements PartiesContract.View {
+public class PartyListFragment extends Fragment implements PartiesContract.View {
     private static final String TAG = PartyListFragment.class.getSimpleName();
 
+    @BindView(R.id.party_list_main_appbar)
+    AppBarLayout appBarLayout;
     @BindView(R.id.party_list_main_sort_text)
     TextView textSort;
     @BindView(R.id.party_list_main_pb)
     ProgressBar pb;
     @BindView(R.id.party_list_main_list)
     RecyclerView recyclerView;
-    private PartiesAdapter adapter;
-    private PartiesPresenter presenter;
+    protected PartiesAdapter adapter;
+    protected PartiesPresenter presenter;
     private int sort = 0;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_party_list_main, container, false);
         ButterKnife.bind(this, rootView);
+        ((MainActivity) getActivity()).textTitle.setText("logo");
+        ((MainActivity) getActivity()).imgWrite.setVisibility(View.VISIBLE);
+        ((MainActivity) getActivity()).imgSearch.setVisibility(View.VISIBLE);
         adapter = new PartiesAdapter(getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
@@ -87,7 +93,7 @@ public class PartyListFragment extends Fragment
         refreshList(sort);
     }
 
-    private void refreshList(int position) {
+    protected void refreshList(int position) {
         pb.setVisibility(View.VISIBLE);
         presenter.getParties(position);
     }
@@ -127,8 +133,6 @@ public class PartyListFragment extends Fragment
     public void onStop() {
         super.onStop();
         Log.d(TAG, "onStop");
-
-        //spinner.setOnItemClickListener(null);
     }
 
     @Override
@@ -140,7 +144,7 @@ public class PartyListFragment extends Fragment
     @Override
     public void onDetach() {
         super.onDetach();
-        presenter.detachView();
+        sort = 0;
         Log.d(TAG, "onDetach");
     }
 }

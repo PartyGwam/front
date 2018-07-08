@@ -13,6 +13,8 @@ public interface PartiesContract {
 
     interface Presenter {
         void getParties(int sort);
+        void getCreatedParties();
+        void getJoinedParties();
         void attchView(View view);
         void detachView();
         void setAdapterView(PartiesAdapterContract.View adapterView);

@@ -44,4 +44,16 @@ public interface RetrofitService {
             @Header("Authorization") String authorization,
             @Body JsonObject party
     );
+
+    @GET("/api/parties/created/")
+    Call<PartyResponse> getCreatedParties(
+            @Header("Authorization") String authorization,
+            @Query("page") int page
+    );
+
+    @GET("/api/parties/joined/")
+    Call<PartyResponse> getJoinedParties(
+            @Header("Authorization") String authorization,
+            @Query("page") int page
+    );
 }

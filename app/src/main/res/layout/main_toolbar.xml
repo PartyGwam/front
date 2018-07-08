@@ -16,41 +16,83 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="invisible">
 
-        <ImageView
-            android:id="@+id/main_toolbar_seach"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:layout_marginLeft="26dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/find_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/main_toolbar_seach"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginLeft="26dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/find_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-        <ImageView
-            android:id="@+id/main_toolbar_write"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:layout_marginBottom="19dp"
-            android:layout_marginRight="26dp"
-            android:layout_marginTop="18dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/write_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            <ImageView
+                android:id="@+id/main_toolbar_write"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginBottom="19dp"
+                android:layout_marginRight="26dp"
+                android:layout_marginTop="18dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/write_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="logo"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/main_toolbar_write"
-            app:layout_constraintStart_toEndOf="@+id/main_toolbar_seach"
-            app:layout_constraintTop_toTopOf="parent"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="logo"
+                android:textSize="20dp"
+                android:id="@+id/main_toolbar_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/main_toolbar_write"
+                app:layout_constraintStart_toEndOf="@+id/main_toolbar_seach"
+                app:layout_constraintTop_toTopOf="parent"/>
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="13dp"
+                android:layout_marginTop="8dp" />
+
+            <android.support.constraint.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.8"/>
+
+            <TextView
+                android:id="@+id/main_toolbar_search_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="취소"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/editText"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
     </android.support.constraint.ConstraintLayout>
 
 </android.support.v7.widget.Toolbar>
