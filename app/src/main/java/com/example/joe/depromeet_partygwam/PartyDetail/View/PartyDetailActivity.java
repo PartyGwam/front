@@ -85,10 +85,13 @@ public class PartyDetailActivity extends AppCompatActivity
     @OnClick(R.id.edit_party)
     public void editBtnClick(){
         //글 수정/글 삭제 팝업? 띄우기
+        Intent intent = new Intent(getApplicationContext(), PartyEditPopupActivity.class);
+        startActivity(intent);
     }
 
     private void updateParty(){
         //파티에 수정된 게 있으면 서버로 보내준다음
         //PartyListFragment 로 돌아가기
+
     }
 }
