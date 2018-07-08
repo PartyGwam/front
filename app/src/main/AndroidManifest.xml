@@ -20,7 +20,9 @@
         <activity android:name=".Main.View.MainActivity"/>
         <activity android:name=".Login.View.LoginActivity"/>
         <activity android:name=".Join.View.JoinActivity"/>
-        <activity android:name=".Main.Party.PartyActivity">
+        <activity android:name=".PartyWrite.View.PartyWriteActivity">
         </activity>
+        <activity android:name=".Main.TabFragment.PartyList.View.PartyListSortPopup"
+            android:theme="@style/Theme.AppCompat.Dialog"/>
     </application>
 </manifest>

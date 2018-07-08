@@ -1,53 +1,71 @@
 package com.example.joe.depromeet_partygwam.Main.View;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
-import com.example.joe.depromeet_partygwam.Main.TabFragment.JoinedParty;
-import com.example.joe.depromeet_partygwam.Main.TabFragment.MyParty;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyEventMessage;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.JoinedPartyFragment;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.MyCreatedPartyFragment;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.PartyListFragment;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.SettingProfile;
+import com.example.joe.depromeet_partygwam.PartyWrite.View.PartyWriteActivity;
 import com.example.joe.depromeet_partygwam.R;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
-
+    private static final String TAG = MainActivity.class.getSimpleName();
     private Fragment fragment1;
     private Fragment fragment2;
     private Fragment fragment3;
     private Fragment fragment4;
     private Fragment fragment5;
 
-    private Toolbar toolbar;
+    @BindView(R.id.main_toolbar)
+    public Toolbar toolbar;
+    @BindView(R.id.main_toolbar_seach)
+    public ImageView imgSearch;
+    @BindView(R.id.main_toolbar_write)
+    public ImageView imgWrite;
+    @BindView(R.id.main_toolbar_text)
+    public TextView textTitle;
+
     private String token;
+    private String uuid;
+    private String profilePicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         token = "PG " + intent.getStringExtra("Token");
+        uuid = intent.getStringExtra("Uuid");
+        profilePicture = intent.getStringExtra("ProfilePicture");
 
         SharePreferenceManager.getInstance(this);
         SharePreferenceManager.putString("Token", token);
+        SharePreferenceManager.putString("Uuid", uuid);
+        SharePreferenceManager.putString("ProfilePicture", profilePicture);
 
         initView();
     }
 
-    private void initView() {
+    public void initView() {
         FragmentManager fm = getSupportFragmentManager();
         Fragment tab1_fragment = fm.findFragmentById(R.id.fragment_container);
 
@@ -60,8 +78,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
 
         fragment1 = tab1_fragment;
-        fragment2 = new JoinedParty();
-        fragment3 = new MyParty();
+        fragment2 = new JoinedPartyFragment();
+        fragment3 = new MyCreatedPartyFragment();
         fragment4 = new PartyEventMessage();
         fragment5 = new SettingProfile();
 
@@ -101,7 +119,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         tabImage5.setImageDrawable(getResources().getDrawable(R.drawable.set_icon));
 
         //툴바로 적용
-        toolbar = (Toolbar)findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
         //탭생성
@@ -124,10 +141,19 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         Fragment selected = null;
         if (position == 0) {
             selected = fragment1;
+            imgSearch.setVisibility(View.VISIBLE);
+            imgWrite.setVisibility(View.VISIBLE);
+            textTitle.setText("logo");
         } else if (position == 1) {
             selected = fragment2;
+            imgSearch.setVisibility(View.INVISIBLE);
+            imgWrite.setVisibility(View.INVISIBLE);
+            textTitle.setText("내가 참여한 파티");
         } else if (position == 2) {
             selected = fragment3;
+            imgSearch.setVisibility(View.INVISIBLE);
+            imgWrite.setVisibility(View.INVISIBLE);
+            textTitle.setText("내가 만든 파티");
         } else if (position == 3){
             selected = fragment4;
         } else if (position == 4){
@@ -149,9 +175,22 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     }
 
+    @OnClick(R.id.main_toolbar_seach)
+    public void searchClick() {
+
+    }
+
+    @OnClick(R.id.main_toolbar_write)
+    public void writeClick() {
+        startActivity(new Intent(MainActivity.this, PartyWriteActivity.class));
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d(TAG, "onDestroy()");
         SharePreferenceManager.remove("Token");
+        SharePreferenceManager.remove("Uuid");
+        SharePreferenceManager.remove("ProfilePicture");
     }
 }
