@@ -22,8 +22,11 @@
         <activity android:name=".Login.View.LoginActivity"/>
         <activity android:name=".Join.View.JoinActivity"/>
         <activity android:name=".PartyDetail.View.PartyDetailActivity"/>
-        <activity android:name=".PartyDetail.View.PartyEditPopupActivity"
+        <activity
+            android:name=".PartyDetail.View.PartyEditPopupActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog">
+        </activity>
+        <activity android:name=".PartyDetail.View.EditPartyActivity">
         </activity>
     </application>
 
