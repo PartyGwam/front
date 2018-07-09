@@ -16,8 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="59dp"
         android:background="#ffffff"
-        android:padding="0dp"
         android:elevation="3dp"
+        android:padding="0dp"
         app:contentInsetEnd="0dp"
         app:contentInsetLeft="0dp"
         app:contentInsetRight="0dp"
@@ -59,6 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="모각코"
+                android:textColor="#333333"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -100,6 +101,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="9dp"
                     android:text="역삼마루 180"
+                    android:textColor="#333333"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.444"
                     app:layout_constraintStart_toEndOf="@+id/view2"
@@ -112,13 +114,14 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="9dp"
                     android:text="오늘 18:00"
+                    android:textColor="#333333"
                     app:layout_constraintEnd_toStartOf="@+id/view2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView4"/>
 
                 <View
                     android:id="@+id/view"
-                    android:layout_width="325dp"
+                    android:layout_width="340dp"
                     android:layout_height="0.5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginStart="5dp"
@@ -224,12 +227,10 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginTop="14dp"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/max_number"
                     app:layout_constraintTop_toBottomOf="@+id/view">
 
                     <ImageView
@@ -350,8 +351,8 @@
                     app:srcCompat="@drawable/profile"/>
 
                 <TextView
-                    android:id="@+id/party_leader_nickname"
-                    android:layout_width="34dp"
+                    android:id="@+id/party_info"
+                    android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginBottom="17dp"
                     android:layout_marginStart="8dp"
@@ -359,61 +360,6 @@
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/party_leader_image"/>
-
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="17dp"
-                    android:layout_marginStart="8dp"
-                    android:text="|"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/party_leader_nickname"/>
-
-                <TextView
-                    android:id="@+id/party_create_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="17dp"
-                    android:layout_marginStart="8dp"
-                    android:text="11:00"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView12"/>
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="17dp"
-                    android:layout_marginStart="8dp"
-                    android:text="|"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/party_create_time"/>
-
-                <TextView
-                    android:id="@+id/view_"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="17dp"
-                    android:layout_marginStart="8dp"
-                    android:text="조회수"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView14"/>
-
-                <TextView
-                    android:id="@+id/view_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="17dp"
-                    android:layout_marginStart="4dp"
-                    android:text="120"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/view_"/>
 
                 <ImageView
                     android:id="@+id/join_button"
@@ -463,7 +409,7 @@
                     app:layout_constraintStart_toEndOf="@+id/textView16"
                     app:layout_constraintTop_toTopOf="parent"/>
 
-                <ListView
+                <android.support.v7.widget.RecyclerView
                     android:id="@+id/reply_list_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -485,7 +431,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/reply_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:background="@drawable/upper_line_background"
         android:orientation="horizontal"
         android:scrollbars="vertical"
@@ -499,7 +445,7 @@
         <EditText
             android:id="@+id/editText2"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginLeft="9dp"
             android:layout_weight="0"
             android:backgroundTint="@android:color/transparent"
@@ -509,11 +455,10 @@
             android:paddingRight="0dp"
             android:scrollbarAlwaysDrawVerticalTrack="false"
             android:scrollbarSize="12dp"
-            android:scrollbarStyle="insideInset"
+            android:scrollbarStyle="outsideInset"
             android:scrollbarThumbVertical="@drawable/scroll2"
             android:scrollbarTrackVertical="@drawable/scroll"
             android:scrollbars="vertical"
-            android:text="글씨가 몇자까지 써질까요 이렇게 칸이 늘어난다 늘어나 네줄이 넘어가면  더이상 늘어나지 않고 스크롤이 생긴다고 하는데 그럼 제가 스크롤을 넣었습니다. 글씨가 몇자까지 써질까요 이렇게 칸이 늘어난다 늘어나 네줄이 넘어가면  더이상 늘어나지 않고 스크롤이 생긴다고 하는데 그럼 제가 스크롤을 넣었습니다. "
             android:textColor="#656565"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -525,7 +470,7 @@
             android:id="@+id/reply_button"
             android:layout_width="59dp"
             android:layout_height="0dp"
-            android:layout_gravity="right"
+            android:layout_gravity="top|right"
             android:layout_weight="0"
             android:background="#c2c2c2"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -541,6 +486,5 @@
         </FrameLayout>
 
     </android.support.constraint.ConstraintLayout>
-
 
 </android.support.constraint.ConstraintLayout>
