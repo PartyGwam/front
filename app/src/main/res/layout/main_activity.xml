@@ -7,12 +7,13 @@
     tools:context=".Main.View.MainActivity">
     <include
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="0dp"
         layout="@layout/main_toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/main_toolbar" />
+        android:id="@+id/main_toolbar"
+        app:layout_constraintHeight_percent="0.1"/>
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -29,7 +30,7 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/main_tabs"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:background="@android:color/background_light"
         android:clickable="false"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +38,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:tabPadding="0dp"
         app:tabSelectedTextColor="@color/colorAccent"
-        app:tabTextColor="@color/colorPrimary" />
+        app:tabTextColor="@color/colorPrimary"
+        app:layout_constraintHeight_percent="0.09"/>
 
 </android.support.constraint.ConstraintLayout>
 

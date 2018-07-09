@@ -1,6 +1,7 @@
 package com.example.joe.depromeet_partygwam.Main.View;
 
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,6 +43,14 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     public ImageView imgWrite;
     @BindView(R.id.main_toolbar_text)
     public TextView textTitle;
+    @BindView(R.id.main_toolbar_layout1)
+    public ConstraintLayout layout1;
+    @BindView(R.id.main_toolbar_layout2)
+    public ConstraintLayout layout2;
+    @BindView(R.id.main_toolbar_search_cancel)
+    public TextView textCancel;
+    @BindView(R.id.main_toolbar_search_edit)
+    public EditText editSearch;
 
     private String token;
     private String uuid;
@@ -141,19 +151,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         Fragment selected = null;
         if (position == 0) {
             selected = fragment1;
-            imgSearch.setVisibility(View.VISIBLE);
-            imgWrite.setVisibility(View.VISIBLE);
-            textTitle.setText("logo");
         } else if (position == 1) {
             selected = fragment2;
-            imgSearch.setVisibility(View.INVISIBLE);
-            imgWrite.setVisibility(View.INVISIBLE);
-            textTitle.setText("내가 참여한 파티");
         } else if (position == 2) {
             selected = fragment3;
-            imgSearch.setVisibility(View.INVISIBLE);
-            imgWrite.setVisibility(View.INVISIBLE);
-            textTitle.setText("내가 만든 파티");
         } else if (position == 3){
             selected = fragment4;
         } else if (position == 4){
@@ -177,7 +178,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     @OnClick(R.id.main_toolbar_seach)
     public void searchClick() {
-
+        layout1.setVisibility(View.INVISIBLE);
+        layout2.setVisibility(View.VISIBLE);
     }
 
     @OnClick(R.id.main_toolbar_write)
