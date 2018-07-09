@@ -35,6 +35,7 @@ public interface RetrofitService {
     @GET("/api/parties/")
     Call<PartyResponse> getParties(
             @Header("Authorization") String authorization,
+            @Query("search") String search,
             @Query("ordering") String ordering,
             @Query("page") int page
     );

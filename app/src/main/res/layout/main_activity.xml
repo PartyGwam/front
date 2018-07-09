@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Main.View.MainActivity">
+
     <include
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -13,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/main_toolbar"
-        app:layout_constraintHeight_percent="0.1"/>
+        app:layout_constraintDimensionRatio="1:0.16"/>
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -39,7 +40,7 @@
         app:tabPadding="0dp"
         app:tabSelectedTextColor="@color/colorAccent"
         app:tabTextColor="@color/colorPrimary"
-        app:layout_constraintHeight_percent="0.09"/>
+        app:layout_constraintDimensionRatio="1:0.137"/>
 
 </android.support.constraint.ConstraintLayout>
 

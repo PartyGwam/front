@@ -9,17 +9,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyEventMessage;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.JoinedPartyFragment;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.MyCreatedPartyFragment;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.PartyListFragment;
-import com.example.joe.depromeet_partygwam.Main.TabFragment.SettingProfile;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.Setting.View.SettingFragment;
 import com.example.joe.depromeet_partygwam.PartyWrite.View.PartyWriteActivity;
 import com.example.joe.depromeet_partygwam.R;
 
@@ -47,8 +50,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     public ConstraintLayout layout1;
     @BindView(R.id.main_toolbar_layout2)
     public ConstraintLayout layout2;
-    @BindView(R.id.main_toolbar_search_cancel)
-    public TextView textCancel;
+    @BindView(R.id.main_toolbar_search_confirm)
+    public TextView textSearchConfirm;
     @BindView(R.id.main_toolbar_search_edit)
     public EditText editSearch;
 
@@ -91,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         fragment2 = new JoinedPartyFragment();
         fragment3 = new MyCreatedPartyFragment();
         fragment4 = new PartyEventMessage();
-        fragment5 = new SettingProfile();
+        fragment5 = new SettingFragment();
 
         View tabView1 = getLayoutInflater().inflate(R.layout.tab_layout, null);
         View tabView2 = getLayoutInflater().inflate(R.layout.tab_layout, null);

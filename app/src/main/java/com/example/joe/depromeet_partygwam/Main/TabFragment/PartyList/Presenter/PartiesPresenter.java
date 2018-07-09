@@ -30,11 +30,11 @@ public class PartiesPresenter
     }
 
     @Override
-    public void getParties(int sort) {
+    public void getParties(String search, int sort) {
         this.sort = sort;
         page = 1;
         adapterModel.clearItem();
-        retrofitModel.getParties(sort, page);
+        retrofitModel.getParties(search, sort, page);
     }
 
     @Override
@@ -111,6 +111,6 @@ public class PartiesPresenter
             return;
         this.page = page;
         Log.d(TAG, "page : " + page);
-        retrofitModel.getParties(sort, page);
+        retrofitModel.getParties(null, sort, page);
     }
 }

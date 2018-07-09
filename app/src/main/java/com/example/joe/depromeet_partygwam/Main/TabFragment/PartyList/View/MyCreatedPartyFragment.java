@@ -47,10 +47,9 @@ public class MyCreatedPartyFragment extends PartyListFragment {
     }
 
     @Override
-    protected void refreshList(int position) {
+    protected void refreshList(String search, int position) {
         super.pb.setVisibility(View.VISIBLE);
         super.presenter.getCreatedParties();
-
     }
 
     @Override

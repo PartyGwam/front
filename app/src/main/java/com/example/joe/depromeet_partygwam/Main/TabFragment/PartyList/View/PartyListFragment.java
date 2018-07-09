@@ -8,10 +8,12 @@ import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -30,6 +32,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class PartyListFragment extends Fragment implements PartiesContract.View {
     private static final String TAG = PartyListFragment.class.getSimpleName();
@@ -50,9 +53,26 @@ public class PartyListFragment extends Fragment implements PartiesContract.View 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_party_list_main, container, false);
         ButterKnife.bind(this, rootView);
+        ((MainActivity) getActivity()).layout1.setVisibility(View.VISIBLE);
+        ((MainActivity) getActivity()).layout2.setVisibility(View.INVISIBLE);
         ((MainActivity) getActivity()).textTitle.setText("logo");
         ((MainActivity) getActivity()).imgWrite.setVisibility(View.VISIBLE);
         ((MainActivity) getActivity()).imgSearch.setVisibility(View.VISIBLE);
+
+        ((MainActivity) getActivity()).textSearchConfirm.setOnClickListener((v) -> {
+            String searchStr = ((MainActivity) getActivity()).editSearch.getText().toString();
+            if (searchStr.equals("")) {
+                refreshList(null, sort);
+                return;
+            }
+            refreshList(searchStr, sort);
+        });
+
+        ((MainActivity) getActivity()).imgSearch.setOnClickListener((v) -> {
+            ((MainActivity) getActivity()).layout2.setVisibility(View.VISIBLE);
+            ((MainActivity) getActivity()).layout1.setVisibility(View.INVISIBLE);
+        });
+
         adapter = new PartiesAdapter(getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
@@ -90,12 +110,12 @@ public class PartyListFragment extends Fragment implements PartiesContract.View 
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume");
-        refreshList(sort);
+        refreshList(null, sort);
     }
 
-    protected void refreshList(int position) {
+    protected void refreshList(String search, int position) {
         pb.setVisibility(View.VISIBLE);
-        presenter.getParties(position);
+        presenter.getParties(search, position);
     }
 
     @Override

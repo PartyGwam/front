@@ -25,10 +25,10 @@ public class PartiesRetrofitModel {
         this.callback = callback;
     }
 
-    public void getParties(int sort, int page) {
+    public void getParties(String search, int sort, int page) {
         String ordering = sort == 0 ? "start_time" : "-created_at";
         String token = SharePreferenceManager.getString("Token");
-        Call<PartyResponse> call = retrofitService.getParties(token, ordering, page);
+        Call<PartyResponse> call = retrofitService.getParties(token, search, ordering, page);
         call.enqueue(new Callback<PartyResponse>() {
             @Override
             public void onResponse(Call<PartyResponse> call, Response<PartyResponse> response) {

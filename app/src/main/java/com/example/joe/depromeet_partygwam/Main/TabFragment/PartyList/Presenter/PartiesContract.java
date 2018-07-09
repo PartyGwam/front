@@ -12,7 +12,7 @@ public interface PartiesContract {
     }
 
     interface Presenter {
-        void getParties(int sort);
+        void getParties(String search, int sort);
         void getCreatedParties();
         void getJoinedParties();
         void attchView(View view);

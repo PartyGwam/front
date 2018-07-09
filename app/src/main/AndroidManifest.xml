@@ -17,7 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Main.View.MainActivity"/>
+        <activity android:name=".Main.View.MainActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Login.View.LoginActivity"/>
         <activity android:name=".Join.View.JoinActivity"/>
         <activity android:name=".PartyWrite.View.PartyWriteActivity">
