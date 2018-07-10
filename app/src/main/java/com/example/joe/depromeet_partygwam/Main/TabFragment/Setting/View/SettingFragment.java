@@ -1,5 +1,7 @@
 package com.example.joe.depromeet_partygwam.Main.TabFragment.Setting.View;
 
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
 import com.example.joe.depromeet_partygwam.Main.View.MainActivity;
 import com.example.joe.depromeet_partygwam.R;
@@ -24,8 +27,10 @@ public class SettingFragment extends Fragment {
     TextView textNickname;
     @BindView(R.id.setting_email)
     TextView textEmail;
-    @BindView(R.id.setting_user)
-    ImageView imgUser;
+    @BindView(R.id.setting_go_profile)
+    ImageView imgEnter;
+    @BindView(R.id.setting_profile)
+    ImageView imgProfile;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,13 +43,19 @@ public class SettingFragment extends Fragment {
 
         textNickname.setText(SharePreferenceManager.getString("Username"));
         textEmail.setText(SharePreferenceManager.getString("Email"));
+        imgProfile.setBackground(new ShapeDrawable(new OvalShape()));
+        imgProfile.setClipToOutline(true);
+
         if (!SharePreferenceManager.getString("ProfilePicture").equals("default")) {
             //사진 지정
+            Glide.with(this)
+                    .load(SharePreferenceManager.getString("ProfilePicture"))
+                    .into(imgProfile);
         }
         return rootView;
     }
 
-    @OnClick(R.id.setting_user)
+    @OnClick(R.id.setting_go_profile)
     public void onSettingUserClick() {
         getActivity().getSupportFragmentManager()
                 .beginTransaction()

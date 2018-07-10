@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.joe.depromeet_partygwam.Data.UserResponse.UserResponse;
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.Setting.Presenter.SettingProfileContract;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.Setting.Presenter.SettingProfilePresenter;
@@ -40,13 +42,15 @@ public class SettingProfileFragment extends Fragment implements SettingProfileCo
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_setting_profile, container, false);
         ButterKnife.bind(this, rootView);
         presenter = new SettingProfilePresenter(getActivity());
-
+        presenter.attachView(this);
         ((MainActivity) getActivity()).viewFlipper.setDisplayedChild(2);
         imgProfile.setBackground(new ShapeDrawable(new OvalShape()));
         imgProfile.setClipToOutline(true);
 
         if (!SharePreferenceManager.getString("ProfilePicture").equals("dafault")) {
-
+            Glide.with(this)
+                    .load(SharePreferenceManager.getString("ProfilePicture"))
+                    .into(imgProfile);
         }
         editNickname.setText(SharePreferenceManager.getString("Username"));
 
@@ -100,5 +104,41 @@ public class SettingProfileFragment extends Fragment implements SettingProfileCo
             Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
         };
         getActivity().runOnUiThread(r);
+    }
+
+    @Override
+    public void onSuccess(UserResponse data) {
+        toast("수정 완료 되었습니다.");
+        SharePreferenceManager
+                .putString("ProfilePicture", data.getResult().getProfile_picture());
+        SharePreferenceManager.putString("Username", data.getResult().getUsername());
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, new SettingFragment()).commit();
+    }
+
+    @Override
+    public void onUnauthorizedError() {
+        toast("인증에러.");
+    }
+
+    @Override
+    public void onForbiddenError() {
+        toast("수정 권한이 없습니다.");
+    }
+
+    @Override
+    public void onSupportError() {
+        toast("프로필의 닉네임은 이미 존재합니다.");
+    }
+
+    @Override
+    public void onConnectFail() {
+        toast("서버 연결에 실패했습니다. 다시 시도해주세요.");
+    }
+
+    @Override
+    public void onUsernameOverlap() {
+        toast("프로필의 닉네임은 이미 존재합니다.");
     }
 }

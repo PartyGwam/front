@@ -17,6 +17,7 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface RetrofitService {
@@ -67,7 +68,7 @@ public interface RetrofitService {
     );
 
     @Multipart
-    @PUT("/api/profiles/")
+    @POST("/api/profiles/")
     Call<UserResponse> updateUser(
             @Header("Authorization") String authorization,
             @Part MultipartBody.Part image,

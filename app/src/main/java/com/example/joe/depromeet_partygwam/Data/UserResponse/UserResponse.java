@@ -1,8 +1,17 @@
 package com.example.joe.depromeet_partygwam.Data.UserResponse;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class UserResponse {
+    @SerializedName("success")
+    @Expose
     private Boolean success;
+    @SerializedName("result")
+    @Expose
     private Result result;
+    @SerializedName("message")
+    @Expose
     private Message message;
 
     public UserResponse(Boolean success, Result result, Message message) {

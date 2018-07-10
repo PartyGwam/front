@@ -9,6 +9,7 @@ public interface PartiesContract {
         void onUnknownError();
         void onSuccessGetList();
         void onConnectFail();
+        void onNotFound();
     }
 
     interface Presenter {

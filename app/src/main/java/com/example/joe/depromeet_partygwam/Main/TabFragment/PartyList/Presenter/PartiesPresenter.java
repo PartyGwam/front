@@ -74,7 +74,7 @@ public class PartiesPresenter
     public void onSuccess(int code, List<Data> data) {
 
         if (code == ResponseCode.NOT_FOUND && data == null) {
-            view.toast("게시글이 없습니다.");
+            view.onNotFound();
             return;
         }
 

@@ -53,11 +53,6 @@ public class PartyListFragment extends Fragment implements PartiesContract.View 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_party_list_main, container, false);
         ButterKnife.bind(this, rootView);
-        /*((MainActivity) getActivity()).layout1.setVisibility(View.VISIBLE);
-        ((MainActivity) getActivity()).layout2.setVisibility(View.INVISIBLE);
-        ((MainActivity) getActivity()).textTitle.setText("logo");
-        ((MainActivity) getActivity()).imgWrite.setVisibility(View.VISIBLE);
-        ((MainActivity) getActivity()).imgSearch.setVisibility(View.VISIBLE);*/
         ((MainActivity) getActivity()).viewFlipper.setDisplayedChild(0);
         ((MainActivity) getActivity()).textTitle.setText("logo");
         ((MainActivity) getActivity()).imgWrite.setVisibility(View.VISIBLE);
@@ -139,6 +134,12 @@ public class PartyListFragment extends Fragment implements PartiesContract.View 
     public void onUnknownError() {
         pb.setVisibility(View.INVISIBLE);
         toast("unknown error");
+    }
+
+    @Override
+    public void onNotFound() {
+        pb.setVisibility(View.INVISIBLE);
+        toast("게시글이 없습니다.");
     }
 
     @Override
