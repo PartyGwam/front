@@ -26,7 +26,7 @@
             android:name=".PartyDetail.View.PartyEditPopupActivity"
             android:theme="@style/Theme.AppCompat.Light.Dialog">
         </activity>
-        <activity android:name=".PartyDetail.View.EditPartyActivity">
+        <activity android:name=".EditParty.View.EditPartyActivity">
         </activity>
     </application>
 

@@ -3,9 +3,11 @@ package com.example.joe.depromeet_partygwam.PartyDetail.Presenter;
 public interface PartyDetailContract {
     interface View {
         void toast(String msg);
-        //void onSuccessGetParty();
+        void onSuccess();
+        void onAuthorization();
+        void onBadRequest();
         //void startCommentWriteActivity();
-        //void connectFail();
+        void onConnectFail();
     }
 
     interface Presenter {
@@ -13,6 +15,6 @@ public interface PartyDetailContract {
         void attachView(View view);
         void detachView();
         void updateParty();
-        void editParty();
+        void editParty(String title, String place, String description, String startTime, int maxPeople);
     }
 }
