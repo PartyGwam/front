@@ -15,7 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.joe.depromeet_partygwam.Data.LoginResponse.User;
+import com.example.joe.depromeet_partygwam.Data.UserResponse.User;
 import com.example.joe.depromeet_partygwam.Join.Presenter.JoinContract;
 import com.example.joe.depromeet_partygwam.Join.Presenter.JoinPresenter;
 import com.example.joe.depromeet_partygwam.Login.View.LoginActivity;

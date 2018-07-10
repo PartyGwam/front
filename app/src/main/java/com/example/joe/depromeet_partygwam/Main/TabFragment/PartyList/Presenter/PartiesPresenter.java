@@ -21,6 +21,7 @@ public class PartiesPresenter
     private PartiesRetrofitModel retrofitModel;
     private PartiesAdapterContract.View adapterView;
     private PartiesAdapterContract.Model adapterModel;
+    private String search;
     private int sort;
     private int page;
 
@@ -31,6 +32,7 @@ public class PartiesPresenter
 
     @Override
     public void getParties(String search, int sort) {
+        this.search = search;
         this.sort = sort;
         page = 1;
         adapterModel.clearItem();
@@ -111,6 +113,6 @@ public class PartiesPresenter
             return;
         this.page = page;
         Log.d(TAG, "page : " + page);
-        retrofitModel.getParties(null, sort, page);
+        retrofitModel.getParties(search, sort, page);
     }
 }

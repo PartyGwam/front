@@ -53,8 +53,12 @@ public class PartyListFragment extends Fragment implements PartiesContract.View 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_party_list_main, container, false);
         ButterKnife.bind(this, rootView);
-        ((MainActivity) getActivity()).layout1.setVisibility(View.VISIBLE);
+        /*((MainActivity) getActivity()).layout1.setVisibility(View.VISIBLE);
         ((MainActivity) getActivity()).layout2.setVisibility(View.INVISIBLE);
+        ((MainActivity) getActivity()).textTitle.setText("logo");
+        ((MainActivity) getActivity()).imgWrite.setVisibility(View.VISIBLE);
+        ((MainActivity) getActivity()).imgSearch.setVisibility(View.VISIBLE);*/
+        ((MainActivity) getActivity()).viewFlipper.setDisplayedChild(0);
         ((MainActivity) getActivity()).textTitle.setText("logo");
         ((MainActivity) getActivity()).imgWrite.setVisibility(View.VISIBLE);
         ((MainActivity) getActivity()).imgSearch.setVisibility(View.VISIBLE);
@@ -69,8 +73,7 @@ public class PartyListFragment extends Fragment implements PartiesContract.View 
         });
 
         ((MainActivity) getActivity()).imgSearch.setOnClickListener((v) -> {
-            ((MainActivity) getActivity()).layout2.setVisibility(View.VISIBLE);
-            ((MainActivity) getActivity()).layout1.setVisibility(View.INVISIBLE);
+            ((MainActivity) getActivity()).viewFlipper.setDisplayedChild(1);
         });
 
         adapter = new PartiesAdapter(getContext());

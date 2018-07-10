@@ -1,11 +1,11 @@
-package com.example.joe.depromeet_partygwam.Data.LoginResponse;
+package com.example.joe.depromeet_partygwam.Data.UserResponse;
 
-public class LoginResponse {
+public class UserResponse {
     private Boolean success;
     private Result result;
     private Message message;
 
-    public LoginResponse(Boolean success, Result result, Message message) {
+    public UserResponse(Boolean success, Result result, Message message) {
         this.success = success;
         this.result = result;
         this.message = message;

@@ -3,6 +3,10 @@
           package="com.example.joe.depromeet_partygwam">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,13 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Splash.SplashActivity">
+        <activity android:name=".Permission.PermissionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".Splash.SplashActivity"/>
         <activity android:name=".Main.View.MainActivity"
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Login.View.LoginActivity"/>
@@ -24,6 +29,8 @@
         <activity android:name=".PartyWrite.View.PartyWriteActivity">
         </activity>
         <activity android:name=".Main.TabFragment.PartyList.View.PartyListSortPopup"
-            android:theme="@style/Theme.AppCompat.Dialog"/>
+            android:theme="@style/CustomPopup"/>
+        <activity android:name=".Main.TabFragment.Setting.View.SettingProfilePopup"
+            android:theme="@style/CustomPopup"/>
     </application>
 </manifest>

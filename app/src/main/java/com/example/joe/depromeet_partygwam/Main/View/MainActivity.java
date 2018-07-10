@@ -9,9 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,25 +36,31 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private Fragment fragment4;
     private Fragment fragment5;
 
-    @BindView(R.id.main_toolbar)
+    @BindView(R.id.main_parties_toolbar)
     public Toolbar toolbar;
+    @BindView(R.id.main_search_toolbar)
+    public Toolbar toolbar2;
+    @BindView(R.id.main_view_flipper)
+    public ViewFlipper viewFlipper;
     @BindView(R.id.main_toolbar_seach)
     public ImageView imgSearch;
     @BindView(R.id.main_toolbar_write)
     public ImageView imgWrite;
     @BindView(R.id.main_toolbar_text)
     public TextView textTitle;
-    @BindView(R.id.main_toolbar_layout1)
-    public ConstraintLayout layout1;
-    @BindView(R.id.main_toolbar_layout2)
-    public ConstraintLayout layout2;
     @BindView(R.id.main_toolbar_search_confirm)
     public TextView textSearchConfirm;
     @BindView(R.id.main_toolbar_search_edit)
     public EditText editSearch;
+    @BindView(R.id.profile_update_back)
+    public ImageView imgUpdateBack;
+    @BindView(R.id.profile_update_save)
+    public TextView textUpdateSave;
 
     private String token;
     private String uuid;
+    private String email;
+    private String username;
     private String profilePicture;
 
     @Override
@@ -68,11 +72,15 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         Intent intent = getIntent();
         token = "PG " + intent.getStringExtra("Token");
         uuid = intent.getStringExtra("Uuid");
+        email = intent.getStringExtra("Email");
+        username = intent.getStringExtra("Username");
         profilePicture = intent.getStringExtra("ProfilePicture");
 
         SharePreferenceManager.getInstance(this);
         SharePreferenceManager.putString("Token", token);
         SharePreferenceManager.putString("Uuid", uuid);
+        SharePreferenceManager.putString("Email", email);
+        SharePreferenceManager.putString("Username", username);
         SharePreferenceManager.putString("ProfilePicture", profilePicture);
 
         initView();
@@ -179,12 +187,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     }
 
-    @OnClick(R.id.main_toolbar_seach)
-    public void searchClick() {
-        layout1.setVisibility(View.INVISIBLE);
-        layout2.setVisibility(View.VISIBLE);
-    }
-
     @OnClick(R.id.main_toolbar_write)
     public void writeClick() {
         startActivity(new Intent(MainActivity.this, PartyWriteActivity.class));
@@ -196,6 +198,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         Log.d(TAG, "onDestroy()");
         SharePreferenceManager.remove("Token");
         SharePreferenceManager.remove("Uuid");
+        SharePreferenceManager.remove("Email");
+        SharePreferenceManager.remove("Username");
         SharePreferenceManager.remove("ProfilePicture");
     }
 }

@@ -6,15 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".Main.View.MainActivity">
 
-    <include
+    <ViewFlipper
+        android:id="@+id/main_view_flipper"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        layout="@layout/main_toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/main_toolbar"
-        app:layout_constraintDimensionRatio="1:0.16"/>
+        app:layout_constraintDimensionRatio="1:0.16"
+        android:layout_marginBottom="4dp"
+        android:background="@color/colorWhite"
+        android:elevation="5dp">
+        <include
+            layout="@layout/parties_toolbar"
+            android:id="@+id/main_parties_toolbar" />
+        <include
+            layout="@layout/search_toolbar"
+            android:id="@+id/main_search_toolbar" />
+        <include
+            layout="@layout/profile_update_toolbar"
+            android:id="@+id/profile_update_toolbar" />
+    </ViewFlipper>
+
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -23,10 +36,9 @@
         app:layout_constraintBottom_toTopOf="@+id/main_tabs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/main_view_flipper">
 
     </FrameLayout>
-
 
     <android.support.design.widget.TabLayout
         android:id="@+id/main_tabs"
