@@ -171,8 +171,6 @@ public class LoginActivity extends AppCompatActivity
         }
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         intent.putExtra("Token", response.getResult().getToken());
-        intent.putExtra("Uuid", response.getResult().getUuid());
-        intent.putExtra("ProfilePicture", response.getResult().getProfile_picture());
         startActivity(intent);
         finish();
     }

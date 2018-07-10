@@ -1,11 +1,15 @@
 package com.example.joe.depromeet_partygwam.Data.Parties;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Data {
+public class Data implements Parcelable {
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -221,4 +225,65 @@ public class Data {
     public void setCommentSets(List<CommentSet> commentSets) {
         this.commentSets = commentSets;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(this.id);
+        dest.writeParcelable(this.partyOwner, flags);
+        dest.writeList(this.participants);
+        dest.writeList(this.commentSets);
+        dest.writeString(this.title);
+        dest.writeString(this.slug);
+        dest.writeString(this.place);
+        dest.writeString(this.description);
+        dest.writeString(this.startTime);
+        dest.writeValue(this.currentPeople);
+        dest.writeValue(this.maxPeople);
+        dest.writeString(this.createdAt);
+        dest.writeString(this.lastUpdated);
+        dest.writeValue(this.isNew);
+        dest.writeValue(this.willStartSoon);
+        dest.writeValue(this.hasStarted);
+        dest.writeValue(this.canJoin);
+    }
+
+    protected Data(Parcel in) {
+        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.partyOwner = in.readParcelable(PartyOwner.class.getClassLoader());
+        this.participants = new ArrayList<Participant>();
+        in.readList(this.participants, Participant.class.getClassLoader());
+        this.commentSets = new ArrayList<CommentSet>();
+        in.readList(this.commentSets, CommentSet.class.getClassLoader());
+        this.title = in.readString();
+        this.slug = in.readString();
+        this.place = in.readString();
+        this.description = in.readString();
+        this.startTime = in.readString();
+        this.currentPeople = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.maxPeople = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.createdAt = in.readString();
+        this.lastUpdated = in.readString();
+        this.isNew = (Boolean) in.readValue(Boolean.class.getClassLoader());
+        this.willStartSoon = (Boolean) in.readValue(Boolean.class.getClassLoader());
+        this.hasStarted = (Boolean) in.readValue(Boolean.class.getClassLoader());
+        this.canJoin = (Boolean) in.readValue(Boolean.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<Data> CREATOR = new Parcelable.Creator<Data>() {
+        @Override
+        public Data createFromParcel(Parcel source) {
+            return new Data(source);
+        }
+
+        @Override
+        public Data[] newArray(int size) {
+            return new Data[size];
+        }
+    };
 }
