@@ -28,7 +28,7 @@ public class Data {
     @Expose
     private String place;
     @SerializedName("description")
-    @Expose
+    @Expose 
     private String description;
     @SerializedName("start_time")
     @Expose
