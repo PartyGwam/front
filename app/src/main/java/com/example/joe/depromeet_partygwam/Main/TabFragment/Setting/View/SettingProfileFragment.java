@@ -62,6 +62,11 @@ public class SettingProfileFragment extends Fragment implements SettingProfileCo
 
         ((MainActivity) getActivity()).textUpdateSave.setOnClickListener((v) -> {
             String userName = editNickname.getText().toString();
+            if (!(userName.length() >= 2 && userName.length() <= 8)) {
+                toast("닉네임을 2~8자 이내로 입력 해 주세요.");
+                return;
+            }
+
             if (profileTmp == null && userName.toString()
                     .equals(SharePreferenceManager.getString("Username"))) {
                 toast("변경사항이 없습니다.");

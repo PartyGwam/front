@@ -53,6 +53,8 @@
         app:layout_constraintTop_toTopOf="@+id/guideline17"
         app:layout_constraintWidth_percent="0.86"
         android:paddingBottom="16dp"
+        android:maxLength="8"
+        android:maxLines="1"
         android:text="default"/>
 
     <TextView
