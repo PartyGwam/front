@@ -1,5 +1,7 @@
 package com.example.joe.depromeet_partygwam.PartyDetail.Presenter;
 
+import com.example.joe.depromeet_partygwam.PartyDetail.Adapter.RepliesAdapterConstract;
+
 public interface PartyDetailContract {
     interface View {
         void toast(String msg);
@@ -16,6 +18,7 @@ public interface PartyDetailContract {
         void detachView();
         void updateParty();
         void editParty(String title, String place, String description, String startTime, int maxPeople);
-        void setAdapterView(
+        void setAdapterView(RepliesAdapterConstract.View adapterView);
+        void setAdapterModel(RepliesAdapterConstract.Model adapterModel);
     }
 }
