@@ -16,5 +16,6 @@ public interface PartyDetailContract {
         void detachView();
         void updateParty();
         void editParty(String title, String place, String description, String startTime, int maxPeople);
+        void setAdapterView(
     }
 }

@@ -21,10 +21,6 @@ public class PartyEditPopupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_party_edit_popup);
-
-        //Intent intent = getIntent();
-        //data = intent.getParcelableExtra("item");
-
         ButterKnife.bind(this);
     }
 

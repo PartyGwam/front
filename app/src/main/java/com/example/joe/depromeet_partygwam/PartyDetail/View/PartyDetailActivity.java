@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.joe.depromeet_partygwam.Data.Parties.Data;
+import com.example.joe.depromeet_partygwam.PartyDetail.Adapter.RepliesAdapter;
 import com.example.joe.depromeet_partygwam.PartyDetail.Presenter.PartyDetailContract;
 import com.example.joe.depromeet_partygwam.PartyDetail.Presenter.PartyDetailPresenter;
 import com.example.joe.depromeet_partygwam.R;
@@ -53,6 +56,8 @@ public class PartyDetailActivity extends AppCompatActivity
     ImageView joinBtn;
     @BindView(R.id.party_detail_reply_count)
     TextView numOfReply;
+    @BindView(R.id.reply_list_view)
+    RecyclerView replyList;
     @BindView(R.id.party_detail_reply_button)
     FrameLayout replyBtn;
     @BindView(R.id.party_detail_reply_bar)
@@ -61,6 +66,7 @@ public class PartyDetailActivity extends AppCompatActivity
     ProgressBar pb;
 
     private PartyDetailPresenter presenter;
+    private RepliesAdapter adapter;
     private Data data;
     private Date today;
     private SimpleDateFormat date;
@@ -77,9 +83,14 @@ public class PartyDetailActivity extends AppCompatActivity
         date = new SimpleDateFormat("yyyy-MM-dd");
 
         onBindView();
+        //????
+        replyList.setLayoutManager(new LinearLayoutManager(this));
+        replyList.setAdapter(adapter);
 
         presenter = new PartyDetailPresenter();
         presenter.attachView(this);
+        presenter.setAdapterModel(adapter);
+        presenter.setAdapterView(adapter);
     }
 
     public void onBindView(){
@@ -141,6 +152,7 @@ public class PartyDetailActivity extends AppCompatActivity
     private void updateParty(){
         //파티에 수정된 게 있으면 서버로 보내준다음
         //PartyListFragment 로 돌아가기
+        finish();
     }
     @Override
     public void onAuthorization() {
