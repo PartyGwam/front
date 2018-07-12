@@ -74,4 +74,10 @@ public interface RetrofitService {
             @Part MultipartBody.Part image,
             @Part("username") RequestBody username
     );
+
+    @POST("/api/parties/")
+    Call<Void> editParty(
+            @Header("Authorization") String authorization,
+            @Body JsonObject party
+    );
 }

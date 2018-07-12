@@ -40,7 +40,7 @@ public class RepliesViewHolder extends RecyclerView.ViewHolder {
         String createTime = commentSet.getCreatedAt().split("T")[1].substring(0, 5);
         String info = commentSet.getAuthor() + " | " + createTime;
 
-        replyImage.setImage(profileImgSrc);
+        //replyImage.setImage(profileImgSrc);
         replyInfo.setText(info);
         replyContent.setText(commentSet.getText());
 

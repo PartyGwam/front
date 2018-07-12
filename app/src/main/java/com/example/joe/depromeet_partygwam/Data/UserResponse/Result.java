@@ -1,9 +1,24 @@
 package com.example.joe.depromeet_partygwam.Data.UserResponse;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Result {
+    @SerializedName("token")
+    @Expose
     private String token;
+    @SerializedName("email")
+    @Expose
     private String email;
+    @SerializedName("username")
+    @Expose
     private String username;
+    @SerializedName("uuid")
+    @Expose
+    private String uuid;
+    @SerializedName("profilePicture")
+    @Expose
+    private String profile_picture;
 
     public String getToken() {
         return token;
@@ -27,5 +42,21 @@ public class Result {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getProfile_picture() {
+        return profile_picture;
+    }
+
+    public void setProfile_picture(String profile_picture) {
+        this.profile_picture = profile_picture;
     }
 }

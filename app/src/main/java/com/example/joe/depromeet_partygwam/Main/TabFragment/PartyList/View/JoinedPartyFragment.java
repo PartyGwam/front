@@ -19,6 +19,7 @@ public class JoinedPartyFragment extends PartyListFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         super.appBarLayout.setScaleY(0.0f);
+        ((MainActivity) getActivity()).viewFlipper.setDisplayedChild(0);
         ((MainActivity) getActivity()).textTitle.setText("내가 참여한 파티");
         ((MainActivity) getActivity()).imgWrite.setVisibility(View.INVISIBLE);
         ((MainActivity) getActivity()).imgSearch.setVisibility(View.INVISIBLE);
@@ -45,7 +46,7 @@ public class JoinedPartyFragment extends PartyListFragment {
     }
 
     @Override
-    protected void refreshList(int position) {
+    protected void refreshList(String search, int position) {
         super.pb.setVisibility(View.VISIBLE);
         super.presenter.getJoinedParties();
 

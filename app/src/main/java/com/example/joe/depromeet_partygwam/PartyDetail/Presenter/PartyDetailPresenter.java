@@ -1,5 +1,6 @@
 package com.example.joe.depromeet_partygwam.PartyDetail.Presenter;
 
+import com.example.joe.depromeet_partygwam.PartyDetail.Adapter.RepliesAdapterConstract;
 import com.example.joe.depromeet_partygwam.PartyDetail.Model.PartyDetailModelCallback;
 import com.example.joe.depromeet_partygwam.PartyDetail.Model.PartyDetailRetrofitModel;
 import com.example.joe.depromeet_partygwam.Retrofit.ResponseCode;
@@ -47,6 +48,16 @@ public class PartyDetailPresenter
     @Override
     public void editParty(String title, String place, String description, String startTime, int maxPeople) {
         retrofitModel.editParty(title, place, description, startTime, maxPeople);
+    }
+
+    @Override
+    public void setAdapterView(RepliesAdapterConstract.View adapterView) {
+
+    }
+
+    @Override
+    public void setAdapterModel(RepliesAdapterConstract.Model adapterModel) {
+
     }
 
     @Override

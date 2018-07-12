@@ -18,12 +18,16 @@ import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.JoinedParty;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.MyParty;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyEventMessage;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.JoinedPartyFragment;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.MyCreatedPartyFragment;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.PartyListFragment;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.Setting.View.SettingFragment;
 import com.example.joe.depromeet_partygwam.Write.View.PartyWriteActivity;
 import com.example.joe.depromeet_partygwam.R;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         token = "PG " + intent.getStringExtra("Token");
@@ -95,8 +100,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
 
         fragment1 = tab1_fragment;
-        fragment2 = new JoinedParty();
-        fragment3 = new MyParty();
+        fragment2 = new JoinedPartyFragment();
+        fragment3 = new MyCreatedPartyFragment();
         fragment4 = new PartyEventMessage();
         fragment5 = new SettingFragment();
 

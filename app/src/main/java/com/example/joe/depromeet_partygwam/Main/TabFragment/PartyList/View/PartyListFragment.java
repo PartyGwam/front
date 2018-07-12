@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,19 +15,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.joe.depromeet_partygwam.Data.Parties.Data;
-import com.example.joe.depromeet_partygwam.PartyDetail.View.PartyDetailActivity;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Adapter.PartiesAdapter;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Presenter.PartiesContract;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Presenter.PartiesPresenter;
+import com.example.joe.depromeet_partygwam.Main.View.MainActivity;
+import com.example.joe.depromeet_partygwam.PartyDetail.View.PartyDetailActivity;
 import com.example.joe.depromeet_partygwam.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
@@ -34,14 +39,17 @@ import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 public class PartyListFragment extends Fragment implements PartiesContract.View {
     private static final String TAG = PartyListFragment.class.getSimpleName();
 
-    @BindView(R.id.party_list_main_spinner)
-    Spinner spinner;
+    @BindView(R.id.party_list_main_appbar)
+    AppBarLayout appBarLayout;
+    @BindView(R.id.party_list_main_sort_text)
+    TextView textSort;
     @BindView(R.id.party_list_main_pb)
     ProgressBar pb;
     @BindView(R.id.party_list_main_list)
     RecyclerView recyclerView;
-    private PartiesAdapter adapter;
-    private PartiesPresenter presenter;
+    protected PartiesAdapter adapter;
+    protected PartiesPresenter presenter;
+    private int sort = 0;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -75,19 +83,27 @@ public class PartyListFragment extends Fragment implements PartiesContract.View 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         //spinner.setSelection(0, false);
-        spinner.setOnItemSelectedListener(this);
-
         presenter = new PartiesPresenter();
         presenter.attchView(this);
         presenter.setAdapterModel(adapter);
         presenter.setAdapterView(adapter);
     }
 
+    @OnClick(R.id.party_list_main_sort_select)
+    public void onSelectClick() {
+        startActivityForResult(new Intent(getActivity(), PartyListSortPopup.class), 100);
+    }
+
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Log.d(TAG, "p " + position);
-        pb.setVisibility(View.VISIBLE);
-        presenter.getParties(position);
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(TAG, "onActivityResult");
+        if (requestCode == 100) {
+            if (resultCode == RESULT_OK) {
+                sort = data.getIntExtra("Sort", 0);
+                String sortStr = sort == 0 ? "시간순" : "등록순";
+                textSort.setText(sortStr);
+            }
+        }
     }
 
     @Override
@@ -135,22 +151,33 @@ public class PartyListFragment extends Fragment implements PartiesContract.View 
     }
 
     @Override
+    public void startDetailActivity(Data item) {
+        Intent intent = new Intent(getActivity().getApplicationContext(), PartyDetailActivity.class);
+        intent.putExtra("item", item);
+        startActivity(intent);
+    }
+
+    @Override
     public void onSuccessGetList() {
         pb.setVisibility(View.INVISIBLE);
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
-        presenter.detachView();
-        Log.d(TAG, "onDetach");
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop");
     }
 
     @Override
-    public void startDetailActivity(Data item) {
-        Intent intent = new Intent(getActivity().getApplicationContext(), PartyDetailActivity.class);
-        intent.putExtra("item", item);
-        startActivity(intent);
-        //결과코드 받는 메서드로 바꾸기
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d(TAG, "onDestroyView");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        sort = 0;
+        Log.d(TAG, "onDetach");
     }
 }

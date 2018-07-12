@@ -26,7 +26,7 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Login.View.LoginActivity"/>
         <activity android:name=".Join.View.JoinActivity"/>
-        <activity android:name=".Write.View.PartyWriteActivity">
+        <activity android:name=".Write.View.PartyWriteActivity" />
         <activity android:name=".PartyDetail.View.PartyDetailActivity"/>
         <activity
             android:name=".PartyDetail.View.PartyEditPopupActivity"
