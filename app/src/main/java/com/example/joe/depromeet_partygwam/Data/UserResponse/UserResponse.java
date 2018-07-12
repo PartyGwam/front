@@ -1,11 +1,20 @@
-package com.example.joe.depromeet_partygwam.Data.LoginResponse;
+package com.example.joe.depromeet_partygwam.Data.UserResponse;
 
-public class LoginResponse {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+public class UserResponse {
+    @SerializedName("success")
+    @Expose
     private Boolean success;
+    @SerializedName("result")
+    @Expose
     private Result result;
+    @SerializedName("message")
+    @Expose
     private Message message;
 
-    public LoginResponse(Boolean success, Result result, Message message) {
+    public UserResponse(Boolean success, Result result, Message message) {
         this.success = success;
         this.result = result;
         this.message = message;

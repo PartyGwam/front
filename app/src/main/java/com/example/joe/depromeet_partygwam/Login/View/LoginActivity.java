@@ -7,13 +7,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.joe.depromeet_partygwam.Data.LoginResponse.LoginResponse;
+import com.example.joe.depromeet_partygwam.Data.UserResponse.UserResponse;
 import com.example.joe.depromeet_partygwam.Join.View.JoinActivity;
 import com.example.joe.depromeet_partygwam.Join.View.ObserverCallback;
 import com.example.joe.depromeet_partygwam.Join.View.ViewObserver;
@@ -163,7 +162,7 @@ public class LoginActivity extends AppCompatActivity
     }
 
     @Override
-    public void startMainActivity(int code, LoginResponse response) {
+    public void startMainActivity(int code, UserResponse response) {
         pb.setVisibility(View.INVISIBLE);
         if (code == ResponseCode.BAD_REQUEST) {
             toast("아이디 / 비밀번호를 다시 확인해 주세요.");
@@ -171,6 +170,10 @@ public class LoginActivity extends AppCompatActivity
         }
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         intent.putExtra("Token", response.getResult().getToken());
+        intent.putExtra("Uuid", response.getResult().getUuid());
+        intent.putExtra("Email", response.getResult().getEmail());
+        intent.putExtra("Username", response.getResult().getUsername());
+        intent.putExtra("ProfilePicture", response.getResult().getProfile_picture());
         startActivity(intent);
         finish();
     }

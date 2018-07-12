@@ -1,19 +1,21 @@
 package com.example.joe.depromeet_partygwam.PartyDetail.View;
 
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.joe.depromeet_partygwam.Data.Parties.Data;
-import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Presenter.PartiesPresenter;
+import com.example.joe.depromeet_partygwam.PartyDetail.Adapter.RepliesAdapter;
 import com.example.joe.depromeet_partygwam.PartyDetail.Presenter.PartyDetailContract;
 import com.example.joe.depromeet_partygwam.PartyDetail.Presenter.PartyDetailPresenter;
 import com.example.joe.depromeet_partygwam.R;
@@ -30,34 +32,41 @@ public class PartyDetailActivity extends AppCompatActivity
 
     private static final String TAG = PartyDetailActivity.class.getSimpleName();
 
-    @BindView(R.id.back_button)
+    @BindView(R.id.party_detail_back_button)
     ImageView backBtn;
-    @BindView(R.id.party_title)
+    @BindView(R.id.party_detail_title)
     TextView partyTitle;
-    @BindView(R.id.edit_party)
+    @BindView(R.id.party_detail_edit_button)
     ImageView editParty;
-    @BindView(R.id.party_date)
+    @BindView(R.id.party_detail_date)
     TextView partyDate;
-    @BindView(R.id.party_place)
+    @BindView(R.id.party_detail_place)
     TextView partyPlace;
-    @BindView(R.id.join_number)
+    @BindView(R.id.party_detail_join_people)
     TextView joinNumber;
-    @BindView(R.id.max_number)
+    @BindView(R.id.party_detail_max_people)
     TextView maxNumber;
-    @BindView(R.id.party_content)
+    @BindView(R.id.party_detail_content)
     TextView partyContent;
-    @BindView (R.id.party_leader_image)
+    @BindView (R.id.party_detail_leader_image)
     ImageView partyLeaderImage;
-    @BindView(R.id.party_info)
+    @BindView(R.id.party_detail_info)
     TextView partyInfo;
-    @BindView(R.id.join_button)
+    @BindView(R.id.party_detail_join_button)
     ImageView joinBtn;
-    @BindView(R.id.num_of_reply)
+    @BindView(R.id.party_detail_reply_count)
     TextView numOfReply;
-    @BindView(R.id.reply_button)
+    @BindView(R.id.reply_list_view)
+    RecyclerView replyList;
+    @BindView(R.id.party_detail_reply_button)
     FrameLayout replyBtn;
+    @BindView(R.id.party_detail_reply_bar)
+    EditText replyBar;
+    @BindView(R.id.party_detail_progress_bar)
+    ProgressBar pb;
 
     private PartyDetailPresenter presenter;
+    private RepliesAdapter adapter;
     private Data data;
     private Date today;
     private SimpleDateFormat date;
@@ -74,9 +83,14 @@ public class PartyDetailActivity extends AppCompatActivity
         date = new SimpleDateFormat("yyyy-MM-dd");
 
         onBindView();
+        //????
+        replyList.setLayoutManager(new LinearLayoutManager(this));
+        replyList.setAdapter(adapter);
 
         presenter = new PartyDetailPresenter();
         presenter.attachView(this);
+        presenter.setAdapterModel(adapter);
+        presenter.setAdapterView(adapter);
     }
 
     public void onBindView(){
@@ -113,19 +127,20 @@ public class PartyDetailActivity extends AppCompatActivity
         runOnUiThread(r);
     }
 
-    @OnClick(R.id.back_button)
+    @OnClick(R.id.party_detail_back_button)
     public void backBtnClick(){
         updateParty();
     }
 
-    @OnClick(R.id.edit_party)
+    @OnClick(R.id.party_detail_edit_button)
     public void editBtnClick(){
-        Intent intent = new Intent(getApplicationContext(), PartyEditPopupActivity.class);
+        Intent intent = new Intent(PartyDetailActivity.this, PartyEditPopupActivity.class);
         intent.putExtra("item", data);
-        startActivityForResult(intent, 101);
+        startActivity(intent);
+        //startActivityForResult(intent, 101);
     }
 
-    @OnClick(R.id.join_button)
+    @OnClick(R.id.party_detail_join_button)
     public void joinBtnClick(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(R.layout.join_party_btn_dialog_alarm);
@@ -137,5 +152,36 @@ public class PartyDetailActivity extends AppCompatActivity
     private void updateParty(){
         //파티에 수정된 게 있으면 서버로 보내준다음
         //PartyListFragment 로 돌아가기
+        finish();
+    }
+    @Override
+    public void onAuthorization() {
+        pb.setVisibility(View.INVISIBLE);
+        toast("인증 에러입니다.");
+    }
+
+    @Override
+    public void onBadRequest() {
+        pb.setVisibility(View.INVISIBLE);
+        toast("404");
+    }
+
+    @Override
+    public void onSuccess() {
+        pb.setVisibility(View.INVISIBLE);
+        toast("작성 되었습니다.");
+        finish();
+    }
+
+    @Override
+    public void onConnectFail() {
+        pb.setVisibility(View.INVISIBLE);
+        toast("서버 연결에 실패했습니다. 다시 시도해주세요.");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.detachView();
     }
 }

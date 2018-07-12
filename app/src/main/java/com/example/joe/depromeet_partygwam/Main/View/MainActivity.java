@@ -9,18 +9,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.JoinedParty;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.MyParty;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyEventMessage;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.JoinedPartyFragment;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.MyCreatedPartyFragment;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.PartyListFragment;
-import com.example.joe.depromeet_partygwam.Main.TabFragment.SettingProfile;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.Setting.View.SettingFragment;
+import com.example.joe.depromeet_partygwam.Write.View.PartyWriteActivity;
 import com.example.joe.depromeet_partygwam.R;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
@@ -30,19 +37,52 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private Fragment fragment4;
     private Fragment fragment5;
 
-    private Toolbar toolbar;
+    @BindView(R.id.main_parties_toolbar)
+    public Toolbar toolbar;
+    @BindView(R.id.main_search_toolbar)
+    public Toolbar toolbar2;
+    @BindView(R.id.main_view_flipper)
+    public ViewFlipper viewFlipper;
+    @BindView(R.id.main_toolbar_seach)
+    public ImageView imgSearch;
+    @BindView(R.id.main_toolbar_write)
+    public ImageView imgWrite;
+    @BindView(R.id.main_toolbar_text)
+    public TextView textTitle;
+    @BindView(R.id.main_toolbar_search_confirm)
+    public TextView textSearchConfirm;
+    @BindView(R.id.main_toolbar_search_edit)
+    public EditText editSearch;
+    @BindView(R.id.profile_update_back)
+    public ImageView imgUpdateBack;
+    @BindView(R.id.profile_update_save)
+    public TextView textUpdateSave;
+
     private String token;
+    private String uuid;
+    private String email;
+    private String username;
+    private String profilePicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         token = "PG " + intent.getStringExtra("Token");
+        uuid = intent.getStringExtra("Uuid");
+        email = intent.getStringExtra("Email");
+        username = intent.getStringExtra("Username");
+        profilePicture = intent.getStringExtra("ProfilePicture");
 
         SharePreferenceManager.getInstance(this);
         SharePreferenceManager.putString("Token", token);
+        SharePreferenceManager.putString("Uuid", uuid);
+        SharePreferenceManager.putString("Email", email);
+        SharePreferenceManager.putString("Username", username);
+        SharePreferenceManager.putString("ProfilePicture", profilePicture);
 
         initView();
     }
@@ -60,10 +100,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
 
         fragment1 = tab1_fragment;
-        fragment2 = new JoinedParty();
-        fragment3 = new MyParty();
+        fragment2 = new JoinedPartyFragment();
+        fragment3 = new MyCreatedPartyFragment();
         fragment4 = new PartyEventMessage();
-        fragment5 = new SettingProfile();
+        fragment5 = new SettingFragment();
 
         View tabView1 = getLayoutInflater().inflate(R.layout.tab_layout, null);
         View tabView2 = getLayoutInflater().inflate(R.layout.tab_layout, null);
@@ -149,9 +189,18 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     }
 
+    @OnClick(R.id.main_toolbar_write)
+    public void writeClick() {
+        startActivity(new Intent(MainActivity.this, PartyWriteActivity.class));
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         SharePreferenceManager.remove("Token");
+        SharePreferenceManager.remove("Uuid");
+        SharePreferenceManager.remove("Email");
+        SharePreferenceManager.remove("Username");
+        SharePreferenceManager.remove("ProfilePicture");
     }
 }

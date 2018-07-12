@@ -2,7 +2,7 @@ package com.example.joe.depromeet_partygwam.Login.Model;
 
 import android.util.Log;
 
-import com.example.joe.depromeet_partygwam.Data.LoginResponse.LoginResponse;
+import com.example.joe.depromeet_partygwam.Data.UserResponse.UserResponse;
 import com.example.joe.depromeet_partygwam.Retrofit.ResponseCode;
 import com.example.joe.depromeet_partygwam.Retrofit.RetrofitService;
 import com.example.joe.depromeet_partygwam.Retrofit.RetrofitServiceManager;
@@ -34,10 +34,10 @@ public class LoginRetrofitModel {
         Log.d(TAG, jsonStr);
         JsonParser jsonParser = new JsonParser();
         JsonObject jsonObject = (JsonObject) jsonParser.parse(jsonStr);
-        Call<LoginResponse> call = retrofitService.login(jsonObject);
-        call.enqueue(new Callback<LoginResponse>() {
+        Call<UserResponse> call = retrofitService.login(jsonObject);
+        call.enqueue(new Callback<UserResponse>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
 
                 if (response.code() == ResponseCode.BAD_REQUEST) {
                     callback.onSuccess(ResponseCode.BAD_REQUEST, null);
@@ -48,7 +48,7 @@ public class LoginRetrofitModel {
             }
 
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
+            public void onFailure(Call<UserResponse> call, Throwable t) {
                 t.printStackTrace();
                 callback.onFailure();
             }

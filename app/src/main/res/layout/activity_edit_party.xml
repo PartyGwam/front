@@ -5,12 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PartyDetail.View.EditPartyActivity">
+    tools:context=".EditParty.View.EditPartyActivity">
     <android.support.v7.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/toolbar"
+        android:id="@+id/main_toolbar"
         android:layout_width="match_parent"
         android:layout_height="59dp"
         android:background="#ffffff"
@@ -31,7 +31,7 @@
             tools:layout_editor_absoluteY="115dp">
 
             <ImageView
-                android:id="@+id/back_button"
+                android:id="@+id/edit_party_back_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
@@ -42,7 +42,7 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
-                android:id="@+id/edit_party_text"
+                android:id="@+id/edit_party"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -53,7 +53,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/edit_party_register"
-                app:layout_constraintStart_toEndOf="@+id/back_button"
+                app:layout_constraintStart_toEndOf="@+id/edit_party_back_button"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"/>
 
@@ -84,7 +84,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/main_toolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -98,7 +98,7 @@
                 app:srcCompat="@drawable/time"/>
 
             <EditText
-                android:id="@+id/party_title"
+                android:id="@+id/edit_party_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -122,8 +122,8 @@
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/time"/>
 
-            <TextView
-                android:id="@+id/party_place"
+            <EditText
+                android:id="@+id/edit_party_place"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -149,7 +149,7 @@
                 app:srcCompat="@drawable/time"/>
 
             <TextView
-                android:id="@+id/party_date"
+                android:id="@+id/edit_party_date"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -174,8 +174,8 @@
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/time"/>
 
-            <EditText
-                android:id="@+id/party_start_time"
+            <TextView
+                android:id="@+id/edit_party_start_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -201,7 +201,7 @@
                 app:srcCompat="@drawable/time"/>
 
             <EditText
-                android:id="@+id/max_people"
+                android:id="@+id/edit_party_max_people"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -216,7 +216,7 @@
             android:background="#9b9b9b"/>
 
         <EditText
-            android:id="@+id/party_content"
+            android:id="@+id/edit_party_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

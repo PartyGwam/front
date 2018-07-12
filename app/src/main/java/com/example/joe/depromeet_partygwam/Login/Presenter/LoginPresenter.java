@@ -1,6 +1,6 @@
 package com.example.joe.depromeet_partygwam.Login.Presenter;
 
-import com.example.joe.depromeet_partygwam.Data.LoginResponse.LoginResponse;
+import com.example.joe.depromeet_partygwam.Data.UserResponse.UserResponse;
 import com.example.joe.depromeet_partygwam.Login.Model.LoginRetrofitModel;
 import com.example.joe.depromeet_partygwam.Login.Model.LoginModelCallback;
 
@@ -15,7 +15,7 @@ public class LoginPresenter implements LoginContract.Presenter, LoginModelCallba
     }
 
     @Override
-    public void onSuccess(int code, LoginResponse response) {
+    public void onSuccess(int code, UserResponse response) {
         view.startMainActivity(code, response);
     }
 
