@@ -1,14 +1,23 @@
 package com.example.joe.depromeet_partygwam.Retrofit;
 
-import com.example.joe.depromeet_partygwam.Data.LoginResponse.LoginResponse;
+import com.example.joe.depromeet_partygwam.Data.UserResponse.UserResponse;
 import com.example.joe.depromeet_partygwam.Data.Parties.PartyResponse;
 import com.google.gson.JsonObject;
 
+import java.util.HashMap;
+
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Part;
+import retrofit2.http.PartMap;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface RetrofitService {
@@ -28,13 +37,14 @@ public interface RetrofitService {
     );
 
     @POST("/api/users/login/")
-    Call<LoginResponse> login(
+    Call<UserResponse> login(
             @Body JsonObject loginData
     );
 
     @GET("/api/parties/")
     Call<PartyResponse> getParties(
             @Header("Authorization") String authorization,
+            @Query("search") String search,
             @Query("ordering") String ordering,
             @Query("page") int page
     );
@@ -57,9 +67,11 @@ public interface RetrofitService {
             @Query("page") int page
     );
 
-    @POST("/api/parties/")
-    Call<Void> editParty(
+    @Multipart
+    @POST("/api/profiles/")
+    Call<UserResponse> updateUser(
             @Header("Authorization") String authorization,
-            @Body JsonObject party
+            @Part MultipartBody.Part image,
+            @Part("username") RequestBody username
     );
 }

@@ -1,15 +1,37 @@
-package com.example.joe.depromeet_partygwam.Data.LoginResponse;
+package com.example.joe.depromeet_partygwam.Data.UserResponse;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class User {
+    @SerializedName("uuid")
+    @Expose
     private String uuid;
+    @SerializedName("password")
+    @Expose
     private String password;
+    @SerializedName("last_login")
+    @Expose
     private String last_login;
+    @SerializedName("email")
+    @Expose
     private String email;
+    @SerializedName("username")
+    @Expose
     private String username;
+    @SerializedName("date_joined")
+    @Expose
     private String date_joined;
+    @SerializedName("last_logged_in")
+    @Expose
     private String last_logged_in;
+    @SerializedName("is_active")
+    @Expose
     private String is_active;
+    @SerializedName("is_admin")
+    @Expose
     private String is_admin;
+
 
     public User(String uuid, String password, String last_login, String email, String username, String date_joined, String last_logged_in, String is_active, String is_admin) {
         this.uuid = uuid;

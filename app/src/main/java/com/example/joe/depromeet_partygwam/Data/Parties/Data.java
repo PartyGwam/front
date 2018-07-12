@@ -32,7 +32,7 @@ public class Data implements Parcelable {
     @Expose
     private String place;
     @SerializedName("description")
-    @Expose
+    @Expose 
     private String description;
     @SerializedName("start_time")
     @Expose

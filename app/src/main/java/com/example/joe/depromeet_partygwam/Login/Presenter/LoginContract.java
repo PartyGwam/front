@@ -1,11 +1,11 @@
 package com.example.joe.depromeet_partygwam.Login.Presenter;
 
-import com.example.joe.depromeet_partygwam.Data.LoginResponse.LoginResponse;
+import com.example.joe.depromeet_partygwam.Data.UserResponse.UserResponse;
 
 public interface LoginContract {
     interface View {
         void toast(String msg);
-        void startMainActivity(int code, LoginResponse response);
+        void startMainActivity(int code, UserResponse response);
         void connectFail();
     }
 

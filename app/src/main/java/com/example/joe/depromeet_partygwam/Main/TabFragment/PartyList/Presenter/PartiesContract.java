@@ -11,10 +11,13 @@ public interface PartiesContract {
         void onSuccessGetList();
         void onConnectFail();
         void startDetailActivity(Data item);
+        void onNotFound();
     }
 
     interface Presenter {
-        void getParties(int sort);
+        void getParties(String search, int sort);
+        void getCreatedParties();
+        void getJoinedParties();
         void attchView(View view);
         void detachView();
         void setAdapterView(PartiesAdapterContract.View adapterView);

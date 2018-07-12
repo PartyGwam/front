@@ -1,4 +1,4 @@
-package com.example.joe.depromeet_partygwam.Data.LoginResponse;
+package com.example.joe.depromeet_partygwam.Data.UserResponse;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -12,11 +12,9 @@ public class Message {
     @SerializedName("email")
     @Expose
     private List<String> email = null;
-
-    public Message(List<String> nonFieldErrors, List<String> email) {
-        this.nonFieldErrors = nonFieldErrors;
-        this.email = email;
-    }
+    @SerializedName("username")
+    @Expose
+    private List<String> username = null;
 
     public List<String> getNonFieldErrors() {
         return nonFieldErrors;
@@ -32,5 +30,13 @@ public class Message {
 
     public void setEmail(List<String> email) {
         this.email = email;
+    }
+
+    public List<String> getUsername() {
+        return username;
+    }
+
+    public void setUsername(List<String> username) {
+        this.username = username;
     }
 }

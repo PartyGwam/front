@@ -7,10 +7,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -26,8 +28,10 @@ import com.example.joe.depromeet_partygwam.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PartyListFragment extends Fragment
-        implements AdapterView.OnItemSelectedListener, PartiesContract.View {
+import static android.app.Activity.RESULT_OK;
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+
+public class PartyListFragment extends Fragment implements PartiesContract.View {
     private static final String TAG = PartyListFragment.class.getSimpleName();
 
     @BindView(R.id.party_list_main_spinner)
@@ -43,6 +47,24 @@ public class PartyListFragment extends Fragment
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_party_list_main, container, false);
         ButterKnife.bind(this, rootView);
+        ((MainActivity) getActivity()).viewFlipper.setDisplayedChild(0);
+        ((MainActivity) getActivity()).textTitle.setText("logo");
+        ((MainActivity) getActivity()).imgWrite.setVisibility(View.VISIBLE);
+        ((MainActivity) getActivity()).imgSearch.setVisibility(View.VISIBLE);
+
+        ((MainActivity) getActivity()).textSearchConfirm.setOnClickListener((v) -> {
+            String searchStr = ((MainActivity) getActivity()).editSearch.getText().toString();
+            if (searchStr.equals("")) {
+                refreshList(null, sort);
+                return;
+            }
+            refreshList(searchStr, sort);
+        });
+
+        ((MainActivity) getActivity()).imgSearch.setOnClickListener((v) -> {
+            ((MainActivity) getActivity()).viewFlipper.setDisplayedChild(1);
+        });
+
         adapter = new PartiesAdapter(getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
@@ -69,8 +91,15 @@ public class PartyListFragment extends Fragment
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+        refreshList(null, sort);
+    }
 
+    protected void refreshList(String search, int position) {
+        pb.setVisibility(View.VISIBLE);
+        presenter.getParties(search, position);
     }
 
     @Override
@@ -91,6 +120,12 @@ public class PartyListFragment extends Fragment
     public void onUnknownError() {
         pb.setVisibility(View.INVISIBLE);
         toast("unknown error");
+    }
+
+    @Override
+    public void onNotFound() {
+        pb.setVisibility(View.INVISIBLE);
+        toast("게시글이 없습니다.");
     }
 
     @Override

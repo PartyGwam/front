@@ -21,6 +21,7 @@ public class PartiesPresenter
     private PartiesRetrofitModel retrofitModel;
     private PartiesAdapterContract.View adapterView;
     private PartiesAdapterContract.Model adapterModel;
+    private String search;
     private int sort;
     private int page;
 
@@ -30,11 +31,12 @@ public class PartiesPresenter
     }
 
     @Override
-    public void getParties(int sort) {
+    public void getParties(String search, int sort) {
+        this.search = search;
         this.sort = sort;
         page = 1;
         adapterModel.clearItem();
-        retrofitModel.getParties(sort, page);
+        retrofitModel.getParties(search, sort, page);
     }
 
     @Override
@@ -58,7 +60,7 @@ public class PartiesPresenter
     public void onSuccess(int code, List<Data> data) {
 
         if (code == ResponseCode.NOT_FOUND && data == null) {
-            view.toast("게시글이 없습니다.");
+            view.onNotFound();
             return;
         }
 
@@ -98,6 +100,6 @@ public class PartiesPresenter
             return;
         this.page = page;
         Log.d(TAG, "page : " + page);
-        retrofitModel.getParties(sort, page);
+        retrofitModel.getParties(search, sort, page);
     }
 }
