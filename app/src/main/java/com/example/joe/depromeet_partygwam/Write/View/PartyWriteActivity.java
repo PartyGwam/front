@@ -1,8 +1,5 @@
-package com.example.joe.depromeet_partygwam.PartyWrite.View;
+package com.example.joe.depromeet_partygwam.Write.View;
 
-import android.content.Context;
-import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,13 +9,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.joe.depromeet_partygwam.Main.Party.PartyFragment;
-import com.example.joe.depromeet_partygwam.PartyWrite.Presenter.PartyWriteContract;
-import com.example.joe.depromeet_partygwam.PartyWrite.Presenter.PartyWritePresenter;
+import com.example.joe.depromeet_partygwam.Write.Presenter.PartyWriteContract;
+import com.example.joe.depromeet_partygwam.Write.Presenter.PartyWritePresenter;
 import com.example.joe.depromeet_partygwam.R;
-
-import java.util.Map;
-import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

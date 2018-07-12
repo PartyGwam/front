@@ -1,4 +1,4 @@
-package com.example.joe.depromeet_partygwam.PartyWrite.Model;
+package com.example.joe.depromeet_partygwam.Write.Model;
 
 
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;

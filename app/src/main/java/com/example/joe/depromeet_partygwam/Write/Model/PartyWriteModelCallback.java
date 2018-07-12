@@ -1,4 +1,4 @@
-package com.example.joe.depromeet_partygwam.PartyWrite.Model;
+package com.example.joe.depromeet_partygwam.Write.Model;
 
 public interface PartyWriteModelCallback {
     interface RetrofitModel {

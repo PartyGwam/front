@@ -1,7 +1,6 @@
 package com.example.joe.depromeet_partygwam.Main.View;
 
 import android.content.Intent;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,7 +20,7 @@ import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.Joine
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.MyCreatedPartyFragment;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.PartyListFragment;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.Setting.View.SettingFragment;
-import com.example.joe.depromeet_partygwam.PartyWrite.View.PartyWriteActivity;
+import com.example.joe.depromeet_partygwam.Write.View.PartyWriteActivity;
 import com.example.joe.depromeet_partygwam.R;
 
 import butterknife.BindView;

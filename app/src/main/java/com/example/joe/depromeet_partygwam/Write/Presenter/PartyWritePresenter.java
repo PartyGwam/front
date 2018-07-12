@@ -1,7 +1,7 @@
-package com.example.joe.depromeet_partygwam.PartyWrite.Presenter;
+package com.example.joe.depromeet_partygwam.Write.Presenter;
 
-import com.example.joe.depromeet_partygwam.PartyWrite.Model.PartyWriteModelCallback;
-import com.example.joe.depromeet_partygwam.PartyWrite.Model.WriteRetrofitModel;
+import com.example.joe.depromeet_partygwam.Write.Model.PartyWriteModelCallback;
+import com.example.joe.depromeet_partygwam.Write.Model.WriteRetrofitModel;
 import com.example.joe.depromeet_partygwam.Retrofit.ResponseCode;
 
 public class PartyWritePresenter

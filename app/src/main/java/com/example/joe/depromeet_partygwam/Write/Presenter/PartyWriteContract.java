@@ -1,4 +1,4 @@
-package com.example.joe.depromeet_partygwam.PartyWrite.Presenter;
+package com.example.joe.depromeet_partygwam.Write.Presenter;
 
 public interface PartyWriteContract {
     interface View {
