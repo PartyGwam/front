@@ -1,16 +1,14 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:bottom="-2dp"
-        android:left="-2dp"
-        android:right="-2dp"
-        android:top="2dp">
+        android:bottom="-3dp"
+        android:left="-3dp"
+        android:right="-3dp"
+        android:top="0dp">
         <shape android:shape="rectangle">
             <stroke
-                android:width="2dp"
+                android:width="1dp"
                 android:color="#c2c2c2" />
             <solid android:color="#ffffff" />
-            <padding
-                android:top="3dp"/>
         </shape>
     </item>
 </layer-list>

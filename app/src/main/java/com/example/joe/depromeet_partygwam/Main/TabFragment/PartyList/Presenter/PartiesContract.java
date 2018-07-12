@@ -1,5 +1,6 @@
 package com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Presenter;
 
+import com.example.joe.depromeet_partygwam.Data.Parties.Data;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Adapter.PartiesAdapterContract;
 
 public interface PartiesContract {
@@ -9,6 +10,7 @@ public interface PartiesContract {
         void onUnknownError();
         void onSuccessGetList();
         void onConnectFail();
+        void startDetailActivity(Data item);
         void onNotFound();
     }
 

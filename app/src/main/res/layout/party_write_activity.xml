@@ -3,162 +3,111 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorWhite">
+    android:layout_height="match_parent">
 
     <include
         android:id="@+id/include"
         layout="@layout/party_write_toolbar" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.07" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline41"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.93" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline27"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.13" />
-
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="22dp"
         android:text="제목"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline26"
-        app:layout_constraintTop_toTopOf="@+id/guideline27" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline28"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.18" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
 
     <EditText
-        android:id="@+id/party_write_title_edit"
-        android:layout_width="0dp"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.75"
-        android:maxLines="1"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
         android:paddingBottom="20dp"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline28"
-        app:layout_constraintStart_toStartOf="@+id/guideline39"
-        app:layout_constraintTop_toTopOf="@+id/guideline27" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline31"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.21" />
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        android:id="@+id/party_write_title_edit"
+        android:maxLines="1"
+        android:textSize="15sp"/>
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="34dp"
         android:text="장소"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline26"
-        app:layout_constraintTop_toTopOf="@+id/guideline31" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
         android:id="@+id/party_write_place_edit"
-        android:layout_width="0dp"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.75"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="7dp"
         android:paddingBottom="20dp"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline32"
-        app:layout_constraintStart_toStartOf="@+id/guideline39"
-        app:layout_constraintTop_toTopOf="@+id/guideline31" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline32"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.26" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline33"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.30" />
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/party_write_title_edit" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="34dp"
         android:text="날짜"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline26"
-        app:layout_constraintTop_toTopOf="@+id/guideline33" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <EditText
         android:id="@+id/party_write_date_edit"
-        android:layout_width="0dp"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.75"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
         android:paddingBottom="22dp"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline35"
-        app:layout_constraintStart_toStartOf="@+id/guideline39"
-        app:layout_constraintTop_toTopOf="@+id/guideline33" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline35"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.35" />
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/party_write_place_edit" />
 
     <ImageView
-        android:id="@+id/imageView3"
         android:layout_width="16dp"
         android:layout_height="14dp"
-        android:src="@drawable/default_img" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline34"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.384" />
+        android:layout_marginBottom="12dp"
+        android:layout_marginRight="7dp"
+        android:src="@drawable/default_img"
+        app:layout_constraintBottom_toBottomOf="@+id/party_write_date_edit"
+        app:layout_constraintEnd_toEndOf="@+id/party_write_date_edit"
+        app:layout_constraintTop_toTopOf="@+id/party_write_date_edit" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="34dp"
         android:text="시간"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline26"
-        app:layout_constraintTop_toTopOf="@+id/guideline34" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
 
     <EditText
         android:id="@+id/party_write_time_edit"
-        android:layout_width="0dp"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.75"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="3dp"
         android:paddingBottom="22dp"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline36"
-        app:layout_constraintStart_toStartOf="@+id/guideline39"
-        app:layout_constraintTop_toTopOf="@+id/guideline34" />
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/party_write_date_edit" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -166,78 +115,46 @@
         android:layout_height="14dp"
         android:layout_marginBottom="12dp"
         android:layout_marginRight="7dp"
-        android:src="@drawable/default_img" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline36"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.433" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline37"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.47" />
+        android:src="@drawable/default_img"
+        app:layout_constraintBottom_toBottomOf="@+id/party_write_time_edit"
+        app:layout_constraintEnd_toEndOf="@+id/party_write_time_edit"
+        app:layout_constraintTop_toTopOf="@+id/party_write_time_edit" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="34dp"
         android:text="인원"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline26"
-        app:layout_constraintTop_toTopOf="@+id/guideline37" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <EditText
-        android:id="@+id/party_write_num_of_people_edit"
-        android:layout_width="0dp"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent="0.75"
-        android:inputType="number"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="3dp"
         android:paddingBottom="22dp"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline38"
-        app:layout_constraintStart_toStartOf="@+id/guideline39"
-        app:layout_constraintTop_toTopOf="@+id/guideline37" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline38"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.51" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline40"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.55" />
+        android:inputType="number"
+        android:id="@+id/party_write_num_of_people_edit"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/party_write_time_edit" />
 
     <EditText
         android:id="@+id/party_write_content_edit"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintWidth_percent="0.92"
-        app:layout_constraintDimensionRatio="1:0.65"
-        android:gravity="top"
-        android:hint="내용을 입력하세요."
-        android:textColorHint="#6d6d6d"
-        android:background="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="310dp"
+        android:layout_height="225dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginRight="26dp"
+        android:layout_marginTop="23dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline26"
-        app:layout_constraintTop_toTopOf="@+id/guideline40" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline39"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.20" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/party_write_num_of_people_edit"
+        android:hint="내용을 입력하세요."
+        android:gravity="top"/>
 
     <ProgressBar
         android:id="@+id/party_write_pb"

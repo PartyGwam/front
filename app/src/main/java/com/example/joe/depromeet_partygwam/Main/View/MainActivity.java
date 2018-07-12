@@ -1,13 +1,13 @@
 package com.example.joe.depromeet_partygwam.Main.View;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,20 +15,18 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.JoinedParty;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.MyParty;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyEventMessage;
-import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.JoinedPartyFragment;
-import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.MyCreatedPartyFragment;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.PartyListFragment;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.Setting.View.SettingFragment;
 import com.example.joe.depromeet_partygwam.Write.View.PartyWriteActivity;
 import com.example.joe.depromeet_partygwam.R;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
-    private static final String TAG = MainActivity.class.getSimpleName();
+
     private Fragment fragment1;
     private Fragment fragment2;
     private Fragment fragment3;
@@ -66,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         token = "PG " + intent.getStringExtra("Token");
@@ -85,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         initView();
     }
 
-    public void initView() {
+    private void initView() {
         FragmentManager fm = getSupportFragmentManager();
         Fragment tab1_fragment = fm.findFragmentById(R.id.fragment_container);
 
@@ -98,8 +95,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
 
         fragment1 = tab1_fragment;
-        fragment2 = new JoinedPartyFragment();
-        fragment3 = new MyCreatedPartyFragment();
+        fragment2 = new JoinedParty();
+        fragment3 = new MyParty();
         fragment4 = new PartyEventMessage();
         fragment5 = new SettingFragment();
 
@@ -139,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         tabImage5.setImageDrawable(getResources().getDrawable(R.drawable.set_icon));
 
         //툴바로 적용
+        toolbar = (Toolbar)findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
         //탭생성
@@ -194,7 +192,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "onDestroy()");
         SharePreferenceManager.remove("Token");
         SharePreferenceManager.remove("Uuid");
         SharePreferenceManager.remove("Email");
