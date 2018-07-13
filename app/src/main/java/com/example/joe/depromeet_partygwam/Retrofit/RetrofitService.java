@@ -80,4 +80,10 @@ public interface RetrofitService {
             @Header("Authorization") String authorization,
             @Body JsonObject party
     );
+
+    @GET("/api/parties/<slug>/comments/")
+    Call<Void> getComment(
+        @Query("search") String search,
+        @Query("ordering") String ordering
+    );
 }
