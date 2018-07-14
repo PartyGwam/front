@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.joe.depromeet_partygwam.Data.Parties.CommentSet;
 import com.example.joe.depromeet_partygwam.Data.Parties.Data;
 import com.example.joe.depromeet_partygwam.PartyDetail.Adapter.RepliesAdapter;
 import com.example.joe.depromeet_partygwam.PartyDetail.Presenter.PartyDetailContract;
@@ -21,7 +22,9 @@ import com.example.joe.depromeet_partygwam.PartyDetail.Presenter.PartyDetailPres
 import com.example.joe.depromeet_partygwam.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -83,7 +86,8 @@ public class PartyDetailActivity extends AppCompatActivity
         date = new SimpleDateFormat("yyyy-MM-dd");
 
         onBindView();
-        //????
+
+        adapter = new RepliesAdapter(this);
         replyList.setLayoutManager(new LinearLayoutManager(this));
         replyList.setAdapter(adapter);
 
@@ -91,6 +95,7 @@ public class PartyDetailActivity extends AppCompatActivity
         presenter.attachView(this);
         presenter.setAdapterModel(adapter);
         presenter.setAdapterView(adapter);
+        presenter.getComments(data.getSlug());
     }
 
     public void onBindView(){
@@ -170,13 +175,19 @@ public class PartyDetailActivity extends AppCompatActivity
     public void onSuccess() {
         pb.setVisibility(View.INVISIBLE);
         toast("작성 되었습니다.");
-        finish();
     }
 
     @Override
     public void onConnectFail() {
         pb.setVisibility(View.INVISIBLE);
         toast("서버 연결에 실패했습니다. 다시 시도해주세요.");
+    }
+
+    @Override
+    public void updateComment(List<CommentSet> data) {
+        ArrayList data1 = (ArrayList) data;
+        adapter.setItems(data1);
+
     }
 
     @Override

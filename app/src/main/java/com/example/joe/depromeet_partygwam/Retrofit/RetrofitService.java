@@ -1,5 +1,6 @@
 package com.example.joe.depromeet_partygwam.Retrofit;
 
+import com.example.joe.depromeet_partygwam.Data.Parties.ReplyResponse;
 import com.example.joe.depromeet_partygwam.Data.UserResponse.UserResponse;
 import com.example.joe.depromeet_partygwam.Data.Parties.PartyResponse;
 import com.google.gson.JsonObject;
@@ -79,5 +80,11 @@ public interface RetrofitService {
     Call<Void> editParty(
             @Header("Authorization") String authorization,
             @Body JsonObject party
+    );
+
+    @GET("/api/parties/{slug}/comments/")
+    Call<ReplyResponse> getComments(
+            @Header("Authorization") String authorization,
+            @Path("slug") String slug
     );
 }
