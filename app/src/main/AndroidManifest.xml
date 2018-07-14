@@ -38,6 +38,10 @@
             android:theme="@style/CustomPopup"/>
         <activity android:name=".EditParty.View.EditPartyActivity">
         </activity>
+        <activity android:name=".Write.View.DatePickerPopup"
+            android:theme="@style/CustomPopup"/>
+        <activity android:name=".Write.View.TimePickerPopup"
+            android:theme="@style/CustomPopup"/>
     </application>
 
 </manifest>
