@@ -5,22 +5,23 @@
     android:layout_width="261dp"
     android:layout_height="161dp">
 
-    <TimePicker
-        android:id="@+id/party_write_time_picker"
+    <DatePicker
+        android:id="@+id/party_write_date_picker"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:timePickerMode="spinner">
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false">
 
-    </TimePicker>
+    </DatePicker>
 
     <Button
-        android:id="@+id/party_write_time_picker_confirm"
+        android:id="@+id/party_write_date_picker_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="click!!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/party_write_time_picker" />
+        app:layout_constraintTop_toBottomOf="@+id/party_write_date_picker" />
 
 </android.support.constraint.ConstraintLayout>

@@ -16,7 +16,7 @@ public class Result {
     @SerializedName("uuid")
     @Expose
     private String uuid;
-    @SerializedName("profilePicture")
+    @SerializedName("profile_picture")
     @Expose
     private String profile_picture;
 
