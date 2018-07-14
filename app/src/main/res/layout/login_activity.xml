@@ -108,6 +108,7 @@
         android:background="@null"
         android:maxLines="1"
         android:textAlignment="textEnd"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_email" />

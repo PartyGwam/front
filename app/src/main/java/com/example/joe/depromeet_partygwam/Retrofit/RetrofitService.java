@@ -87,4 +87,11 @@ public interface RetrofitService {
             @Header("Authorization") String authorization,
             @Path("slug") String slug
     );
+
+    @POST("/api/parties/{slug}/comments/")
+    Call<Void> sendComment(
+            @Header("Authorization") String authorization,
+            @Path("slug") String slug,
+            @Body JsonObject data
+    );
 }

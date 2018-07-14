@@ -1,5 +1,6 @@
 package com.example.joe.depromeet_partygwam.PartyDetail.View;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -154,11 +156,34 @@ public class PartyDetailActivity extends AppCompatActivity
         dialog.show();
     }
 
+    @OnClick(R.id.party_detail_reply_button)
+    public void replyBtnClick(){
+        if(replyBar.getText().toString().equals("")) {
+            toast("댓글란이 공백입니다.");
+            return;
+        }
+        presenter.sendComment(replyBar.getText().toString(), data.getSlug());
+        InputMethodManager keyboard = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        keyboard.hideSoftInputFromWindow(replyBar.getWindowToken(), 0);
+    }
+
     private void updateParty(){
         //파티에 수정된 게 있으면 서버로 보내준다음
         //PartyListFragment 로 돌아가기
         finish();
     }
+
+    @Override
+    public void onSuccessSendComment() {
+        presenter.getComments(data.getSlug());
+    }
+
+    @Override
+    public void onForbidden() {
+        pb.setVisibility(View.INVISIBLE);
+        toast("댓글은 참여자만 참여할 수 있습니다.");
+    }
+
     @Override
     public void onAuthorization() {
         pb.setVisibility(View.INVISIBLE);
@@ -185,6 +210,7 @@ public class PartyDetailActivity extends AppCompatActivity
 
     @Override
     public void updateComment(List<CommentSet> data) {
+        numOfReply.setText(String.valueOf(data.size()));
         ArrayList data1 = (ArrayList) data;
         adapter.setItems(data1);
 

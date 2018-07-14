@@ -1,6 +1,7 @@
 package com.example.joe.depromeet_partygwam.PartyDetail.Adapter.ViewHolder;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.joe.depromeet_partygwam.Data.Parties.CommentSet;
+import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
 import com.example.joe.depromeet_partygwam.R;
 
 import org.w3c.dom.Comment;
@@ -28,9 +30,8 @@ public class RepliesViewHolder extends RecyclerView.ViewHolder {
     TextView replyInfo;
     @BindView(R.id.party_detail_reply_content)
     TextView replyContent;
-    //수정 버튼은????? Holder에서 처리
-    //@BindView(R.id.party_detail_reply_edit)
-    //ImageView replyEdit;
+    @BindView(R.id.party_detail_reply_edit)
+    ImageView replyEdit;
 
     public RepliesViewHolder(final Context context, ViewGroup parent) {
         super(LayoutInflater.from(context).inflate(R.layout.party_detail_reply_item, parent, false));
@@ -38,6 +39,7 @@ public class RepliesViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void onBind(CommentSet commentSet){
+        String myNick = SharePreferenceManager.getString("Username");
         //Object profileImgSrc = commentSet.getAuthor().getProfilePicture();
         String createTime = commentSet.getCreatedAt().split("T")[1].substring(0, 5);
         String info = commentSet.getAuthor().getUsername() + " | " + createTime;
@@ -47,7 +49,9 @@ public class RepliesViewHolder extends RecyclerView.ViewHolder {
         //replyImage.setClipToOutline(true);
         replyInfo.setText(info);
         replyContent.setText(commentSet.getText());
-
+        if(myNick.equals(commentSet.getAuthor().getUsername())){
+            replyEdit.setVisibility(View.VISIBLE);
+        }
     }
 
     @OnClick(R.id.party_detail_reply_edit)

@@ -31,7 +31,26 @@ public class PartyDetailPresenter
             return;
         }
 
+        if(code == ResponseCode.FORBIDDEN){
+            //view.on
+            return;
+        }
+
         view.updateComment(data);
+    }
+
+    @Override
+    public void onSuccessCommentSend(int code) {
+        if (code == ResponseCode.UNAUTHORIZED) {
+            view.onAuthorization();
+            return;
+        }
+
+        if(code == ResponseCode.FORBIDDEN){
+            view.onForbidden();
+            return;
+        }
+        view.onSuccessSendComment();
     }
 
     @Override
@@ -55,6 +74,11 @@ public class PartyDetailPresenter
     @Override
     public void editParty(String title, String place, String description, String startTime, int maxPeople) {
         retrofitModel.editParty(title, place, description, startTime, maxPeople);
+    }
+
+    @Override
+    public void sendComment(String commentText, String slug) {
+        retrofitModel.sendComment(commentText, slug);
     }
 
     @Override

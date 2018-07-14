@@ -14,6 +14,8 @@ public interface PartyDetailContract {
         //void startCommentWriteActivity();
         void onConnectFail();
         void updateComment(List<CommentSet> data);
+        void onSuccessSendComment();
+        void onForbidden();
     }
 
     interface Presenter {
@@ -23,6 +25,7 @@ public interface PartyDetailContract {
         void detachView();
         void updateParty();
         void editParty(String title, String place, String description, String startTime, int maxPeople);
+        void sendComment(String commentText, String slug);
         void setAdapterView(RepliesAdapterConstract.View adapterView);
         void setAdapterModel(RepliesAdapterConstract.Model adapterModel);
 

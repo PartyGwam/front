@@ -1,9 +1,12 @@
 package com.example.joe.depromeet_partygwam.PartyDetail.Model;
 
+import android.util.Log;
+
 import com.example.joe.depromeet_partygwam.Data.Parties.CommentSet;
 import com.example.joe.depromeet_partygwam.Data.Parties.PartyResponse;
 import com.example.joe.depromeet_partygwam.Data.Parties.ReplyResponse;
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
+import com.example.joe.depromeet_partygwam.Join.Model.JoinRetrofitModel;
 import com.example.joe.depromeet_partygwam.PartyDetail.View.PartyDetailActivity;
 import com.example.joe.depromeet_partygwam.Retrofit.ResponseCode;
 import com.example.joe.depromeet_partygwam.Retrofit.RetrofitService;
@@ -18,6 +21,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PartyDetailRetrofitModel {
+    private static final String TAG = PartyDetailRetrofitModel.class.getSimpleName();
     private PartyDetailModelCallback.RetrofitCallback callback;
     private RetrofitService retrofitService;
 
@@ -67,6 +71,36 @@ public class PartyDetailRetrofitModel {
 
     public void updateParty() {
         //서버에 변경된 정보 보내는 코드작성
+
+    }
+
+    public void sendComment(String comment, String slug){
+        String jsonStr = "{'text': '" + comment + "'}";
+        JsonParser jsonParser = new JsonParser();
+        JsonObject jsonObject = (JsonObject) jsonParser.parse(jsonStr);
+        Call<Void> call = retrofitService.sendComment(SharePreferenceManager.getString("Token"), slug, jsonObject);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.i(TAG, response.code() + "/");
+                if (response.code() == ResponseCode.FORBIDDEN) {
+                    callback.onSuccessCommentSend(ResponseCode.FORBIDDEN);
+                    return;
+                }
+                if(response.code() ==  ResponseCode.UNAUTHORIZED){
+                    callback.onSuccessCommentSend(ResponseCode.UNAUTHORIZED);
+                    return;
+                }
+                callback.onSuccessCommentSend(ResponseCode.COMMENT_SUCCESS);
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                t.printStackTrace();
+                callback.onFailure();
+            }
+        });
+
 
     }
 

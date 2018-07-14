@@ -7,6 +7,7 @@ import java.util.List;
 public interface PartyDetailModelCallback {
     interface RetrofitCallback {
         void onSuccess(int code, List<CommentSet> data);
+        void onSuccessCommentSend(int code);
         void onFailure();
     }
 }
