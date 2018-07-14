@@ -1,9 +1,12 @@
 package com.example.joe.depromeet_partygwam.PartyDetail.Presenter;
 
+import com.example.joe.depromeet_partygwam.Data.Parties.CommentSet;
 import com.example.joe.depromeet_partygwam.PartyDetail.Adapter.RepliesAdapterConstract;
 import com.example.joe.depromeet_partygwam.PartyDetail.Model.PartyDetailModelCallback;
 import com.example.joe.depromeet_partygwam.PartyDetail.Model.PartyDetailRetrofitModel;
 import com.example.joe.depromeet_partygwam.Retrofit.ResponseCode;
+
+import java.util.List;
 
 public class PartyDetailPresenter
         implements PartyDetailContract.Presenter, PartyDetailModelCallback.RetrofitCallback {
@@ -17,7 +20,7 @@ public class PartyDetailPresenter
     }
 
     @Override
-    public void onSuccess(int code) {
+    public void onSuccess(int code, List<CommentSet> data) {
         if (code == ResponseCode.UNAUTHORIZED) {
             view.onAuthorization();
             return;
@@ -28,8 +31,7 @@ public class PartyDetailPresenter
             return;
         }
 
-
-        view.onSuccess();
+        view.updateComment(data);
     }
 
     @Override
@@ -37,6 +39,11 @@ public class PartyDetailPresenter
         //아이디값 받아온 걸로
         //retrofitModel.getParty()로 요청
         retrofitModel.getParty();
+    }
+
+    @Override
+    public void getComments(String slug) {
+        retrofitModel.getComments(slug);
     }
 
     @Override

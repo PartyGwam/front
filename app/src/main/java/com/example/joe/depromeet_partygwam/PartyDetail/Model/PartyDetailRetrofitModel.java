@@ -1,6 +1,8 @@
 package com.example.joe.depromeet_partygwam.PartyDetail.Model;
 
+import com.example.joe.depromeet_partygwam.Data.Parties.CommentSet;
 import com.example.joe.depromeet_partygwam.Data.Parties.PartyResponse;
+import com.example.joe.depromeet_partygwam.Data.Parties.ReplyResponse;
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
 import com.example.joe.depromeet_partygwam.PartyDetail.View.PartyDetailActivity;
 import com.example.joe.depromeet_partygwam.Retrofit.ResponseCode;
@@ -8,6 +10,8 @@ import com.example.joe.depromeet_partygwam.Retrofit.RetrofitService;
 import com.example.joe.depromeet_partygwam.Retrofit.RetrofitServiceManager;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,6 +37,34 @@ public class PartyDetailRetrofitModel {
 
     }
 
+    public void getComments(String slug){
+        String token = SharePreferenceManager.getString("Token");
+        Call<ReplyResponse> comments = retrofitService.getComments(token, slug.trim());
+
+        comments.enqueue(new Callback<ReplyResponse>() {
+            @Override
+            public void onResponse(Call<ReplyResponse> call, Response<ReplyResponse> response) {
+                if (response.code() == ResponseCode.NOT_FOUND) {
+                    callback.onSuccess(ResponseCode.NOT_FOUND, null);
+                    return;
+                }
+                if (response.code() == ResponseCode.UNAUTHORIZED) {
+                    callback.onSuccess(ResponseCode.UNAUTHORIZED, null);
+                    return;
+                }
+                List<CommentSet> datas = response.body().getResult();
+                callback.onSuccess(ResponseCode.SUCCESS, datas);
+
+            }
+
+            @Override
+            public void onFailure(Call<ReplyResponse> call, Throwable t) {
+                t.printStackTrace();
+                callback.onFailure();
+            }
+        });
+    }
+
     public void updateParty() {
         //서버에 변경된 정보 보내는 코드작성
 
@@ -53,16 +85,16 @@ public class PartyDetailRetrofitModel {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.code() == ResponseCode.BAD_REQUEST) {
-                    callback.onSuccess(ResponseCode.BAD_REQUEST);
+                    //callback.onSuccess(ResponseCode.BAD_REQUEST);
                     return;
                 }
 
                 if (response.code() == ResponseCode.UNAUTHORIZED) {
-                    callback.onSuccess(ResponseCode.UNAUTHORIZED);
+                    //callback.onSuccess(ResponseCode.UNAUTHORIZED);
                     return;
                 }
 
-                callback.onSuccess(ResponseCode.SUCCESS);
+                //callback.onSuccess(ResponseCode.SUCCESS);
             }
 
             @Override

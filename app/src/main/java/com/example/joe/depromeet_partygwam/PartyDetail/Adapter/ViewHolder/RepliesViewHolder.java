@@ -1,6 +1,8 @@
 package com.example.joe.depromeet_partygwam.PartyDetail.Adapter.ViewHolder;
 
 import android.content.Context;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +22,8 @@ import butterknife.OnClick;
 public class RepliesViewHolder extends RecyclerView.ViewHolder {
     private static final String TAG = RepliesViewHolder.class.getName();
 
-    @BindView(R.id.party_detail_reply_image)
-    ImageView replyImage;
+    //@BindView(R.id.party_detail_reply_image)
+    //ImageView replyImage;
     @BindView(R.id.party_detail_reply_info)
     TextView replyInfo;
     @BindView(R.id.party_detail_reply_content)
@@ -35,12 +37,14 @@ public class RepliesViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void onBind(CommentSet commentSet, int position, int listSize){
-        Object profileImgSrc = commentSet.getAuthor().getProfilePicture();
+    public void onBind(CommentSet commentSet){
+        //Object profileImgSrc = commentSet.getAuthor().getProfilePicture();
         String createTime = commentSet.getCreatedAt().split("T")[1].substring(0, 5);
-        String info = commentSet.getAuthor() + " | " + createTime;
+        String info = commentSet.getAuthor().getUsername() + " | " + createTime;
 
         //replyImage.setImagE(profileImgSrc);
+        //replyImage.setBackground(new ShapeDrawable(new OvalShape()));
+        //replyImage.setClipToOutline(true);
         replyInfo.setText(info);
         replyContent.setText(commentSet.getText());
 

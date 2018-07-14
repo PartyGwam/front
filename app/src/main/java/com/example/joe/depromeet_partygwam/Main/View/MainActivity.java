@@ -15,8 +15,6 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
-import com.example.joe.depromeet_partygwam.Main.TabFragment.JoinedParty;
-import com.example.joe.depromeet_partygwam.Main.TabFragment.MyParty;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyEventMessage;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.JoinedPartyFragment;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.MyCreatedPartyFragment;

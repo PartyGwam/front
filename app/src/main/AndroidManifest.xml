@@ -30,8 +30,7 @@
         <activity android:name=".PartyDetail.View.PartyDetailActivity"/>
         <activity
             android:name=".PartyDetail.View.PartyEditPopupActivity"
-            android:theme="@style/Theme.AppCompat.Light.Dialog">
-        </activity>
+            android:theme="@style/CustomPopup"/>
         <activity android:name=".Main.TabFragment.PartyList.View.PartyListSortPopup"
             android:theme="@style/CustomPopup"/>
         <activity android:name=".Main.TabFragment.Setting.View.SettingProfilePopup"

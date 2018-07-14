@@ -32,14 +32,14 @@ implements RepliesAdapterConstract.View, RepliesAdapterConstract.Model{
 
     @Override
     public RepliesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        return new RepliesViewHolder(context, parent);
     }
 
     @Override
     public void onBindViewHolder(RepliesViewHolder holder, int position) {
         if(holder == null)
             return;
-        holder.onBind(items.get(position), position, getItemCount());
+        holder.onBind(items.get(position));
     }
 
     @Override
