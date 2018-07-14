@@ -1,8 +1,10 @@
 package com.example.joe.depromeet_partygwam.Write.View;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -47,9 +49,37 @@ public class PartyWriteActivity extends AppCompatActivity implements PartyWriteC
         presenter.attachView(this);
     }
 
+    @OnClick(R.id.party_write_date_icon)
+    public void onDateClick() {
+        startActivityForResult(new Intent(PartyWriteActivity.this, DatePickerPopup.class), 200);
+    }
+
+    @OnClick(R.id.party_write_time_icon)
+    public void onTimeClick() {
+        startActivityForResult(new Intent(PartyWriteActivity.this, TimePickerPopup.class), 100);
+    }
+
     @OnClick(R.id.party_write_toolbar_back)
     public void onBackClick() {
         finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 100 && resultCode == 100) {
+            int hour = data.getIntExtra("Hour", 0);
+            int minute = data.getIntExtra("Minute", 0);
+            editTime.setText(hour + ":" + minute + " ~");
+            return;
+        }
+
+        if (requestCode == 200 && resultCode == 200) {
+            int year = data.getIntExtra("Year", 0);
+            int month = data.getIntExtra("Month", 0);
+            int day = data.getIntExtra("Day", 0);
+            editDate.setText(year + "-" + month + "-" + day);
+            return;
+        }
     }
 
     @OnClick(R.id.party_write_toolbar_regist)
@@ -57,36 +87,47 @@ public class PartyWriteActivity extends AppCompatActivity implements PartyWriteC
         String title = editTitle.getText().toString();
         String place = editPlace.getText().toString();
         String date = editDate.getText().toString();
-        String time = editTime.getText().toString();
+        String time = editTime.getText().toString().split(" ")[0];
         String numOfPeople = editNumOfPeople.getText().toString();
         String contents = editContent.getText().toString();
 
         if (title.equals("")) {
-
+            toast("제목을 입력해주세요.");
             return;
         }
 
         if (place.equals("")) {
+            toast("장소를 입력해주세요.");
             return;
         }
 
         if (date.equals("")) {
+            toast("날짜를 선택해주세요.");
             return;
         }
 
         if (time.equals("")) {
+            toast("시간을 선택해주세요.");
             return;
         }
 
         if (numOfPeople.equals("")) {
+            toast("인원을 입력해주세요.");
+            return;
+        }
+
+        int people = Integer.parseInt(numOfPeople);
+        if (people <= 1) {
+            toast("인원은 2명 이상부터 가능합니다");
             return;
         }
 
         if (contents.equals("")) {
+            toast("내용을 입력해주세요.");
             return;
         }
 
-        String startTime = date + "T" + time;
+        String startTime = date + "T" + time + ":00";
         presenter.insertParty(title, place, contents,
                 startTime, Integer.parseInt(numOfPeople));
     }

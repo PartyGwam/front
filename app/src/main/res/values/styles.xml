@@ -9,7 +9,7 @@
     </style>
 
     <style name="CustomPopup" parent="Theme.AppCompat.Light.Dialog">
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/popup_background</item>
     </style>
 </resources>
