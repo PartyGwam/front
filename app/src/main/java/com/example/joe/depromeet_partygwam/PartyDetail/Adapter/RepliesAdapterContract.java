@@ -2,7 +2,7 @@ package com.example.joe.depromeet_partygwam.PartyDetail.Adapter;
 
 import java.util.ArrayList;
 
-public interface RepliesAdapterConstract {
+public interface RepliesAdapterContract {
     interface View{
         void notifyAdapter();
     }

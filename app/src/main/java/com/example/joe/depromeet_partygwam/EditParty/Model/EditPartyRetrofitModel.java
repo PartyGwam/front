@@ -1,5 +1,6 @@
 package com.example.joe.depromeet_partygwam.EditParty.Model;
 
+import com.example.joe.depromeet_partygwam.Data.Parties.Data;
 import com.example.joe.depromeet_partygwam.Data.Parties.PartyResponse;
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Model.PartiesModelCallback;
@@ -25,7 +26,7 @@ public class EditPartyRetrofitModel {
         this.callback = callback;
     }
 
-    public void updateParty(String title, String place, String description, String startTime, int maxPeople) {
+    public void editParty(String title, String slug, String place, String description, String startTime, int maxPeople) {
         String jsonStr = "{ " +
                 "'title': '" + title + "'," +
                 "'place': '" + place + "'," +
@@ -35,7 +36,7 @@ public class EditPartyRetrofitModel {
                 "}";
         JsonParser jsonParser = new JsonParser();
         JsonObject jsonObject = (JsonObject) jsonParser.parse(jsonStr);
-        Call<Void> call = retrofitService.editParty(SharePreferenceManager.getString("Token"), jsonObject);
+        Call<Void> call = retrofitService.editParty(SharePreferenceManager.getString("Token"), slug.trim(), jsonObject);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -48,7 +49,6 @@ public class EditPartyRetrofitModel {
                     callback.onSuccess(ResponseCode.UNAUTHORIZED);
                     return;
                 }
-
                 callback.onSuccess(ResponseCode.SUCCESS);
             }
 
@@ -58,6 +58,5 @@ public class EditPartyRetrofitModel {
                 callback.onFailure();
             }
         });
-
     }
 }

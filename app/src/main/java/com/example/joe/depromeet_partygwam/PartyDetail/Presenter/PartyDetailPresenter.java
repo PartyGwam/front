@@ -1,7 +1,9 @@
 package com.example.joe.depromeet_partygwam.PartyDetail.Presenter;
 
 import com.example.joe.depromeet_partygwam.Data.Parties.CommentSet;
-import com.example.joe.depromeet_partygwam.PartyDetail.Adapter.RepliesAdapterConstract;
+import com.example.joe.depromeet_partygwam.Data.Parties.Data;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Adapter.PartiesAdapterContract;
+import com.example.joe.depromeet_partygwam.PartyDetail.Adapter.RepliesAdapterContract;
 import com.example.joe.depromeet_partygwam.PartyDetail.Model.PartyDetailModelCallback;
 import com.example.joe.depromeet_partygwam.PartyDetail.Model.PartyDetailRetrofitModel;
 import com.example.joe.depromeet_partygwam.Retrofit.ResponseCode;
@@ -14,13 +16,35 @@ public class PartyDetailPresenter
     private PartyDetailContract.View view;
     private PartyDetailRetrofitModel retrofitModel;
 
+    private RepliesAdapterContract.Model adapterModel;
+    private RepliesAdapterContract.View adapterView;
+
     public PartyDetailPresenter() {
         retrofitModel = new PartyDetailRetrofitModel();
         retrofitModel.setCallback(this);
     }
 
     @Override
-    public void onSuccess(int code, List<CommentSet> data) {
+    public void onSuccessParty(int code, Data data) {
+        if (code == ResponseCode.UNAUTHORIZED) {
+            view.onAuthorization();
+            return;
+        }
+
+        if (code == ResponseCode.BAD_REQUEST) {
+            view.onBadRequest();
+            return;
+        }
+
+        if(code == ResponseCode.FORBIDDEN){
+            //view.on
+            return;
+        }
+        view.onSuccessUpdateParty(data);
+    }
+
+    @Override
+    public void onSuccessComment(int code, List<CommentSet> data) {
         if (code == ResponseCode.UNAUTHORIZED) {
             view.onAuthorization();
             return;
@@ -54,10 +78,8 @@ public class PartyDetailPresenter
     }
 
     @Override
-    public void getParty(Integer partyId) {
-        //아이디값 받아온 걸로
-        //retrofitModel.getParty()로 요청
-        retrofitModel.getParty();
+    public void getParty(String slug) {
+        retrofitModel.getParty(slug);
     }
 
     @Override
@@ -66,29 +88,18 @@ public class PartyDetailPresenter
     }
 
     @Override
-    public void updateParty() {
-        //파티 시간 내용 수정되면
-        retrofitModel.updateParty();
-    }
-
-    @Override
-    public void editParty(String title, String place, String description, String startTime, int maxPeople) {
-        retrofitModel.editParty(title, place, description, startTime, maxPeople);
-    }
-
-    @Override
     public void sendComment(String commentText, String slug) {
         retrofitModel.sendComment(commentText, slug);
     }
 
     @Override
-    public void setAdapterView(RepliesAdapterConstract.View adapterView) {
-
+    public void setAdapterView(RepliesAdapterContract.View adapterView) {
+        this.adapterView = adapterView;
     }
 
     @Override
-    public void setAdapterModel(RepliesAdapterConstract.Model adapterModel) {
-
+    public void setAdapterModel(RepliesAdapterContract.Model adapterModel) {
+        this.adapterModel = adapterModel;
     }
 
     @Override

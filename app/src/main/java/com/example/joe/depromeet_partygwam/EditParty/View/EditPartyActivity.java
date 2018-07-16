@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,8 @@ public class EditPartyActivity extends AppCompatActivity{
     EditText maxPpl;
     @BindView(R.id.edit_party_content)
     EditText partyContent;
+    @BindView(R.id.edit_party_register)
+    TextView editPartyBtn;
 
     private Data data;
     private EditPartyPresenter presenter;
@@ -67,6 +70,23 @@ public class EditPartyActivity extends AppCompatActivity{
 
     @OnClick(R.id.edit_party_back_button)
     public void backButtonClick(){
+        finish();
+    }
+
+    @OnClick(R.id.edit_party_register)
+    public void editPartyRegister(){
+        String title = partyTitle.getText().toString();
+        String slug = data.getSlug();
+        String place = partyPlace.getText().toString();
+        String date = partyDate.getText().toString();
+        String time = partyTime.getText().toString().split(" ")[0];
+        String numOfPeople = maxPpl.getText().toString();
+        String contents = partyContent.getText().toString();
+
+        String startTime = date + "T" + time + ":00";
+        presenter.editParty(title, slug, place, contents,
+                startTime, Integer.parseInt(numOfPeople));
+
         finish();
     }
 

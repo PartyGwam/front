@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -136,7 +137,7 @@ public class PartyDetailActivity extends AppCompatActivity
 
     @OnClick(R.id.party_detail_back_button)
     public void backBtnClick(){
-        updateParty();
+        finish();
     }
 
     @OnClick(R.id.party_detail_edit_button)
@@ -167,10 +168,22 @@ public class PartyDetailActivity extends AppCompatActivity
         keyboard.hideSoftInputFromWindow(replyBar.getWindowToken(), 0);
     }
 
-    private void updateParty(){
-        //파티에 수정된 게 있으면 서버로 보내준다음
-        //PartyListFragment 로 돌아가기
-        finish();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+        update(data.getSlug());
+    }
+
+    @Override
+    public void onSuccessUpdateParty(Data data) {
+        this.data = data;
+        pb.setVisibility(View.INVISIBLE);
+    }
+
+    private void update(String slug){
+        pb.setVisibility(View.VISIBLE);
+        presenter.getParty(slug);
     }
 
     @Override
@@ -210,10 +223,13 @@ public class PartyDetailActivity extends AppCompatActivity
 
     @Override
     public void updateComment(List<CommentSet> data) {
-        numOfReply.setText(String.valueOf(data.size()));
-        ArrayList data1 = (ArrayList) data;
-        adapter.setItems(data1);
-
+        if(data == null){
+            numOfReply.setText("0");
+        }else {
+            numOfReply.setText(String.valueOf(data.size()));
+            ArrayList data1 = (ArrayList) data;
+            adapter.setItems(data1);
+        }
     }
 
     @Override

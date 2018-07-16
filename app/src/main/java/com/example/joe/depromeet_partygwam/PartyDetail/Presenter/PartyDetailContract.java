@@ -1,7 +1,8 @@
 package com.example.joe.depromeet_partygwam.PartyDetail.Presenter;
 
 import com.example.joe.depromeet_partygwam.Data.Parties.CommentSet;
-import com.example.joe.depromeet_partygwam.PartyDetail.Adapter.RepliesAdapterConstract;
+import com.example.joe.depromeet_partygwam.Data.Parties.Data;
+import com.example.joe.depromeet_partygwam.PartyDetail.Adapter.RepliesAdapterContract;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface PartyDetailContract {
         void onSuccess();
         void onAuthorization();
         void onBadRequest();
-        //void startCommentWriteActivity();
+        void onSuccessUpdateParty(Data data);
         void onConnectFail();
         void updateComment(List<CommentSet> data);
         void onSuccessSendComment();
@@ -19,15 +20,12 @@ public interface PartyDetailContract {
     }
 
     interface Presenter {
-        void getParty(Integer partyId);
+        void getParty(String slug);
         void getComments(String slug);
         void attachView(View view);
         void detachView();
-        void updateParty();
-        void editParty(String title, String place, String description, String startTime, int maxPeople);
         void sendComment(String commentText, String slug);
-        void setAdapterView(RepliesAdapterConstract.View adapterView);
-        void setAdapterModel(RepliesAdapterConstract.Model adapterModel);
-
+        void setAdapterView(RepliesAdapterContract.View adapterView);
+        void setAdapterModel(RepliesAdapterContract.Model adapterModel);
     }
 }

@@ -1,5 +1,7 @@
 package com.example.joe.depromeet_partygwam.Retrofit;
 
+import com.example.joe.depromeet_partygwam.Data.Parties.ParticipantResponse;
+import com.example.joe.depromeet_partygwam.Data.Parties.PartyOneResponse;
 import com.example.joe.depromeet_partygwam.Data.Parties.ReplyResponse;
 import com.example.joe.depromeet_partygwam.Data.UserResponse.UserResponse;
 import com.example.joe.depromeet_partygwam.Data.Parties.PartyResponse;
@@ -11,6 +13,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
@@ -56,6 +59,12 @@ public interface RetrofitService {
             @Body JsonObject party
     );
 
+    @GET("/api/parties/{slug}/")
+    Call<PartyOneResponse> getParty(
+            @Header("Authorization") String authorization,
+            @Path("slug") String slug
+    );
+
     @GET("/api/parties/created/")
     Call<PartyResponse> getCreatedParties(
             @Header("Authorization") String authorization,
@@ -76,9 +85,10 @@ public interface RetrofitService {
             @Part("username") RequestBody username
     );
 
-    @POST("/api/parties/")
+    @PUT("/api/parties/{slug}/")
     Call<Void> editParty(
             @Header("Authorization") String authorization,
+            @Path("slug") String slug,
             @Body JsonObject party
     );
 
@@ -93,5 +103,24 @@ public interface RetrofitService {
             @Header("Authorization") String authorization,
             @Path("slug") String slug,
             @Body JsonObject data
+    );
+
+    @GET("/api/parties/{slug}/participants/")
+    Call<ParticipantResponse> getParticipants(
+            @Header("Authorization") String authorization,
+            @Path("slug") String slug
+    );
+
+    @POST("/api/parties/{slug}/participants/")
+    Call<Void> joinParticipants(
+            @Header("Authorization") String authorization,
+            @Path("slug") String slug,
+            @Body JsonObject data
+    );
+
+    @DELETE("/api/parties/{slug}/participants/")
+    Call<Void> cancelJoin(
+            @Header("Authorization") String authorization,
+            @Path("slug") String slug
     );
 }

@@ -2,6 +2,7 @@ package com.example.joe.depromeet_partygwam.EditParty.Presenter;
 
 import android.util.Log;
 
+import com.example.joe.depromeet_partygwam.Data.Parties.Data;
 import com.example.joe.depromeet_partygwam.EditParty.Model.EditPartyModelCallback;
 import com.example.joe.depromeet_partygwam.EditParty.Model.EditPartyRetrofitModel;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Adapter.OnPositionListener;
@@ -26,9 +27,10 @@ public class EditPartyPresenter implements EditPartyContract.Presenter,
     }
 
     @Override
-    public void updateParty() {
-
+    public void editParty(String title, String slug, String place, String description, String startTime, int maxPeople) {
+        retrofitModel.editParty(title, slug, place, description, startTime, maxPeople);
     }
+
 
     @Override
     public void attachView(EditPartyContract.View view) {
