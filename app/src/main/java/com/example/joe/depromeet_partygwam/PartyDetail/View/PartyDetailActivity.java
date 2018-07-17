@@ -151,7 +151,7 @@ public class PartyDetailActivity extends AppCompatActivity
     @OnClick(R.id.party_detail_join_button)
     public void joinBtnClick(){
         Intent intent = new Intent(PartyDetailActivity.this, PartyJoinPopupActivity.class);
-        
+
         startActivity(intent);
     }
 
