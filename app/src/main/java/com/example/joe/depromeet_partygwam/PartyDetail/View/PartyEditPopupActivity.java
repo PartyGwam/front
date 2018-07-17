@@ -26,13 +26,8 @@ public class PartyEditPopupActivity extends AppCompatActivity {
 
     @OnClick(R.id.edit_party)
     public void onEditPartyClick() {
-        Intent intent = getIntent();
-        data = intent.getParcelableExtra("item");
-
-        Intent intent2 = new Intent(PartyEditPopupActivity.this, EditPartyActivity.class);
-        intent2.putExtra("item", data);
-        startActivity(intent2);
-        //setResult(RESULT_OK, intent);
+        Intent intent = new Intent();
+        setResult(101, intent);
         finish();
     }
 

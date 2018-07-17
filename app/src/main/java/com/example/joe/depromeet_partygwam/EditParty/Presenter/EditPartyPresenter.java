@@ -38,8 +38,26 @@ public class EditPartyPresenter implements EditPartyContract.Presenter,
     }
 
     @Override
-    public void onSuccess(int code) {
+    public void onSuccess(int code, String slug) {
+        if (code == ResponseCode.SUCCESS) {
+            view.onSuccess(slug);
+            return;
+        }
 
+        if (code == ResponseCode.BAD_REQUEST) {
+            view.onBadRequest();
+            return;
+        }
+
+        if (code == ResponseCode.UNAUTHORIZED) {
+            view.onUnauthorizedError();
+            return;
+        }
+
+        if (code == ResponseCode.FORBIDDEN) {
+            view.onForbidden();
+            return;
+        }
     }
 
     @Override

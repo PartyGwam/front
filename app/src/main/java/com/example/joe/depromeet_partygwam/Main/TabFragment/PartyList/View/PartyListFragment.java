@@ -153,7 +153,7 @@ public class PartyListFragment extends Fragment implements PartiesContract.View 
     @Override
     public void startDetailActivity(Data item) {
         Intent intent = new Intent(getActivity().getApplicationContext(), PartyDetailActivity.class);
-        intent.putExtra("item", item);
+        intent.putExtra("slug", item.getSlug());
         startActivity(intent);
     }
 
