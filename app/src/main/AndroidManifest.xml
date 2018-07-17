@@ -40,9 +40,9 @@
         <activity android:name=".EditParty.View.EditPartyActivity">
         </activity>
         <activity android:name=".Write.View.DatePickerPopup"
-            android:theme="@style/CustomPopup"/>
+            android:theme="@style/PickerCustomPopup"/>
         <activity android:name=".Write.View.TimePickerPopup"
-            android:theme="@style/CustomPopup"/>
+            android:theme="@style/PickerCustomPopup"/>
     </application>
 
 </manifest>
