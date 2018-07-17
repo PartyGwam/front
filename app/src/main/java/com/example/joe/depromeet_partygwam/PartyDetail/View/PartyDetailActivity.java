@@ -150,11 +150,9 @@ public class PartyDetailActivity extends AppCompatActivity
 
     @OnClick(R.id.party_detail_join_button)
     public void joinBtnClick(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setView(R.layout.join_party_btn_dialog_alarm);
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
+        Intent intent = new Intent(PartyDetailActivity.this, PartyJoinPopupActivity.class);
+        
+        startActivity(intent);
     }
 
     @OnClick(R.id.party_detail_reply_button)
