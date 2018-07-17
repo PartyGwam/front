@@ -1,13 +1,11 @@
 package com.example.joe.depromeet_partygwam.Retrofit;
 
-import com.example.joe.depromeet_partygwam.Data.Parties.ParticipantResponse;
+import com.example.joe.depromeet_partygwam.Data.Parties.Participant.ParticipantResponse;
 import com.example.joe.depromeet_partygwam.Data.Parties.PartyOneResponse;
 import com.example.joe.depromeet_partygwam.Data.Parties.ReplyResponse;
 import com.example.joe.depromeet_partygwam.Data.UserResponse.UserResponse;
 import com.example.joe.depromeet_partygwam.Data.Parties.PartyResponse;
 import com.google.gson.JsonObject;
-
-import java.util.HashMap;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -20,7 +18,6 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
-import retrofit2.http.PartMap;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -86,7 +83,7 @@ public interface RetrofitService {
     );
 
     @PUT("/api/parties/{slug}/")
-    Call<Void> editParty(
+    Call<PartyOneResponse> editParty(
             @Header("Authorization") String authorization,
             @Path("slug") String slug,
             @Body JsonObject party
@@ -112,14 +109,13 @@ public interface RetrofitService {
     );
 
     @POST("/api/parties/{slug}/participants/")
-    Call<Void> joinParticipants(
+    Call<ParticipantResponse> joinParty(
             @Header("Authorization") String authorization,
-            @Path("slug") String slug,
-            @Body JsonObject data
+            @Path("slug") String slug
     );
 
     @DELETE("/api/parties/{slug}/participants/")
-    Call<Void> cancelJoin(
+    Call<ParticipantResponse> leaveParty(
             @Header("Authorization") String authorization,
             @Path("slug") String slug
     );

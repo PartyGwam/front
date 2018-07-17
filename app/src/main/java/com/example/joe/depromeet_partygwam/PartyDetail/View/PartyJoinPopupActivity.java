@@ -26,14 +26,13 @@ public class PartyJoinPopupActivity extends AppCompatActivity {
 
     @OnClick(R.id.yes_button)
     public void onJoinBtnClick() {
-
+        Intent intent = new Intent();
+        setResult(301, intent);
+        finish();
     }
 
     @OnClick(R.id.no_button)
     public void noBtnClick() {
-        //Intent intent = new Intent();
-        //intent.putExtra("Sort", 1);
-        //setResult(RESULT_OK, intent);
         finish();
     }
 }

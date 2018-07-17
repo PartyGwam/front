@@ -3,6 +3,7 @@ package com.example.joe.depromeet_partygwam.Data.Parties;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.joe.depromeet_partygwam.Data.Parties.Participant.Participant;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

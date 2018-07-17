@@ -2,7 +2,6 @@ package com.example.joe.depromeet_partygwam.PartyDetail.View;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,8 +16,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.joe.depromeet_partygwam.Data.Parties.CommentSet;
 import com.example.joe.depromeet_partygwam.Data.Parties.Data;
+import com.example.joe.depromeet_partygwam.Data.Parties.Participant.Participant;
+import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
+import com.example.joe.depromeet_partygwam.EditParty.View.EditPartyActivity;
 import com.example.joe.depromeet_partygwam.PartyDetail.Adapter.RepliesAdapter;
 import com.example.joe.depromeet_partygwam.PartyDetail.Presenter.PartyDetailContract;
 import com.example.joe.depromeet_partygwam.PartyDetail.Presenter.PartyDetailPresenter;
@@ -30,14 +33,14 @@ import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class PartyDetailActivity extends AppCompatActivity
             implements PartyDetailContract.View{
-
     private static final String TAG = PartyDetailActivity.class.getSimpleName();
-
+    public static String SLUG;
     @BindView(R.id.party_detail_back_button)
     ImageView backBtn;
     @BindView(R.id.party_detail_title)
@@ -54,8 +57,6 @@ public class PartyDetailActivity extends AppCompatActivity
     TextView maxNumber;
     @BindView(R.id.party_detail_content)
     TextView partyContent;
-    @BindView (R.id.party_detail_leader_image)
-    ImageView partyLeaderImage;
     @BindView(R.id.party_detail_info)
     TextView partyInfo;
     @BindView(R.id.party_detail_join_button)
@@ -70,12 +71,19 @@ public class PartyDetailActivity extends AppCompatActivity
     EditText replyBar;
     @BindView(R.id.party_detail_progress_bar)
     ProgressBar pb;
+    @BindView (R.id.party_detail_leader_image)
+    ImageView partyLeaderImage;
+    @BindViews({R.id.party_leader_image_1, R.id.party_member1,
+            R.id.party_member2, R.id.party_member3,
+            R.id.party_member4, R.id.party_member5})
+    ImageView participantsImage[];
 
     private PartyDetailPresenter presenter;
     private RepliesAdapter adapter;
-    private Data data;
     private Date today;
     private SimpleDateFormat date;
+    private List<Participant> participants;
+    private boolean isJoined;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,12 +91,10 @@ public class PartyDetailActivity extends AppCompatActivity
         setContentView(R.layout.activity_party_detail);
         ButterKnife.bind(this);
         Intent intent = getIntent();
-        data = intent.getParcelableExtra("item");
+        SLUG = intent.getStringExtra("slug");
 
         today = new Date();
         date = new SimpleDateFormat("yyyy-MM-dd");
-
-        onBindView();
 
         adapter = new RepliesAdapter(this);
         replyList.setLayoutManager(new LinearLayoutManager(this));
@@ -98,10 +104,11 @@ public class PartyDetailActivity extends AppCompatActivity
         presenter.attachView(this);
         presenter.setAdapterModel(adapter);
         presenter.setAdapterView(adapter);
-        presenter.getComments(data.getSlug());
+        presenter.getPartyContents();
     }
 
-    public void onBindView(){
+    @Override
+    public void updateContents(Data data) {
         String startDate = data.getStartTime().split("T")[0];
         String startTime = data.getStartTime().split("T")[1].substring(0, 5);
         String createTime = data.getCreatedAt().split("T")[1].substring(0, 5);
@@ -143,16 +150,37 @@ public class PartyDetailActivity extends AppCompatActivity
     @OnClick(R.id.party_detail_edit_button)
     public void editBtnClick(){
         Intent intent = new Intent(PartyDetailActivity.this, PartyEditPopupActivity.class);
-        intent.putExtra("item", data);
-        startActivity(intent);
-        //startActivityForResult(intent, 101);
+        startActivityForResult(intent, 100);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 100 && resultCode == 101) {
+            Intent intent = new Intent(PartyDetailActivity.this, EditPartyActivity.class);
+            //intent.putExtra("item", this.data);
+            startActivityForResult(intent, 200);
+            return;
+        }
+
+        if (requestCode == 200 && resultCode == 201) {
+
+            return;
+        }
+
+        if (requestCode == 300 && resultCode == 301) {
+            if (!isJoined) {
+                presenter.joinParty();
+                return;
+            }
+            presenter.leaveParty();
+            return;
+        }
     }
 
     @OnClick(R.id.party_detail_join_button)
     public void joinBtnClick(){
         Intent intent = new Intent(PartyDetailActivity.this, PartyJoinPopupActivity.class);
-
-        startActivity(intent);
+        startActivityForResult(intent, 300);
     }
 
     @OnClick(R.id.party_detail_reply_button)
@@ -161,7 +189,7 @@ public class PartyDetailActivity extends AppCompatActivity
             toast("댓글란이 공백입니다.");
             return;
         }
-        presenter.sendComment(replyBar.getText().toString(), data.getSlug());
+        //presenter.sendComment(replyBar.getText().toString(), data.getSlug());
         InputMethodManager keyboard = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         keyboard.hideSoftInputFromWindow(replyBar.getWindowToken(), 0);
     }
@@ -170,47 +198,158 @@ public class PartyDetailActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume");
-        update(data.getSlug());
+    }
+
+
+    @Override
+    public void onSuccessContentsLoad(Data data) {
+        updateContents(data);
+        presenter.getParticipants();
     }
 
     @Override
-    public void onSuccessUpdateParty(Data data) {
-        this.data = data;
+    public void onNotFoundContentsLoad() {
         pb.setVisibility(View.INVISIBLE);
-    }
-
-    private void update(String slug){
-        pb.setVisibility(View.VISIBLE);
-        presenter.getParty(slug);
+        toast("게시글을 찾을 수 없습니다.");
     }
 
     @Override
-    public void onSuccessSendComment() {
-        presenter.getComments(data.getSlug());
+    public void onSuccessPartyModify() {
+
     }
 
     @Override
-    public void onForbidden() {
+    public void onBadRequestPartyModify() {
+
+    }
+
+    @Override
+    public void onSuccessPartyDelete() {
+
+    }
+
+    @Override
+    public void onBadRequestPartyDelete() {
+
+    }
+
+    @Override
+    public void onSuccessParticipantsLoad(List<Participant> participants) {
+        this.participants = participants;
+        isJoined = isJoined(participants);
+        updateProfileImages(participants);
+        presenter.getComments();
+    }
+
+    private boolean isJoined(List<Participant> participants) {
+        for (Participant participant : participants) {
+            if (participant.getUsername().equals(SharePreferenceManager.getString("Username"))) {
+                joinBtn.setImageDrawable(getDrawable(R.drawable.unsubscribe_button));
+                return true;
+            }
+        }
+        joinBtn.setImageDrawable(getDrawable(R.drawable.parti_button));
+        return false;
+    }
+
+    @Override
+    public void updateProfileImages(List<Participant> participants) {
+        for (ImageView profile : participantsImage) {
+            profile.setImageDrawable(getDrawable(R.drawable.party1));
+        }
+        int i = 0;
+        for (Participant participant : participants) {
+            if (i == 6)
+                break;
+            if (participant.getProfilePicture() != null)
+                Glide.with(this)
+                        .load(participant.getProfilePicture())
+                        .into(participantsImage[i]);
+            i ++;
+        }
+        Glide.with(this)
+                .load(participants.get(0).getProfilePicture())
+                .into(partyLeaderImage);
+    }
+
+
+    @Override
+    public void onNotFoundParticipantsLoad() {
+
+    }
+
+    @Override
+    public void onSuccessParticipantsJoin(String msg) {
         pb.setVisibility(View.INVISIBLE);
-        toast("댓글은 참여자만 참여할 수 있습니다.");
+        toast(msg);
+        presenter.getPartyContents();
+    }
+
+    @Override
+    public void onBadRequestParticipantsJoin(String msg) {
+        pb.setVisibility(View.INVISIBLE);
+        toast(msg);
+    }
+
+    @Override
+    public void onSuccessParticipantsCancel(String msg) {
+        pb.setVisibility(View.INVISIBLE);
+        toast(msg);
+        presenter.getPartyContents();
+    }
+
+    @Override
+    public void onBadrequestParticipantsCancel(String msg) {
+        pb.setVisibility(View.INVISIBLE);
+        toast(msg);
+    }
+
+    @Override
+    public void onSuccessOwnerUpdate() {
+
+    }
+
+    @Override
+    public void onBadRequestOwnerUpdate() {
+
+    }
+
+    @Override
+    public void onSuccessCommentsLoad(List<CommentSet> comments) {
+        numOfReply.setText(comments.size() + "");
+    }
+
+    @Override
+    public void onNotFoundCommentsLoad() {
+        //댓글 없을 때 뷰 visible
+        numOfReply.setText("0");
+    }
+
+    @Override
+    public void onSuccessCommentsUpdate() {
+
+    }
+
+    @Override
+    public void onSuccessCommentModify() {
+
+    }
+
+    @Override
+    public void onSuccessCommentDelete() {
+
     }
 
     @Override
     public void onAuthorization() {
         pb.setVisibility(View.INVISIBLE);
-        toast("인증 에러입니다.");
+        toast("인증값이 없습니다.");
     }
 
     @Override
-    public void onBadRequest() {
+    public void onForbidden(String msg) {
         pb.setVisibility(View.INVISIBLE);
-        toast("404");
-    }
-
-    @Override
-    public void onSuccess() {
-        pb.setVisibility(View.INVISIBLE);
-        toast("작성 되었습니다.");
+        toast(msg);
     }
 
     @Override
@@ -220,7 +359,7 @@ public class PartyDetailActivity extends AppCompatActivity
     }
 
     @Override
-    public void updateComment(List<CommentSet> data) {
+    public void updateComments(List<CommentSet> data) {
         if(data == null){
             numOfReply.setText("0");
         }else {

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.joe.depromeet_partygwam.Data.Parties.Data;
+import com.example.joe.depromeet_partygwam.EditParty.Presenter.EditPartyContract;
 import com.example.joe.depromeet_partygwam.EditParty.Presenter.EditPartyPresenter;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Presenter.PartiesPresenter;
 import com.example.joe.depromeet_partygwam.R;
@@ -18,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class EditPartyActivity extends AppCompatActivity{
+public class EditPartyActivity extends AppCompatActivity implements EditPartyContract.View{
 
     private static final String TAG = EditPartyActivity.class.getSimpleName();
 
@@ -50,7 +51,7 @@ public class EditPartyActivity extends AppCompatActivity{
         data = intent.getParcelableExtra("item");
 
         presenter = new EditPartyPresenter();
-        //presenter.attachView(this);
+        presenter.attachView(this);
 
         onBindView();
     }
@@ -84,15 +85,60 @@ public class EditPartyActivity extends AppCompatActivity{
         String contents = partyContent.getText().toString();
 
         String startTime = date + "T" + time + ":00";
+
+        /*if (title.equals("")) {
+            toast("제목이 빈칸입니다.");
+            return;
+        }
+
+        if (data.getTitle().equals(title) && data.getPlace()) {
+
+            return;
+        }*/
         presenter.editParty(title, slug, place, contents,
                 startTime, Integer.parseInt(numOfPeople));
-
-        finish();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         presenter.detachView();
+    }
+
+    @Override
+    public void toast(String msg) {
+        Runnable r = () -> {
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        };
+        runOnUiThread(r);
+    }
+
+    @Override
+    public void onUnauthorizedError() {
+        toast("인증에러 입니다.");
+    }
+
+    @Override
+    public void onSuccess(String slug) {
+        toast("수정 되었습니다.");
+        Intent intent = new Intent();
+        intent.putExtra("slug", slug);
+        setResult(201, intent);
+        finish();
+    }
+
+    @Override
+    public void onBadRequest() {
+        toast("");
+    }
+
+    @Override
+    public void onForbidden() {
+        toast("권한이 없습니다.");
+    }
+
+    @Override
+    public void onConnectFail() {
+        toast("서버 연결에 실패했습니다. 다시 시도해주세요.");
     }
 }
