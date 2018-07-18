@@ -22,9 +22,10 @@
         android:id="@+id/party_detail_reply_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:textColor="#656565"
         android:textSize="12sp"
-        tools:layout_editor_absoluteX="71dp"
+        app:layout_constraintStart_toEndOf="@+id/party_detail_reply_image"
         tools:layout_editor_absoluteY="8dp"/>
 
     <TextView
