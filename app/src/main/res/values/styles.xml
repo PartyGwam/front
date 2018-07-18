@@ -12,4 +12,9 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">@drawable/popup_background</item>
     </style>
+
+    <style name="PickerCustomPopup" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/picker_background</item>
+    </style>
 </resources>

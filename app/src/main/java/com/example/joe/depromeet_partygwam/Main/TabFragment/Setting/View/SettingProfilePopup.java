@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Window;
@@ -37,8 +38,8 @@ public class SettingProfilePopup extends AppCompatActivity {
 
     @OnClick(R.id.profile_update_popup_capture)
     public void onCaptureClick() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, REQUEST_CAMERA);
+        Intent captureImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(captureImage, REQUEST_CAMERA);
     }
 
     @OnClick(R.id.profile_update_popup_gallary)
@@ -62,6 +63,10 @@ public class SettingProfilePopup extends AppCompatActivity {
                 Log.d(TAG, "REQUEST_CAMERA");
                 Runnable r = () -> {
                     Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                    Intent intent = new Intent();
+                    intent.putExtra("image", bitmap);
+                    setResult(999, intent);
+                    finish();
                 };
                 new Thread(r).start();
             }

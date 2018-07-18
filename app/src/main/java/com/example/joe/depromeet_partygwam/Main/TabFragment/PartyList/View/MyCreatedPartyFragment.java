@@ -21,11 +21,12 @@ public class MyCreatedPartyFragment extends PartyListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
-        super.appBarLayout.setVisibility(View.GONE);
+        //super.appBarLayout.setVisibility(View.GONE);
         /*RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) super.recyclerView.getLayoutParams();
         layoutParams.setMargins(layoutParams.leftMargin, 10, layoutParams.rightMargin,
                 layoutParams.bottomMargin);
         recyclerView.setLayoutParams(layoutParams);*/
+        super.appBarLayout.setScaleY(0.0f);
         ((MainActivity) getActivity()).viewFlipper.setDisplayedChild(0);
         ((MainActivity) getActivity()).textTitle.setText("내가 만든 파티");
         ((MainActivity) getActivity()).imgWrite.setVisibility(View.INVISIBLE);

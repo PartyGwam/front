@@ -99,6 +99,11 @@ public class SettingProfileFragment extends Fragment implements SettingProfileCo
             if (resultCode == RESULT_OK) {
                 profileTmp = data.getParcelableExtra("image");
                 imgProfile.setImageBitmap(profileTmp);
+                return;
+            }
+            if(resultCode == 999){
+                profileTmp = data.getParcelableExtra("image");
+                imgProfile.setImageBitmap(profileTmp);
             }
         }
     }
