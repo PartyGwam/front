@@ -35,20 +35,24 @@ public interface PartyDetailContract {
         void onSuccessCommentsLoad(List<CommentSet> comments);
         void onNotFoundCommentsLoad();
 
-        void onSuccessCommentsUpdate();
+        void onSuccessCommentUpdate();
+        void onForbiddenCommentUpdate();
 
         void onSuccessCommentModify();
 
         void onSuccessCommentDelete();
+        void onForbiddenCommentDelete();
+        void onNotFoundCommentDelete();
 
         void onAuthorization();
         void onForbidden(String msg);
 
         void onConnectFail();
 
-        void updateComments(List<CommentSet> data);
         void updateContents(Data data);
         void updateProfileImages(List<Participant> participants);
+
+        void onCommentPopup(CommentSet commentSet);
     }
 
     interface Presenter {
@@ -62,8 +66,8 @@ public interface PartyDetailContract {
         void getParticipants();
         void getComments();
 
-        void sendComment(String commentText, String slug);
-        void deleteComment();
+        void sendComment(String commentText);
+        void deleteComment(String commentSlug);
         void updateComment();
 
         void joinParty();

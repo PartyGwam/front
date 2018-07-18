@@ -43,6 +43,9 @@
             android:theme="@style/CustomPopup"/>
         <activity android:name=".Write.View.TimePickerPopup"
             android:theme="@style/CustomPopup"/>
+        <activity android:name=".PartyDetail.View.ReplyEditPopupActivity"
+            android:theme="@style/CustomPopup"/>
+        <activity android:name=".PartyDetail.View.ReplyEditActivity"/>
     </application>
 
 </manifest>

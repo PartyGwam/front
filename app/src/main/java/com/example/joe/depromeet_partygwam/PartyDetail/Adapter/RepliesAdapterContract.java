@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public interface RepliesAdapterContract {
     interface View{
         void notifyAdapter();
+        void setOnItemClickListener(OnItemClickLIstener onItemClickListener);
     }
     interface Model {
         ArrayList getItems();

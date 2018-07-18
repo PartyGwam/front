@@ -1,5 +1,8 @@
 package com.example.joe.depromeet_partygwam.Data.Parties;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -71,7 +74,6 @@ public class CommentSet {
     public void setLastUpdated(String lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
-
 }
 
 

@@ -3,6 +3,7 @@ package com.example.joe.depromeet_partygwam.PartyDetail.Presenter;
 import com.example.joe.depromeet_partygwam.Data.Parties.CommentSet;
 import com.example.joe.depromeet_partygwam.Data.Parties.Data;
 import com.example.joe.depromeet_partygwam.Data.Parties.Participant.Participant;
+import com.example.joe.depromeet_partygwam.PartyDetail.Adapter.OnItemClickLIstener;
 import com.example.joe.depromeet_partygwam.PartyDetail.Adapter.RepliesAdapterContract;
 import com.example.joe.depromeet_partygwam.PartyDetail.Model.PartyDetailModelCallback;
 import com.example.joe.depromeet_partygwam.PartyDetail.Model.PartyDetailRetrofitModel;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PartyDetailPresenter
-        implements PartyDetailContract.Presenter, PartyDetailModelCallback.RetrofitCallback {
+        implements PartyDetailContract.Presenter, PartyDetailModelCallback.RetrofitCallback, OnItemClickLIstener {
 
     private PartyDetailContract.View view;
     private PartyDetailRetrofitModel retrofitModel;
@@ -23,6 +24,11 @@ public class PartyDetailPresenter
     public PartyDetailPresenter() {
         retrofitModel = new PartyDetailRetrofitModel();
         retrofitModel.setCallback(this);
+    }
+
+    @Override
+    public void onItemClick(CommentSet comment, int position) {
+        view.onCommentPopup(comment);
     }
 
     @Override
@@ -67,7 +73,33 @@ public class PartyDetailPresenter
 
     @Override
     public void onSuccessCommentSend(int code) {
+        if (code == ResponseCode.CREATED) {
+            view.onSuccessCommentUpdate();
+            return;
+        }
 
+        if (code == ResponseCode.FORBIDDEN) {
+            view.onForbiddenCommentUpdate();
+            return;
+        }
+    }
+
+    @Override
+    public void onSuccessCommentDelete(int code) {
+        if (code == ResponseCode.NO_CONTENT) {
+            view.onSuccessCommentDelete();
+            return;
+        }
+
+        if (code == ResponseCode.FORBIDDEN) {
+            view.onForbiddenCommentDelete();
+            return;
+        }
+
+        if (code == ResponseCode.NOT_FOUND) {
+            view.onNotFoundCommentDelete();
+            return;
+        }
     }
 
     @Override
@@ -112,13 +144,14 @@ public class PartyDetailPresenter
     }
 
     @Override
-    public void sendComment(String commentText, String slug) {
-        retrofitModel.sendComment(commentText, slug);
+    public void sendComment(String commentText) {
+        retrofitModel.sendComment(commentText);
     }
 
     @Override
     public void setAdapterView(RepliesAdapterContract.View adapterView) {
         this.adapterView = adapterView;
+        this.adapterView.setOnItemClickListener(this);
     }
 
     @Override
@@ -142,8 +175,8 @@ public class PartyDetailPresenter
     }
 
     @Override
-    public void deleteComment() {
-
+    public void deleteComment(String commentSlug) {
+        retrofitModel.deleteComment(commentSlug);
     }
 
     @Override

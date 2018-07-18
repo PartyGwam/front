@@ -28,7 +28,6 @@ import com.example.joe.depromeet_partygwam.PartyDetail.Presenter.PartyDetailPres
 import com.example.joe.depromeet_partygwam.R;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -82,6 +81,7 @@ public class PartyDetailActivity extends AppCompatActivity
     private RepliesAdapter adapter;
     private Date today;
     private SimpleDateFormat date;
+    private Data content;
     private List<Participant> participants;
     private boolean isJoined;
 
@@ -105,10 +105,12 @@ public class PartyDetailActivity extends AppCompatActivity
         presenter.setAdapterModel(adapter);
         presenter.setAdapterView(adapter);
         presenter.getPartyContents();
+        pb.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void updateContents(Data data) {
+        this.content = data;
         String startDate = data.getStartTime().split("T")[0];
         String startTime = data.getStartTime().split("T")[1].substring(0, 5);
         String createTime = data.getCreatedAt().split("T")[1].substring(0, 5);
@@ -123,7 +125,7 @@ public class PartyDetailActivity extends AppCompatActivity
 
         if (startDate.equals(date)) {
             partyDate.setText("오늘 " + startTime);
-        }else {
+        } else {
             partyDate.setText(startDate.split("-")[1] + "." + startDate.split("-")[2] + "  " + startTime);
         }
 
@@ -157,7 +159,7 @@ public class PartyDetailActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 100 && resultCode == 101) {
             Intent intent = new Intent(PartyDetailActivity.this, EditPartyActivity.class);
-            //intent.putExtra("item", this.data);
+            intent.putExtra("item", content);
             startActivityForResult(intent, 200);
             return;
         }
@@ -167,12 +169,30 @@ public class PartyDetailActivity extends AppCompatActivity
             return;
         }
 
+        //파티 참가 , 탈퇴
         if (requestCode == 300 && resultCode == 301) {
             if (!isJoined) {
                 presenter.joinParty();
                 return;
             }
             presenter.leaveParty();
+            return;
+        }
+
+        //댓글 수정
+        if (requestCode == 400 && resultCode == 401) {
+            Intent intent = new Intent(PartyDetailActivity.this, ReplyEditActivity.class);
+            intent.putExtra("comment_slug", data.getStringExtra("comment_slug"));
+            intent.putExtra("content_slug", data.getStringExtra("content_slug"));
+            intent.putExtra("comment", data.getStringExtra("comment"));
+            startActivity(intent);
+            return;
+        }
+
+        //댓글 삭제
+        if (requestCode == 400 && resultCode == 402) {
+            pb.setVisibility(View.VISIBLE);
+            presenter.deleteComment(data.getStringExtra("comment_slug"));
             return;
         }
     }
@@ -189,7 +209,7 @@ public class PartyDetailActivity extends AppCompatActivity
             toast("댓글란이 공백입니다.");
             return;
         }
-        //presenter.sendComment(replyBar.getText().toString(), data.getSlug());
+        presenter.sendComment(replyBar.getText().toString());
         InputMethodManager keyboard = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         keyboard.hideSoftInputFromWindow(replyBar.getWindowToken(), 0);
     }
@@ -282,6 +302,7 @@ public class PartyDetailActivity extends AppCompatActivity
     public void onSuccessParticipantsJoin(String msg) {
         pb.setVisibility(View.INVISIBLE);
         toast(msg);
+        pb.setVisibility(View.VISIBLE);
         presenter.getPartyContents();
     }
 
@@ -295,6 +316,7 @@ public class PartyDetailActivity extends AppCompatActivity
     public void onSuccessParticipantsCancel(String msg) {
         pb.setVisibility(View.INVISIBLE);
         toast(msg);
+        pb.setVisibility(View.VISIBLE);
         presenter.getPartyContents();
     }
 
@@ -316,18 +338,30 @@ public class PartyDetailActivity extends AppCompatActivity
 
     @Override
     public void onSuccessCommentsLoad(List<CommentSet> comments) {
+        pb.setVisibility(View.INVISIBLE);
         numOfReply.setText(comments.size() + "");
     }
 
     @Override
     public void onNotFoundCommentsLoad() {
         //댓글 없을 때 뷰 visible
+        pb.setVisibility(View.INVISIBLE);
         numOfReply.setText("0");
     }
 
     @Override
-    public void onSuccessCommentsUpdate() {
+    public void onSuccessCommentUpdate() {
+        pb.setVisibility(View.INVISIBLE);
+        toast("작성 되었습니다.");
+        replyBar.setText("");
+        pb.setVisibility(View.VISIBLE);
+        presenter.getComments();
+    }
 
+    @Override
+    public void onForbiddenCommentUpdate() {
+        pb.setVisibility(View.INVISIBLE);
+        toast("파티 미참석자는 댓글작성이 불가합니다.");
     }
 
     @Override
@@ -337,7 +371,23 @@ public class PartyDetailActivity extends AppCompatActivity
 
     @Override
     public void onSuccessCommentDelete() {
+        pb.setVisibility(View.INVISIBLE);
+        toast("댓글이 삭제되었습니다.");
+        pb.setVisibility(View.VISIBLE);
+        presenter.getComments();
 
+    }
+
+    @Override
+    public void onForbiddenCommentDelete() {
+        pb.setVisibility(View.INVISIBLE);
+        toast("자신의 댓글만 삭제 가능합니다.");
+    }
+
+    @Override
+    public void onNotFoundCommentDelete() {
+        pb.setVisibility(View.INVISIBLE);
+        toast("댓글을 찾을 수 없습니다.");
     }
 
     @Override
@@ -359,19 +409,17 @@ public class PartyDetailActivity extends AppCompatActivity
     }
 
     @Override
-    public void updateComments(List<CommentSet> data) {
-        if(data == null){
-            numOfReply.setText("0");
-        }else {
-            numOfReply.setText(String.valueOf(data.size()));
-            ArrayList data1 = (ArrayList) data;
-            adapter.setItems(data1);
-        }
+    public void onCommentPopup(CommentSet commentSet) {
+        Intent intent = new Intent(PartyDetailActivity.this, ReplyEditPopupActivity.class);
+        intent.putExtra("comment_slug", commentSet.getSlug());
+        intent.putExtra("content_slug", SLUG);
+        intent.putExtra("comment", commentSet.getText());
+        startActivityForResult(intent, 400);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenter.detachView();
+        //presenter.detachView();
     }
 }

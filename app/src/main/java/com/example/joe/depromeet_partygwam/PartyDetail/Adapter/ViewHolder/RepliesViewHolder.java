@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.joe.depromeet_partygwam.Data.Parties.CommentSet;
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
+import com.example.joe.depromeet_partygwam.PartyDetail.Adapter.OnItemClickLIstener;
 import com.example.joe.depromeet_partygwam.R;
 
 import org.w3c.dom.Comment;
@@ -22,7 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RepliesViewHolder extends RecyclerView.ViewHolder {
-    private static final String TAG = RepliesViewHolder.class.getName();
+    private static final String TAG = RepliesViewHolder.class.getSimpleName();
 
     //@BindView(R.id.party_detail_reply_image)
     //ImageView replyImage;
@@ -32,30 +34,35 @@ public class RepliesViewHolder extends RecyclerView.ViewHolder {
     TextView replyContent;
     @BindView(R.id.party_detail_reply_edit)
     ImageView replyEdit;
+    private String userName;
+    private OnItemClickLIstener onItemClickLIstener;
 
-    public RepliesViewHolder(final Context context, ViewGroup parent) {
+    public RepliesViewHolder(final Context context, ViewGroup parent, OnItemClickLIstener onItemClickLIstener, String userName) {
         super(LayoutInflater.from(context).inflate(R.layout.party_detail_reply_item, parent, false));
         ButterKnife.bind(this, itemView);
+        this.userName = userName;
+        this.onItemClickLIstener = onItemClickLIstener;
     }
 
-    public void onBind(CommentSet commentSet){
-        String myNick = SharePreferenceManager.getString("Username");
+    public void onBind(CommentSet commentSet, int position){
         //Object profileImgSrc = commentSet.getAuthor().getProfilePicture();
         String createTime = commentSet.getCreatedAt().split("T")[1].substring(0, 5);
         String info = commentSet.getAuthor().getUsername() + " | " + createTime;
-
         //replyImage.setI(profileImgSrc);
         //replyImage.setBackground(new ShapeDrawable(new OvalShape()));
         //replyImage.setClipToOutline(true);
         replyInfo.setText(info);
         replyContent.setText(commentSet.getText());
-        if(myNick.equals(commentSet.getAuthor().getUsername())){
+        Log.d(TAG, "nomal position : " + position);
+        if (userName.equals(commentSet.getAuthor().getUsername())){
             replyEdit.setVisibility(View.VISIBLE);
+        } else {
+            replyEdit.setVisibility(View.GONE);
         }
-    }
 
-    @OnClick(R.id.party_detail_reply_edit)
-    public void editReplyClick(){
-
+        replyEdit.setOnClickListener((v) -> {
+            Log.d(TAG, commentSet.getAuthor().getUsername() + "/" + userName);
+            onItemClickLIstener.onItemClick(commentSet, position);
+        });
     }
 }

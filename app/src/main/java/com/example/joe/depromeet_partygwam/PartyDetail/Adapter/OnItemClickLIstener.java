@@ -1,4 +1,7 @@
 package com.example.joe.depromeet_partygwam.PartyDetail.Adapter;
 
-public class OnItemClickLIstener {
+import com.example.joe.depromeet_partygwam.Data.Parties.CommentSet;
+
+public interface OnItemClickLIstener {
+    void onItemClick(CommentSet comment, int position);
 }

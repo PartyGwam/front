@@ -135,24 +135,27 @@ public class PartyDetailRetrofitModel {
         });
     }
 
-    public void sendComment(String comment, String slug){
+    public void sendComment(String comment){
         String jsonStr = "{'text': '" + comment + "'}";
         JsonParser jsonParser = new JsonParser();
         JsonObject jsonObject = (JsonObject) jsonParser.parse(jsonStr);
-        Call<Void> call = retrofitService.sendComment(token, slug, jsonObject);
+        Call<Void> call = retrofitService.sendComment(token, PartyDetailActivity.SLUG, jsonObject);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Log.i(TAG, response.code() + "/");
                 if (response.code() == ResponseCode.FORBIDDEN) {
                     callback.onSuccessCommentSend(ResponseCode.FORBIDDEN);
                     return;
                 }
-                if(response.code() ==  ResponseCode.UNAUTHORIZED){
+                if (response.code() ==  ResponseCode.UNAUTHORIZED){
                     callback.onAuthorizationError();
                     return;
                 }
-                callback.onSuccessCommentSend(ResponseCode.CREATED);
+
+                if (response.code() == ResponseCode.CREATED) {
+                    callback.onSuccessCommentSend(ResponseCode.CREATED);
+                    return;
+                }
             }
 
             @Override
@@ -234,6 +237,40 @@ public class PartyDetailRetrofitModel {
 
             @Override
             public void onFailure(Call<ParticipantResponse> call, Throwable t) {
+                t.printStackTrace();
+                callback.onFailure();
+            }
+        });
+    }
+
+    public void deleteComment(String commentSlug) {
+        Call<Void> call = retrofitService.deleteComment(token, PartyDetailActivity.SLUG, commentSlug);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == ResponseCode.NO_CONTENT) {
+                    callback.onSuccessCommentDelete(ResponseCode.NO_CONTENT);
+                    return;
+                }
+
+                if (response.code() == ResponseCode.UNAUTHORIZED) {
+                    callback.onAuthorizationError();
+                    return;
+                }
+
+                if (response.code() == ResponseCode.FORBIDDEN) {
+                    callback.onSuccessCommentDelete(ResponseCode.FORBIDDEN);
+                    return;
+                }
+
+                if (response.code() == ResponseCode.NOT_FOUND) {
+                    callback.onSuccessCommentDelete(ResponseCode.NOT_FOUND);
+                    return;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
                 t.printStackTrace();
                 callback.onFailure();
             }

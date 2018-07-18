@@ -12,6 +12,7 @@ public interface PartyDetailModelCallback {
         void onSuccessParticipantsLoad(int code, List<Participant> participants);
         void onSuccessCommentLoad(int code, List<CommentSet> data);
         void onSuccessCommentSend(int code);
+        void onSuccessCommentDelete(int code);
         void onSuccessJoinedParty(int code, String msg);
         void onSuccessLeavedParty(int code, String msg);
 
