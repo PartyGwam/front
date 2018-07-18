@@ -27,13 +27,18 @@ public class DatePickerPopup extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    @OnClick(R.id.party_write_date_picker_cancel)
+    public void onCancelClick(){
+        finish();
+    }
+
 
     @OnClick(R.id.party_write_date_picker_confirm)
     public void onConfirmClick() {
         Log.d(TAG, datePicker.getYear() + "/" + datePicker.getMonth() + "/" + datePicker.getDayOfMonth());
         Intent intent = new Intent();
         intent.putExtra("Year", datePicker.getYear());
-        intent.putExtra("Month", datePicker.getMonth());
+        intent.putExtra("Month", datePicker.getMonth()+1);
         intent.putExtra("Day", datePicker.getDayOfMonth());
         setResult(200, intent);
         finish();

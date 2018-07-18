@@ -80,7 +80,7 @@
         <View
             android:id="@+id/view5"
             android:layout_width="1dp"
-            android:layout_height="56dp"
+            android:layout_height="50dp"
             android:background="#b5b5b5"/>
 
         <TextView
