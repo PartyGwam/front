@@ -25,10 +25,6 @@ public class DatePickerPopup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.write_activity_date_picker);
         ButterKnife.bind(this);
-
-        datePicker.getYear();
-        datePicker.getMonth();
-        datePicker.getDayOfMonth();
     }
 
 

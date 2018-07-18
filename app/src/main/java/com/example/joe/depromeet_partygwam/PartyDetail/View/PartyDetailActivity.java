@@ -106,6 +106,10 @@ public class PartyDetailActivity extends AppCompatActivity
         presenter.setAdapterView(adapter);
         presenter.getPartyContents();
         pb.setVisibility(View.VISIBLE);
+
+        InputMethodManager keyboard = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        keyboard.hideSoftInputFromWindow(replyBar.getWindowToken(), 0);
+
     }
 
     @Override
@@ -179,13 +183,13 @@ public class PartyDetailActivity extends AppCompatActivity
             return;
         }
 
-        //댓글 수정
+        //댓글 수정 이동
         if (requestCode == 400 && resultCode == 401) {
             Intent intent = new Intent(PartyDetailActivity.this, ReplyEditActivity.class);
             intent.putExtra("comment_slug", data.getStringExtra("comment_slug"));
             intent.putExtra("content_slug", data.getStringExtra("content_slug"));
             intent.putExtra("comment", data.getStringExtra("comment"));
-            startActivity(intent);
+            startActivityForResult(intent, 500);
             return;
         }
 
@@ -193,6 +197,14 @@ public class PartyDetailActivity extends AppCompatActivity
         if (requestCode == 400 && resultCode == 402) {
             pb.setVisibility(View.VISIBLE);
             presenter.deleteComment(data.getStringExtra("comment_slug"));
+            return;
+        }
+
+        //댓글 수정 완료
+        if (requestCode == 500 && resultCode == 501) {
+            pb.setVisibility(View.VISIBLE);
+            presenter.updateComment(
+                    data.getStringExtra("comment_slug"), data.getStringExtra("comment"));
             return;
         }
     }
@@ -359,14 +371,11 @@ public class PartyDetailActivity extends AppCompatActivity
     }
 
     @Override
-    public void onForbiddenCommentUpdate() {
-        pb.setVisibility(View.INVISIBLE);
-        toast("파티 미참석자는 댓글작성이 불가합니다.");
-    }
-
-    @Override
     public void onSuccessCommentModify() {
-
+        pb.setVisibility(View.INVISIBLE);
+        toast("댓글이 수정되었습니다.");
+        pb.setVisibility(View.VISIBLE);
+        presenter.getComments();
     }
 
     @Override
@@ -376,12 +385,6 @@ public class PartyDetailActivity extends AppCompatActivity
         pb.setVisibility(View.VISIBLE);
         presenter.getComments();
 
-    }
-
-    @Override
-    public void onForbiddenCommentDelete() {
-        pb.setVisibility(View.INVISIBLE);
-        toast("자신의 댓글만 삭제 가능합니다.");
     }
 
     @Override

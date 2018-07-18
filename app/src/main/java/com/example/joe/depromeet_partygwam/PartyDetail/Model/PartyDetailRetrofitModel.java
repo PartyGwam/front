@@ -276,4 +276,36 @@ public class PartyDetailRetrofitModel {
             }
         });
     }
+
+    public void updateComment(String commentSlug, String comment) {
+        String jsonStr = "{'text': '" + comment + "'}";
+        JsonParser jsonParser = new JsonParser();
+        JsonObject jsonObject = (JsonObject) jsonParser.parse(jsonStr);
+        Call<Void> call = retrofitService.updateComment(token, PartyDetailActivity.SLUG, commentSlug, jsonObject);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == ResponseCode.SUCCESS) {
+                    callback.onSuccessCommentUpdate(ResponseCode.SUCCESS);
+                    return;
+                }
+
+                if (response.code() == ResponseCode.UNAUTHORIZED) {
+                    callback.onAuthorizationError();
+                    return;
+                }
+
+                if (response.code() == ResponseCode.FORBIDDEN) {
+                    callback.onSuccessCommentUpdate(ResponseCode.FORBIDDEN);
+                    return;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                t.printStackTrace();
+                callback.onFailure();
+            }
+        });
+    }
 }

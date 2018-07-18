@@ -36,12 +36,10 @@ public interface PartyDetailContract {
         void onNotFoundCommentsLoad();
 
         void onSuccessCommentUpdate();
-        void onForbiddenCommentUpdate();
 
         void onSuccessCommentModify();
 
         void onSuccessCommentDelete();
-        void onForbiddenCommentDelete();
         void onNotFoundCommentDelete();
 
         void onAuthorization();
@@ -68,7 +66,7 @@ public interface PartyDetailContract {
 
         void sendComment(String commentText);
         void deleteComment(String commentSlug);
-        void updateComment();
+        void updateComment(String commentSlug, String comment);
 
         void joinParty();
         void leaveParty();

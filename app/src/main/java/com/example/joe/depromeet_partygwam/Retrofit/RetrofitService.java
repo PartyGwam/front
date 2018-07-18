@@ -102,6 +102,14 @@ public interface RetrofitService {
             @Body JsonObject data
     );
 
+    @PUT("/api/parties/{slug}/comments/{comment_slug}/")
+    Call<Void> updateComment(
+            @Header("Authorization") String authorization,
+            @Path("slug") String slug,
+            @Path("comment_slug") String commentSlug,
+            @Body JsonObject comment
+    );
+
     @DELETE("/api/parties/{slug}/comments/{comment_slug}/")
     Call<Void> deleteComment(
             @Header("Authorization") String authorization,

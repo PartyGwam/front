@@ -79,7 +79,7 @@ public class PartyDetailPresenter
         }
 
         if (code == ResponseCode.FORBIDDEN) {
-            view.onForbiddenCommentUpdate();
+            view.onForbidden("파티 미참석자는 댓글 작성이 불가합니다.");
             return;
         }
     }
@@ -92,7 +92,7 @@ public class PartyDetailPresenter
         }
 
         if (code == ResponseCode.FORBIDDEN) {
-            view.onForbiddenCommentDelete();
+            view.onForbidden("자신의 댓글만 삭제 가능합니다.");
             return;
         }
 
@@ -124,6 +124,19 @@ public class PartyDetailPresenter
 
         if (code == ResponseCode.BAD_REQUEST) {
             view.onBadrequestParticipantsCancel(msg);
+            return;
+        }
+    }
+
+    @Override
+    public void onSuccessCommentUpdate(int code) {
+        if (code == ResponseCode.SUCCESS) {
+            view.onSuccessCommentModify();
+            return;
+        }
+
+        if (code == ResponseCode.FORBIDDEN) {
+            view.onForbidden("댓글 수정 권한이 없습니다.");
             return;
         }
     }
@@ -180,8 +193,8 @@ public class PartyDetailPresenter
     }
 
     @Override
-    public void updateComment() {
-
+    public void updateComment(String commentSlug, String comment) {
+        retrofitModel.updateComment(commentSlug, comment);
     }
 
     @Override
