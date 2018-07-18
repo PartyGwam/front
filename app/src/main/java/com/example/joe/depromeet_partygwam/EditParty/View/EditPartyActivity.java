@@ -14,6 +14,9 @@ import com.example.joe.depromeet_partygwam.EditParty.Presenter.EditPartyContract
 import com.example.joe.depromeet_partygwam.EditParty.Presenter.EditPartyPresenter;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Presenter.PartiesPresenter;
 import com.example.joe.depromeet_partygwam.R;
+import com.example.joe.depromeet_partygwam.Write.View.DatePickerPopup;
+import com.example.joe.depromeet_partygwam.Write.View.PartyWriteActivity;
+import com.example.joe.depromeet_partygwam.Write.View.TimePickerPopup;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -97,6 +100,34 @@ public class EditPartyActivity extends AppCompatActivity implements EditPartyCon
         }*/
         presenter.editParty(title, slug, place, contents,
                 startTime, Integer.parseInt(numOfPeople));
+    }
+
+    @OnClick(R.id.edit_party_date)
+    public void onDateClick() {
+        startActivityForResult(new Intent(EditPartyActivity.this, DatePickerPopup.class), 200);
+    }
+
+    @OnClick(R.id.edit_party_start_time)
+    public void onTimeClick() {
+        startActivityForResult(new Intent(EditPartyActivity.this, TimePickerPopup.class), 100);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 100 && resultCode == 100) {
+            int hour = data.getIntExtra("Hour", 0);
+            int minute = data.getIntExtra("Minute", 0);
+            partyTime.setText(hour + ":" + minute + " ~");
+            return;
+        }
+
+        if (requestCode == 200 && resultCode == 200) {
+            int year = data.getIntExtra("Year", 0);
+            int month = data.getIntExtra("Month", 0);
+            int day = data.getIntExtra("Day", 0);
+            partyDate.setText(year + "-" + month + "-" + day);
+            return;
+        }
     }
 
     @Override

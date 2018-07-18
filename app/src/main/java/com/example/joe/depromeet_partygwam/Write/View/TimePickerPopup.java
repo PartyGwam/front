@@ -41,6 +41,11 @@ public class TimePickerPopup extends AppCompatActivity implements TimePicker.OnT
         this.minute = minute;
     }
 
+    @OnClick(R.id.party_write_time_picker_cancel)
+    public void onCancelClick(){
+        finish();
+    }
+
     @OnClick(R.id.party_write_time_picker_confirm)
     public void onConfirmClick() {
         Intent intent = new Intent();

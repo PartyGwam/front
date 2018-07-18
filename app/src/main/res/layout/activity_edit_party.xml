@@ -34,7 +34,7 @@
                 android:id="@+id/edit_party_back_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="26dp"
+                android:layout_marginStart="20dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/back_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -61,7 +61,7 @@
                 android:id="@+id/edit_party_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="26dp"
+                android:layout_marginEnd="20dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/threedot"
                 android:text="수정"
@@ -90,7 +90,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -98,16 +98,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:padding="5dp"
+                android:padding="8dp"
                 app:srcCompat="@drawable/title_icon"/>
 
             <EditText
                 android:id="@+id/edit_party_title"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@null"
                 android:ems="10"
+                android:gravity="left|fill_vertical"
                 android:inputType="textPersonName"
+                android:paddingLeft="10dp"
                 android:textColor="#6d6d6d"
                 android:textSize="15sp"/>
         </LinearLayout>
@@ -119,7 +122,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -127,7 +130,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:padding="5dp"
+                android:padding="8dp"
                 app:srcCompat="@drawable/location01_icon"/>
 
             <EditText
@@ -135,9 +138,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@null"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name"
+                android:paddingLeft="10dp"
                 android:textColor="#6d6d6d"
                 android:textSize="15sp"/>
         </LinearLayout>
@@ -149,7 +153,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -157,7 +161,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:padding="5dp"
+                android:padding="6dp"
                 app:srcCompat="@drawable/date_icon"/>
 
             <TextView
@@ -166,8 +170,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
+                android:gravity="center_vertical"
                 android:inputType="textPersonName"
-                android:text="Name"
+                android:paddingLeft="10dp"
                 android:textColor="#6d6d6d"/>
 
         </LinearLayout>
@@ -179,7 +184,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -187,17 +192,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:padding="5dp"
+                android:padding="6dp"
                 app:srcCompat="@drawable/time_icon"/>
 
             <TextView
                 android:id="@+id/edit_party_start_time"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
+                android:gravity="center_vertical"
                 android:inputType="textPersonName"
-                android:text="Name"
+                android:paddingLeft="10dp"
                 android:textColor="#6d6d6d"
                 android:textSize="15sp"/>
         </LinearLayout>
@@ -209,7 +215,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -217,17 +223,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:padding="5dp"
+                android:padding="7dp"
                 app:srcCompat="@drawable/pati_icon"/>
 
             <EditText
                 android:id="@+id/edit_party_max_people"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@null"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name"
+                android:paddingLeft="10dp"
                 android:textColor="#6d6d6d"
                 android:textSize="15sp"/>
         </LinearLayout>
@@ -240,10 +247,13 @@
         <EditText
             android:id="@+id/edit_party_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="30dp"
+            android:background="@null"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:textColor="#6d6d6d"
+            android:inputType="textMultiLine"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
             android:textSize="15sp"/>
 
     </LinearLayout>
