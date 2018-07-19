@@ -31,6 +31,8 @@ public class SettingFragment extends Fragment {
     ImageView imgEnter;
     @BindView(R.id.setting_profile)
     ImageView imgProfile;
+    @BindView(R.id.setting_terms_of_use)
+    ImageView TermsOfUseBtn;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,5 +62,12 @@ public class SettingFragment extends Fragment {
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, new SettingProfileFragment()).commit();
+    }
+
+    @OnClick(R.id.setting_terms_of_use)
+    public void onSettingTermsOfUseClick(){
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, new SettingTermsOfUseFragment()).commit();
     }
 }

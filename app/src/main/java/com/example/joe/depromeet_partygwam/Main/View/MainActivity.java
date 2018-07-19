@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     public ImageView imgUpdateBack;
     @BindView(R.id.profile_update_save)
     public TextView textUpdateSave;
+    @BindView(R.id.setting_terms_of_use_exit)
+    public ImageView exitTermsOfUse;
     @BindView(R.id.main_tab1_img)
     public ImageView imgTab1;
     @BindView(R.id.main_tab2_img)
@@ -63,6 +65,16 @@ public class MainActivity extends AppCompatActivity {
     public ImageView imgTab4;
     @BindView(R.id.main_tab5_img)
     public ImageView imgTab5;
+    @BindView(R.id.main_tab1_text)
+    public TextView textTab1;
+    @BindView(R.id.main_tab2_text)
+    public TextView textTab2;
+    @BindView(R.id.main_tab3_text)
+    public TextView textTab3;
+    @BindView(R.id.main_tab4_text)
+    public TextView textTab4;
+    @BindView(R.id.main_tab5_text)
+    public TextView textTab5;
 
     private String token;
     private String uuid;
@@ -119,37 +131,96 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.main_tab_parties)
     public void onPartiesClick() {
         imgTab1.setImageDrawable(getDrawable(R.drawable.partylist_iconred));
+        textTab1.setTextColor(0xAAe86060);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment1).commit();
+
+        imgTab2.setImageDrawable(getDrawable(R.drawable.bottom02_gray));
+        imgTab3.setImageDrawable(getDrawable(R.drawable.bottom03_gray));
+        imgTab4.setImageDrawable(getDrawable(R.drawable.bottom04_gray));
+        imgTab5.setImageDrawable(getDrawable(R.drawable.bottom05_gray));
+
+        textTab2.setTextColor(0xAA929292);
+        textTab3.setTextColor(0xAA929292);
+        textTab4.setTextColor(0xAA929292);
+        textTab5.setTextColor(0xAA929292);
     }
 
     @OnClick(R.id.main_tab_joined)
     public void onJoinedClick() {
+        imgTab2.setImageDrawable(getDrawable(R.drawable.bottom02_red));
+        textTab2.setTextColor(0xAAe86060);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment2).commit();
+
+        imgTab1.setImageDrawable(getDrawable(R.drawable.bottom01_gray));
+        imgTab3.setImageDrawable(getDrawable(R.drawable.bottom03_gray));
+        imgTab4.setImageDrawable(getDrawable(R.drawable.bottom04_gray));
+        imgTab5.setImageDrawable(getDrawable(R.drawable.bottom05_gray));
+
+        textTab1.setTextColor(0xAA929292);
+        textTab3.setTextColor(0xAA929292);
+        textTab4.setTextColor(0xAA929292);
+        textTab5.setTextColor(0xAA929292);
     }
 
     @OnClick(R.id.main_tab_created)
     public void onCreatedClick() {
+        imgTab3.setImageDrawable(getDrawable(R.drawable.bottom03_red));
+        textTab3.setTextColor(0xAAe86060);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment3).commit();
+
+        imgTab1.setImageDrawable(getDrawable(R.drawable.bottom01_gray));
+        imgTab2.setImageDrawable(getDrawable(R.drawable.bottom02_gray));
+        imgTab4.setImageDrawable(getDrawable(R.drawable.bottom04_gray));
+        imgTab5.setImageDrawable(getDrawable(R.drawable.bottom05_gray));
+
+        textTab1.setTextColor(0xAA929292);
+        textTab2.setTextColor(0xAA929292);
+        textTab4.setTextColor(0xAA929292);
+        textTab5.setTextColor(0xAA929292);
     }
 
     @OnClick(R.id.main_tab_alarm)
     public void onAlarmClick() {
+        imgTab4.setImageDrawable(getDrawable(R.drawable.bottom04_red));
+        textTab4.setTextColor(0xAAe86060);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment4).commit();
+
+        imgTab1.setImageDrawable(getDrawable(R.drawable.bottom01_gray));
+        imgTab2.setImageDrawable(getDrawable(R.drawable.bottom02_gray));
+        imgTab3.setImageDrawable(getDrawable(R.drawable.bottom03_gray));
+        imgTab5.setImageDrawable(getDrawable(R.drawable.bottom05_gray));
+
+        textTab1.setTextColor(0xAA929292);
+        textTab2.setTextColor(0xAA929292);
+        textTab3.setTextColor(0xAA929292);
+        textTab5.setTextColor(0xAA929292);
     }
 
     @OnClick(R.id.main_tab_setting)
     public void onSettingClick() {
+        imgTab5.setImageDrawable(getDrawable(R.drawable.bottom05_red));
+        textTab5.setTextColor(0xAAe86060);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment5).commit();
+
+        imgTab1.setImageDrawable(getDrawable(R.drawable.bottom01_gray));
+        imgTab2.setImageDrawable(getDrawable(R.drawable.bottom02_gray));
+        imgTab3.setImageDrawable(getDrawable(R.drawable.bottom03_gray));
+        imgTab4.setImageDrawable(getDrawable(R.drawable.bottom04_gray));
+
+        textTab1.setTextColor(0xAA929292);
+        textTab2.setTextColor(0xAA929292);
+        textTab3.setTextColor(0xAA929292);
+        textTab4.setTextColor(0xAA929292);
     }
 
     @OnClick(R.id.main_toolbar_write)

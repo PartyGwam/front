@@ -1,6 +1,7 @@
 package com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Adapter.ViewHolder;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.joe.depromeet_partygwam.Data.Parties.Data;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Adapter.OnItemClickListener;
@@ -32,6 +34,8 @@ public class PartiesViewHolder extends RecyclerView.ViewHolder {
     TextView textTitle;
     @BindView(R.id.list_party_item_today)
     ImageView imgNew;
+    @BindView(R.id.close_party_flag)
+    ImageView closedIcon;
     @BindView(R.id.list_party_item_date)
     TextView textDate;
     @BindView(R.id.list_party_item_time)
@@ -44,16 +48,22 @@ public class PartiesViewHolder extends RecyclerView.ViewHolder {
     TextView textPeopleNum;
     @BindView(R.id.list_party_item_people_max)
     TextView textPeopleMax;
+    @BindView(R.id.party_list_item_people_num)
+    ConstraintLayout pplBackground;
     private Date today;
     private SimpleDateFormat date;
+    private SimpleDateFormat time;
+    private Context context;
 
     public PartiesViewHolder(final Context context, ViewGroup parent, OnItemClickListener onItemClickListener, OnPositionListener onPositionListener) {
         super(LayoutInflater.from(context).inflate(R.layout.list_party_item, parent, false));
         ButterKnife.bind(this, itemView);
         this.onItemClickListener = onItemClickListener;
         this.onPositionListener = onPositionListener;
+        this.context = context;
         today = new Date();
         date = new SimpleDateFormat("yyyy-MM-dd");
+        time = new SimpleDateFormat("HH:mm");
     }
 
     public void onBind(Data data, int position, int listSize) {
@@ -67,12 +77,42 @@ public class PartiesViewHolder extends RecyclerView.ViewHolder {
         if (data.getIsNew())
             imgNew.setVisibility(View.VISIBLE);
 
-        if (startDate.equals(date)) {
-            textDate.setText("오늘");
-            info = data.getPartyOwner().getUsername() + " | "
-                    + createDate + " | 조회 ";
-        } else {
+        if (startDate.equals(date) && startTime.equals(time)) {
             textDate.setText(startDate.split("-")[1] + "." + startDate.split("-")[2]);
+            pplBackground.setBackground(context.getDrawable(R.drawable.people_gray2));
+            main.setOnClickListener((v) -> {
+                Toast.makeText(context, "마감된 파티 입니다.", Toast.LENGTH_LONG).show();
+            });
+            closedIcon.setVisibility(View.VISIBLE);
+
+            textTime.setText(startTime);
+            textTime.setTextColor(0xAAb7b7b7);
+
+            textPlace.setText(data.getPlace());
+            textTime.setTextColor(0xAA4b4b4b);
+
+            textInfo.setText(info);
+
+            textPeopleNum.setText(data.getCurrentPeople() + "");
+            textPeopleNum.setTextColor(0xAAffffff);
+
+            textPeopleMax.setText(data.getMaxPeople() + "");
+            textPeopleMax.setTextColor(0xAAffffff);
+        }else {
+            if(startDate.equals(date)){
+                textDate.setText("오늘");
+            }else{
+                textDate.setText(startDate.split("-")[1] + "." + startDate.split("-")[2]);
+            }
+            main.setOnClickListener((v) -> {
+                onItemClickListener.onItemClick(data, position);
+            });
+            textTime.setText(startTime);
+            textPlace.setText(data.getPlace());
+
+            textInfo.setText(info);
+            textPeopleNum.setText(data.getCurrentPeople() + "");
+            textPeopleMax.setText(data.getMaxPeople() + "");
         }
 
         if (data.getTitle().length() > 13) {
@@ -80,17 +120,6 @@ public class PartiesViewHolder extends RecyclerView.ViewHolder {
         } else {
             textTitle.setText(data.getTitle());
         }
-
-        textTime.setText(startTime);
-        textPlace.setText(data.getPlace());
-
-        textInfo.setText(info);
-        textPeopleNum.setText(data.getCurrentPeople() + "");
-        textPeopleMax.setText(data.getMaxPeople() + "");
-
-        main.setOnClickListener((v) -> {
-            onItemClickListener.onItemClick(data, position);
-        });
 
         if (position == listSize - 1) {
             int page = (listSize / 20) + 1;
