@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -47,6 +48,8 @@ public class PartyListFragment extends Fragment implements PartiesContract.View 
     ProgressBar pb;
     @BindView(R.id.party_list_main_list)
     RecyclerView recyclerView;
+    @BindView(R.id.fragment_party_list_none)
+    FrameLayout partyListNone;
     protected PartiesAdapter adapter;
     protected PartiesPresenter presenter;
     private int sort = 0;
@@ -141,7 +144,8 @@ public class PartyListFragment extends Fragment implements PartiesContract.View 
     @Override
     public void onNotFound() {
         pb.setVisibility(View.INVISIBLE);
-        toast("게시글이 없습니다.");
+        partyListNone.setVisibility(View.VISIBLE);
+        //toast("게시글이 없습니다.");
     }
 
     @Override
