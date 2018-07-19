@@ -122,34 +122,63 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment1).commit();
+
+        imgTab2.setImageDrawable(getDrawable(R.drawable.bottom02_gray));
+        imgTab3.setImageDrawable(getDrawable(R.drawable.bottom03_gray));
+        imgTab4.setImageDrawable(getDrawable(R.drawable.bottom04_gray));
+        imgTab5.setImageDrawable(getDrawable(R.drawable.bottom05_gray));
     }
 
     @OnClick(R.id.main_tab_joined)
     public void onJoinedClick() {
+        imgTab2.setImageDrawable(getDrawable(R.drawable.bottom02_red));
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment2).commit();
+
+        imgTab1.setImageDrawable(getDrawable(R.drawable.bottom01_gray));
+        imgTab3.setImageDrawable(getDrawable(R.drawable.bottom03_gray));
+        imgTab4.setImageDrawable(getDrawable(R.drawable.bottom04_gray));
+        imgTab5.setImageDrawable(getDrawable(R.drawable.bottom05_gray));
     }
 
     @OnClick(R.id.main_tab_created)
     public void onCreatedClick() {
+        imgTab3.setImageDrawable(getDrawable(R.drawable.bottom03_red));
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment3).commit();
+
+        imgTab1.setImageDrawable(getDrawable(R.drawable.bottom01_gray));
+        imgTab2.setImageDrawable(getDrawable(R.drawable.bottom02_gray));
+        imgTab4.setImageDrawable(getDrawable(R.drawable.bottom04_gray));
+        imgTab5.setImageDrawable(getDrawable(R.drawable.bottom05_gray));
     }
 
     @OnClick(R.id.main_tab_alarm)
     public void onAlarmClick() {
+        imgTab4.setImageDrawable(getDrawable(R.drawable.bottom04_red));
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment4).commit();
+
+        imgTab1.setImageDrawable(getDrawable(R.drawable.bottom01_gray));
+        imgTab2.setImageDrawable(getDrawable(R.drawable.bottom02_gray));
+        imgTab3.setImageDrawable(getDrawable(R.drawable.bottom03_gray));
+        imgTab5.setImageDrawable(getDrawable(R.drawable.bottom05_gray));
     }
 
     @OnClick(R.id.main_tab_setting)
     public void onSettingClick() {
+        imgTab5.setImageDrawable(getDrawable(R.drawable.bottom05_red));
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment5).commit();
+
+        imgTab1.setImageDrawable(getDrawable(R.drawable.bottom01_gray));
+        imgTab2.setImageDrawable(getDrawable(R.drawable.bottom02_gray));
+        imgTab3.setImageDrawable(getDrawable(R.drawable.bottom03_gray));
+        imgTab4.setImageDrawable(getDrawable(R.drawable.bottom04_gray));
     }
 
     @OnClick(R.id.main_toolbar_write)

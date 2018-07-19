@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.224"
+        app:layout_constraintWidth_percent="0.18"
         app:layout_constraintHeight_percent="1"
         android:layout_marginStart="2dp"
         android:layout_marginTop="1dp"
@@ -39,11 +39,12 @@
             android:id="@+id/list_party_item_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:layout_below="@id/list_party_item_today"
+            android:layout_centerInParent="true"
             android:text="날짜"
             android:textColor="@color/partyItemDateColor"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            />
 
         <TextView
             android:layout_width="30dp"
@@ -55,6 +56,15 @@
             android:textAlignment="center"
             android:textSize="11dp"
             android:id="@+id/list_party_item_time"/>
+
+        <ImageView
+            android:id="@+id/close_party_flag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/list_party_item_today"
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/deadline"/>
     </RelativeLayout>
 
     <ImageView
@@ -79,7 +89,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.76"
+        app:layout_constraintWidth_percent="0.814"
         app:layout_constraintHeight_percent="1"
         android:elevation="3dp"
         android:layout_marginStart="1dp"
@@ -89,26 +99,26 @@
 
         <ImageView
             android:id="@+id/list_party_item_location_icon"
-            android:layout_width="12dp"
-            android:layout_height="8dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_place_gray"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="12dp"
+            android:src="@drawable/ic_place_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/list_party_item_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/list_party_item_location_icon"
             android:text="장소"
             android:textColor="#4b4b4b"
             android:textSize="11dp"
-            android:layout_marginStart="3dp"
-            android:id="@+id/list_party_item_place"
             app:layout_constraintStart_toEndOf="@+id/list_party_item_location_icon"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/list_party_item_title"
@@ -116,13 +126,15 @@
             android:layout_height="20dp"
             android:layout_alignLeft="@id/list_party_item_location_icon"
             android:layout_centerInParent="true"
-            android:layout_marginStart="12dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="8dp"
             android:text="내용"
             android:textColor="#494949"
-            android:textSize="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/list_party_item_info"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/list_party_item_place"/>
 
         <TextView
             android:id="@+id/list_party_item_info"
@@ -131,12 +143,13 @@
             android:layout_marginBottom="12dp"
             android:layout_marginStart="15dp"
             android:text="id | time | view"
-            android:textSize="10dp"
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/list_party_item_title" />
+            />
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/party_list_item_people_num"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginEnd="10dp"
@@ -149,25 +162,27 @@
                 android:id="@+id/list_party_item_people_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:text="10"
-                android:textSize="12dp"
                 android:textAlignment="viewEnd"
+                android:textColor="#5d5d5d"
+                android:textSize="12dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/list_party_item_people_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="6dp"
+                android:layout_marginEnd="8dp"
                 android:text="100"
-                android:textSize="10dp"
                 android:textAlignment="viewStart"
+                android:textSize="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         </android.support.constraint.ConstraintLayout>
     </android.support.constraint.ConstraintLayout>
