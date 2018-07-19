@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.v7.widget.Toolbar
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,66 +6,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
+    android:elevation="4dp"
     app:contentInsetEnd="0dp"
     app:contentInsetLeft="0dp"
     app:contentInsetRight="0dp"
-    android:elevation="4dp"
     app:contentInsetStart="0dp">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/setting_terms_toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
-        android:id="@+id/main_toolbar_layout1">
+        android:visibility="visible">
 
         <android.support.constraint.Guideline
-            android:id="@+id/guideline22"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.05" />
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline23"
+            android:id="@+id/guideline_terms_exit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.95" />
 
         <ImageView
-            android:id="@+id/main_toolbar_seach"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:src="@drawable/find_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintStart_toStartOf="@+id/guideline22"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.06" />
-
-        <ImageView
-            android:id="@+id/main_toolbar_write"
+            android:id="@+id/setting_terms_of_use_exit"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="fitXY"
-            android:src="@drawable/writeicon"
+            android:src="@drawable/exit_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toStartOf="@+id/guideline23"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_terms_exit"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.06" />
+            app:layout_constraintWidth_percent="0.06"/>
 
         <TextView
-            android:id="@+id/main_toolbar_text"
+            android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="logo"
-            android:textSize="20dp"
-            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="이용약관"
+            android:textColor="#404040"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="parent"/>
 
+    </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.Toolbar>

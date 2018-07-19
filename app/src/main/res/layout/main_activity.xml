@@ -26,6 +26,9 @@
         <include
             layout="@layout/profile_update_toolbar"
             android:id="@+id/profile_update_toolbar" />
+        <include
+            layout="@layout/setting_terms_of_use_toolbar"
+            android:id="@+id/setting_terms_of_use_toolbar"/>
     </ViewFlipper>
 
 
