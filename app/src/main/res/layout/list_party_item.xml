@@ -13,18 +13,19 @@
         android:id="@+id/relativeLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
         android:background="@drawable/party_list_item"
+        android:elevation="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.18"
-        app:layout_constraintHeight_percent="1"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp"
-        android:elevation="3dp">
+        app:layout_constraintWidth_percent="0.18">
 
         <ImageView
+            android:id="@+id/list_party_item_today"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_alignParentLeft="true"
@@ -32,7 +33,6 @@
             android:layout_marginLeft="6dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/new_noshadow"
-            android:id="@+id/list_party_item_today"
             android:visibility="invisible"/>
 
         <TextView
@@ -47,6 +47,7 @@
             />
 
         <TextView
+            android:id="@+id/list_party_item_time"
             android:layout_width="30dp"
             android:layout_height="12dp"
             android:layout_below="@id/list_party_item_date"
@@ -54,8 +55,7 @@
             android:layout_marginTop="5dp"
             android:text="00:00"
             android:textAlignment="center"
-            android:textSize="11dp"
-            android:id="@+id/list_party_item_time"/>
+            android:textSize="11dp"/>
 
         <ImageView
             android:id="@+id/close_party_flag"
@@ -84,18 +84,18 @@
         android:id="@+id/relativeLayout3"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
         android:background="@drawable/party_list_item"
+        android:elevation="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="1"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.814"
-        app:layout_constraintHeight_percent="1"
-        android:elevation="3dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp">
+        app:layout_constraintWidth_percent="0.805">
 
         <ImageView
             android:id="@+id/list_party_item_location_icon"
@@ -123,7 +123,7 @@
         <TextView
             android:id="@+id/list_party_item_title"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:layout_alignLeft="@id/list_party_item_location_icon"
             android:layout_centerInParent="true"
             android:layout_marginBottom="8dp"
