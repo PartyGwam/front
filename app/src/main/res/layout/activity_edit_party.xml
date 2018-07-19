@@ -6,6 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EditParty.View.EditPartyActivity">
+
+    <ProgressBar
+        android:id="@+id/edit_party_pb"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <android.support.v7.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -75,6 +86,7 @@
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
+        android:id="@+id/linearLayout7"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginEnd="24dp"
@@ -99,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:padding="8dp"
-                app:srcCompat="@drawable/title_icon"/>
+                app:srcCompat="@drawable/title_icon" />
 
             <EditText
                 android:id="@+id/edit_party_title"
@@ -112,13 +124,13 @@
                 android:inputType="textPersonName"
                 android:paddingLeft="10dp"
                 android:textColor="#6d6d6d"
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="#9b9b9b"/>
+            android:background="#9b9b9b" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -131,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:padding="8dp"
-                app:srcCompat="@drawable/location01_icon"/>
+                app:srcCompat="@drawable/location01_icon" />
 
             <EditText
                 android:id="@+id/edit_party_place"
@@ -143,13 +155,13 @@
                 android:inputType="textPersonName"
                 android:paddingLeft="10dp"
                 android:textColor="#6d6d6d"
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="#9b9b9b"/>
+            android:background="#9b9b9b" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -162,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:padding="6dp"
-                app:srcCompat="@drawable/date_icon"/>
+                app:srcCompat="@drawable/date_icon" />
 
             <TextView
                 android:id="@+id/edit_party_date"
@@ -173,14 +185,14 @@
                 android:gravity="center_vertical"
                 android:inputType="textPersonName"
                 android:paddingLeft="10dp"
-                android:textColor="#6d6d6d"/>
+                android:textColor="#6d6d6d" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="#9b9b9b"/>
+            android:background="#9b9b9b" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -193,7 +205,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:padding="6dp"
-                app:srcCompat="@drawable/time_icon"/>
+                app:srcCompat="@drawable/time_icon" />
 
             <TextView
                 android:id="@+id/edit_party_start_time"
@@ -205,13 +217,13 @@
                 android:inputType="textPersonName"
                 android:paddingLeft="10dp"
                 android:textColor="#6d6d6d"
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="#9b9b9b"/>
+            android:background="#9b9b9b" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -224,7 +236,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:padding="7dp"
-                app:srcCompat="@drawable/pati_icon"/>
+                app:srcCompat="@drawable/pati_icon" />
 
             <EditText
                 android:id="@+id/edit_party_max_people"
@@ -236,13 +248,13 @@
                 android:inputType="textPersonName"
                 android:paddingLeft="10dp"
                 android:textColor="#6d6d6d"
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="#9b9b9b"/>
+            android:background="#9b9b9b" />
 
         <EditText
             android:id="@+id/edit_party_content"
@@ -256,7 +268,7 @@
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:paddingTop="10dp"
-            android:textSize="15sp"/>
+            android:textSize="15sp" />
 
     </LinearLayout>
 

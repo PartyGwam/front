@@ -61,6 +61,11 @@ public class EditPartyPresenter implements EditPartyContract.Presenter,
     }
 
     @Override
+    public void onUnknownError() {
+        view.onUnknownError();
+    }
+
+    @Override
     public void onFailure() {
         view.onConnectFail();
     }

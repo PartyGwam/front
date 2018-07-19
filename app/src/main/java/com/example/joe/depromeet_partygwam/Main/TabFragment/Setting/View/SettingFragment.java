@@ -1,5 +1,6 @@
 package com.example.joe.depromeet_partygwam.Main.TabFragment.Setting.View;
 
+import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
+import com.example.joe.depromeet_partygwam.Login.View.LoginActivity;
 import com.example.joe.depromeet_partygwam.Main.View.MainActivity;
 import com.example.joe.depromeet_partygwam.R;
 
@@ -77,5 +79,11 @@ public class SettingFragment extends Fragment {
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, new SettingQuestionFragment()).commit();
+    }
+
+    @OnClick(R.id.setting_logout)
+    public void onLogoutClick() {
+        getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+        getActivity().finish();
     }
 }

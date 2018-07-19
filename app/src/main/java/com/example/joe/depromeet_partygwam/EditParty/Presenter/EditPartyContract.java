@@ -12,6 +12,7 @@ public interface EditPartyContract {
         void onBadRequest(String msg);
         void onForbidden();
         void onConnectFail();
+        void onUnknownError();
     }
 
     interface Presenter {

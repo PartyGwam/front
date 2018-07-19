@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,8 @@ public class EditPartyActivity extends AppCompatActivity implements EditPartyCon
     EditText partyContent;
     @BindView(R.id.edit_party_register)
     TextView editPartyBtn;
+    @BindView(R.id.edit_party_pb)
+    ProgressBar pb;
 
     private Data data;
     private EditPartyPresenter presenter;
@@ -113,6 +116,8 @@ public class EditPartyActivity extends AppCompatActivity implements EditPartyCon
             toast("최대인원은 100명 이하입니다.");
             return;
         }
+
+        pb.setVisibility(View.VISIBLE);
         presenter.editParty(title, slug, place, contents,
                 startTime, Integer.parseInt(numOfPeople));
     }
@@ -166,6 +171,7 @@ public class EditPartyActivity extends AppCompatActivity implements EditPartyCon
 
     @Override
     public void onSuccess(String slug) {
+        pb.setVisibility(View.INVISIBLE);
         toast("수정 되었습니다.");
         Intent intent = new Intent();
         intent.putExtra("slug", slug);
@@ -175,16 +181,25 @@ public class EditPartyActivity extends AppCompatActivity implements EditPartyCon
 
     @Override
     public void onBadRequest(String msg) {
+        pb.setVisibility(View.INVISIBLE);
         toast(msg);
     }
 
     @Override
     public void onForbidden() {
+        pb.setVisibility(View.INVISIBLE);
         toast("게시글 수정 권한이 없습니다.");
     }
 
     @Override
     public void onConnectFail() {
+        pb.setVisibility(View.INVISIBLE);
         toast("서버 연결에 실패했습니다. 다시 시도해주세요.");
+    }
+
+    @Override
+    public void onUnknownError() {
+        pb.setVisibility(View.INVISIBLE);
+        toast("서버오류입니다.");
     }
 }

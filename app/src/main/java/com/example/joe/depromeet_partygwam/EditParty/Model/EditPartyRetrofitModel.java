@@ -75,6 +75,8 @@ public class EditPartyRetrofitModel {
                     callback.onSuccess(ResponseCode.SUCCESS, response.body().getData().getSlug(), null);
                     return;
                 }
+
+                callback.onUnknownError();
             }
 
             @Override

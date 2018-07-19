@@ -7,6 +7,7 @@ import com.example.joe.depromeet_partygwam.Data.UserResponse.User;
 import com.example.joe.depromeet_partygwam.Retrofit.ResponseCode;
 import com.example.joe.depromeet_partygwam.Retrofit.RetrofitService;
 import com.example.joe.depromeet_partygwam.Retrofit.RetrofitServiceManager;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -84,7 +85,8 @@ public class JoinRetrofitModel {
         String jsonStr = "{" +
                 "'email': '" + user.getEmail() + "'," +
                 "'username': '" + user.getUsername() + "'," +
-                "'password': '" + user.getPassword() + "'" +
+                "'password': '" + user.getPassword() + "'," +
+                "'fcm_token': '" + FirebaseInstanceId.getInstance().getToken() + "'" +
                 "}";
         Log.d(TAG, jsonStr);
         JsonParser jsonParser = new JsonParser();
