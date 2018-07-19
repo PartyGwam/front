@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
-import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyEventMessage;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.AlarmHistory.View.HistoryFragment;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.JoinedPartyFragment;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.MyCreatedPartyFragment;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.PartyListFragment;
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         fragment1 = tab1_fragment;
         fragment2 = new JoinedPartyFragment();
         fragment3 = new MyCreatedPartyFragment();
-        fragment4 = new PartyEventMessage();
+        fragment4 = new HistoryFragment();
         fragment5 = new SettingFragment();
 
         //툴바로 적용
