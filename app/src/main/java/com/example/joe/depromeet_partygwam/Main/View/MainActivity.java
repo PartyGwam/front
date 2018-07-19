@@ -23,6 +23,7 @@ import com.example.joe.depromeet_partygwam.Main.TabFragment.Setting.View.Setting
 import com.example.joe.depromeet_partygwam.Write.View.PartyWriteActivity;
 import com.example.joe.depromeet_partygwam.R;
 
+import butterknife.BindInt;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -59,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
     public ImageView exitTermsOfUse;
     @BindView(R.id.setting_question_back)
     public ImageView exitSendQuestion;
-    @BindView(R.id.setting_question)
-    public ImageView sendQuestion;
+    @BindView(R.id.setting_send_question_btn)
+    public TextView sendQuestionBtn;
     @BindView(R.id.main_tab1_img)
     public ImageView imgTab1;
     @BindView(R.id.main_tab2_img)
