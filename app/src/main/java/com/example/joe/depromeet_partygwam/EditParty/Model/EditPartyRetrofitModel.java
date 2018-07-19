@@ -11,6 +11,11 @@ import com.example.joe.depromeet_partygwam.Retrofit.RetrofitServiceManager;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,21 +47,34 @@ public class EditPartyRetrofitModel {
             @Override
             public void onResponse(Call<PartyOneResponse> call, Response<PartyOneResponse> response) {
                 if (response.code() == ResponseCode.BAD_REQUEST) {
-                    callback.onSuccess(ResponseCode.BAD_REQUEST, null);
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                        String msg = jsonObject.getString("message");
+                        callback.onSuccess(ResponseCode.BAD_REQUEST, null,
+                                msg.substring(2, msg.length() - 2));
+                        return;
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     return;
                 }
 
                 if (response.code() == ResponseCode.UNAUTHORIZED) {
-                    callback.onSuccess(ResponseCode.UNAUTHORIZED,null);
+                    callback.onSuccess(ResponseCode.UNAUTHORIZED,null, null);
                     return;
                 }
 
                 if (response.code() == ResponseCode.FORBIDDEN) {
-                    callback.onSuccess(ResponseCode.FORBIDDEN, null);
+                    callback.onSuccess(ResponseCode.FORBIDDEN, null, null);
                     return;
 
                 }
-                callback.onSuccess(ResponseCode.SUCCESS, response.body().getData().getSlug());
+                if (response.code() == ResponseCode.SUCCESS) {
+                    callback.onSuccess(ResponseCode.SUCCESS, response.body().getData().getSlug(), null);
+                    return;
+                }
             }
 
             @Override

@@ -10,7 +10,7 @@
     tools:context=".PartyDetail.View.PartyJoinPopupActivity">
 
     <TextView
-        android:id="@+id/join_party_text"
+        android:id="@+id/join_party_title"
         android:layout_width="220dp"
         android:layout_height="25dp"
         android:layout_gravity="center_vertical"
@@ -34,10 +34,10 @@
         android:background="#ababab"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/join_party_text"/>
+        app:layout_constraintTop_toBottomOf="@+id/join_party_title"/>
 
     <TextView
-        android:id="@+id/delete_party_text"
+        android:id="@+id/join_popup_party_text"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -61,7 +61,7 @@
         android:background="@drawable/yes_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delete_party_text"/>
+        app:layout_constraintTop_toBottomOf="@+id/join_popup_party_text"/>
 
     <ImageView
         android:id="@+id/no_button"
@@ -73,6 +73,6 @@
         android:background="@drawable/no_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/yes_button"
-        app:layout_constraintTop_toBottomOf="@+id/delete_party_text"/>
+        app:layout_constraintTop_toBottomOf="@+id/join_popup_party_text"/>
 
 </android.support.constraint.ConstraintLayout>

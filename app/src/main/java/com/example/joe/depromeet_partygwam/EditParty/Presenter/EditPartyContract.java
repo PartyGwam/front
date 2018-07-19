@@ -9,7 +9,7 @@ public interface EditPartyContract {
         void toast(String msg);
         void onUnauthorizedError();
         void onSuccess(String slug);
-        void onBadRequest();
+        void onBadRequest(String msg);
         void onForbidden();
         void onConnectFail();
     }

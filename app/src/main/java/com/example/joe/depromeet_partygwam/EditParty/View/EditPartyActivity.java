@@ -89,15 +89,30 @@ public class EditPartyActivity extends AppCompatActivity implements EditPartyCon
 
         String startTime = date + "T" + time + ":00";
 
-        /*if (title.equals("")) {
-            toast("제목이 빈칸입니다.");
+        if (title.equals("")) {
+            toast("제목을 입력해주세요..");
             return;
         }
 
-        if (data.getTitle().equals(title) && data.getPlace()) {
-
+        if (place.equals("")) {
+            toast("장소를 입력해주세요.");
             return;
-        }*/
+        }
+
+        if (Integer.parseInt(numOfPeople) <= 1) {
+            toast("인원은 최소 2명 이상입니다.");
+            return;
+        }
+
+        if (contents.equals("")) {
+            toast("내용을 입력해주세요.");
+            return;
+        }
+
+        if (Integer.parseInt(numOfPeople) > 100) {
+            toast("최대인원은 100명 이하입니다.");
+            return;
+        }
         presenter.editParty(title, slug, place, contents,
                 startTime, Integer.parseInt(numOfPeople));
     }
@@ -159,13 +174,13 @@ public class EditPartyActivity extends AppCompatActivity implements EditPartyCon
     }
 
     @Override
-    public void onBadRequest() {
-        toast("");
+    public void onBadRequest(String msg) {
+        toast(msg);
     }
 
     @Override
     public void onForbidden() {
-        toast("권한이 없습니다.");
+        toast("게시글 수정 권한이 없습니다.");
     }
 
     @Override

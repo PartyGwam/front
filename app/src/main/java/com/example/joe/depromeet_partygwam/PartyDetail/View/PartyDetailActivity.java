@@ -84,6 +84,7 @@ public class PartyDetailActivity extends AppCompatActivity
     private Data content;
     private List<Participant> participants;
     private boolean isJoined;
+    private boolean isOwner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,17 +170,37 @@ public class PartyDetailActivity extends AppCompatActivity
         }
 
         if (requestCode == 200 && resultCode == 201) {
-
+            SLUG = data.getStringExtra("slug");
+            pb.setVisibility(View.VISIBLE);
+            presenter.getPartyContents();
             return;
         }
 
-        //파티 참가 , 탈퇴
+        //일반 참가자 파티 참가
         if (requestCode == 300 && resultCode == 301) {
-            if (!isJoined) {
-                presenter.joinParty();
-                return;
-            }
+            pb.setVisibility(View.VISIBLE);
+            presenter.joinParty();
+            return;
+        }
+
+        //일반 참가자 파티 탈퇴
+        if (requestCode == 300 && resultCode == 302) {
+            pb.setVisibility(View.VISIBLE);
             presenter.leaveParty();
+            return;
+        }
+
+        //방장 파티 탈퇴, 위임
+        if (requestCode == 300 && resultCode == 303) {
+            pb.setVisibility(View.VISIBLE);
+            presenter.updateOwner(participants.get(1).getUsername());
+            return;
+        }
+
+        //방장 혼자일 때 파티 탈퇴
+        if (requestCode == 300 && resultCode == 304) {
+            pb.setVisibility(View.VISIBLE);
+            //presenter.deleteParty();
             return;
         }
 
@@ -210,13 +231,16 @@ public class PartyDetailActivity extends AppCompatActivity
     }
 
     @OnClick(R.id.party_detail_join_button)
-    public void joinBtnClick(){
+    public void joinBtnClick() {
         Intent intent = new Intent(PartyDetailActivity.this, PartyJoinPopupActivity.class);
+        intent.putExtra("isOwner", isOwner);
+        intent.putExtra("isJoined", isJoined);
+        intent.putExtra("isAlone", participants.size() == 1 ? true : false);
         startActivityForResult(intent, 300);
     }
 
     @OnClick(R.id.party_detail_reply_button)
-    public void replyBtnClick(){
+    public void replyBtnClick() {
         if(replyBar.getText().toString().equals("")) {
             toast("댓글란이 공백입니다.");
             return;
@@ -246,16 +270,6 @@ public class PartyDetailActivity extends AppCompatActivity
     }
 
     @Override
-    public void onSuccessPartyModify() {
-
-    }
-
-    @Override
-    public void onBadRequestPartyModify() {
-
-    }
-
-    @Override
     public void onSuccessPartyDelete() {
 
     }
@@ -269,8 +283,12 @@ public class PartyDetailActivity extends AppCompatActivity
     public void onSuccessParticipantsLoad(List<Participant> participants) {
         this.participants = participants;
         isJoined = isJoined(participants);
+        /*isOwner = isOwner(participants);
+        if (isOwner)
+            editParty.setVisibility(View.VISIBLE);*/
         updateProfileImages(participants);
-        presenter.getComments();
+        //presenter.getComments();
+        presenter.getOwner();
     }
 
     private boolean isJoined(List<Participant> participants) {
@@ -307,51 +325,77 @@ public class PartyDetailActivity extends AppCompatActivity
 
     @Override
     public void onNotFoundParticipantsLoad() {
-
+        pb.setVisibility(View.INVISIBLE);
+        toast("파티가 존재하지 않습니다.");
     }
 
     @Override
-    public void onSuccessParticipantsJoin(String msg) {
+    public void onSuccessOwnerLoad(String owner) {
         pb.setVisibility(View.INVISIBLE);
-        toast(msg);
-        pb.setVisibility(View.VISIBLE);
-        presenter.getPartyContents();
+        isOwner = isOwner(owner);
+        if (isOwner)
+            editParty.setVisibility(View.VISIBLE);
+        presenter.getComments();
+    }
+
+    private boolean isOwner(String owner) {
+        return SharePreferenceManager.getString("Username").equals(owner);
     }
 
     @Override
-    public void onBadRequestParticipantsJoin(String msg) {
+    public void onBadRequestOwnerLoad() {
         pb.setVisibility(View.INVISIBLE);
-        toast(msg);
-    }
-
-    @Override
-    public void onSuccessParticipantsCancel(String msg) {
-        pb.setVisibility(View.INVISIBLE);
-        toast(msg);
-        pb.setVisibility(View.VISIBLE);
-        presenter.getPartyContents();
-    }
-
-    @Override
-    public void onBadrequestParticipantsCancel(String msg) {
-        pb.setVisibility(View.INVISIBLE);
-        toast(msg);
+        toast("게시글을 찾을 수 없습니다.");
     }
 
     @Override
     public void onSuccessOwnerUpdate() {
-
+        pb.setVisibility(View.INVISIBLE);
+        toast("다음 참가자로 방장이 위임되었습니다.");
+        pb.setVisibility(View.VISIBLE);
+        //SLUG = newSlug;
+        presenter.leaveParty();
     }
 
     @Override
     public void onBadRequestOwnerUpdate() {
+        pb.setVisibility(View.INVISIBLE);
+        toast("방장을 위임할 수 없습니다.");
+    }
 
+    @Override
+    public void onSuccessPartyJoin(String msg) {
+        pb.setVisibility(View.INVISIBLE);
+        toast(msg);
+        pb.setVisibility(View.VISIBLE);
+        presenter.getPartyContents();
+    }
+
+    @Override
+    public void onBadRequestPartyJoin(String msg) {
+        pb.setVisibility(View.INVISIBLE);
+        toast(msg);
+    }
+
+    @Override
+    public void onSuccessPartyLeave(String msg) {
+        pb.setVisibility(View.INVISIBLE);
+        toast(msg);
+        pb.setVisibility(View.VISIBLE);
+        presenter.getPartyContents();
+    }
+
+    @Override
+    public void onBadrequestPartyLeave(String msg) {
+        pb.setVisibility(View.INVISIBLE);
+        toast(msg);
     }
 
     @Override
     public void onSuccessCommentsLoad(List<CommentSet> comments) {
         pb.setVisibility(View.INVISIBLE);
         numOfReply.setText(comments.size() + "");
+        replyList.scrollToPosition(comments.size() - 1);
     }
 
     @Override

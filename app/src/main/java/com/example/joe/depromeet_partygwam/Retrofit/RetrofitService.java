@@ -2,6 +2,7 @@ package com.example.joe.depromeet_partygwam.Retrofit;
 
 import com.example.joe.depromeet_partygwam.Data.Parties.Participant.ParticipantResponse;
 import com.example.joe.depromeet_partygwam.Data.Parties.PartyOneResponse;
+import com.example.joe.depromeet_partygwam.Data.Parties.Owner.OwnerResponse;
 import com.example.joe.depromeet_partygwam.Data.Parties.ReplyResponse;
 import com.example.joe.depromeet_partygwam.Data.UserResponse.UserResponse;
 import com.example.joe.depromeet_partygwam.Data.Parties.PartyResponse;
@@ -133,5 +134,18 @@ public interface RetrofitService {
     Call<ParticipantResponse> leaveParty(
             @Header("Authorization") String authorization,
             @Path("slug") String slug
+    );
+
+    @GET("/api/parties/{slug}/owner/")
+    Call<OwnerResponse> getOwner(
+            @Header("Authorization") String authorization,
+            @Path("slug") String slug
+    );
+
+    @PUT("/api/parties/{slug}/owner/")
+    Call<Void> updateOwner(
+            @Header("Authorization") String authorization,
+            @Path("slug") String slug,
+            @Body JsonObject owner
     );
 }

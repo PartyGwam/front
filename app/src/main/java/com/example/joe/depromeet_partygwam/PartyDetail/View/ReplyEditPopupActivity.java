@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.joe.depromeet_partygwam.R;
@@ -16,7 +15,7 @@ import butterknife.OnClick;
 public class ReplyEditPopupActivity extends AppCompatActivity {
     @BindView(R.id.edit_party_text)
     TextView textEdit;
-    @BindView(R.id.delete_party_text)
+    @BindView(R.id.join_popup_party_text)
     TextView textDelete;
     private String commentSlug;
     private String contentSlug;

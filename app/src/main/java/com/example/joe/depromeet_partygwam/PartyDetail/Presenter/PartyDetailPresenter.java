@@ -105,12 +105,12 @@ public class PartyDetailPresenter
     @Override
     public void onSuccessJoinedParty(int code, String msg) {
         if (code == ResponseCode.CREATED) {
-            view.onSuccessParticipantsJoin(msg);
+            view.onSuccessPartyJoin(msg);
             return;
         }
 
         if (code == ResponseCode.BAD_REQUEST) {
-            view.onBadRequestParticipantsJoin(msg);
+            view.onBadRequestPartyJoin(msg);
             return;
         }
     }
@@ -118,12 +118,12 @@ public class PartyDetailPresenter
     @Override
     public void onSuccessLeavedParty(int code, String msg) {
         if (code == ResponseCode.NO_CONTENT) {
-            view.onSuccessParticipantsCancel(msg);
+            view.onSuccessPartyLeave(msg);
             return;
         }
 
         if (code == ResponseCode.BAD_REQUEST) {
-            view.onBadrequestParticipantsCancel(msg);
+            view.onBadrequestPartyLeave(msg);
             return;
         }
     }
@@ -137,6 +137,37 @@ public class PartyDetailPresenter
 
         if (code == ResponseCode.FORBIDDEN) {
             view.onForbidden("댓글 수정 권한이 없습니다.");
+            return;
+        }
+    }
+
+    @Override
+    public void onSuccessOwnerLoad(int code, String owner) {
+        if (code == ResponseCode.SUCCESS) {
+            view.onSuccessOwnerLoad(owner);
+            return;
+        }
+
+        if (code == ResponseCode.BAD_REQUEST) {
+            view.onBadRequestOwnerLoad();
+            return;
+        }
+    }
+
+    @Override
+    public void onSuccessOwnerUpdate(int code) {
+        if (code == ResponseCode.SUCCESS) {
+            view.onSuccessOwnerUpdate();
+            return;
+        }
+
+        if (code == ResponseCode.BAD_REQUEST) {
+            view.onBadRequestOwnerUpdate();
+            return;
+        }
+
+        if (code == ResponseCode.FORBIDDEN) {
+            view.onForbidden("방장위임 권한이 없습니다.");
             return;
         }
     }
@@ -208,8 +239,13 @@ public class PartyDetailPresenter
     }
 
     @Override
-    public void updateOwner() {
+    public void getOwner() {
+        retrofitModel.getOwner();
+    }
 
+    @Override
+    public void updateOwner(String owner) {
+        retrofitModel.updateOwner(owner);
     }
 
     @Override
