@@ -96,7 +96,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#eeeeee"
-        android:visibility="invisible">
+        android:visibility="visible">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -112,20 +112,39 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/find_icon"/>
+                app:srcCompat="@drawable/noresult_icon"/>
 
-            <TextView
-                android:id="@+id/textView21"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:text="에 대한 검색결과가 없습니다."
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="32dp"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2"/>
+                app:layout_constraintTop_toBottomOf="@+id/imageView2">
+
+                <TextView
+                    android:id="@+id/party_research_string"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#e86060"
+                    tools:layout_editor_absoluteX="166dp"
+                    tools:layout_editor_absoluteY="328dp"/>
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="에 대한 검색결과가 없습니다."
+                    android:textColor="#6d6d6d"
+                    tools:layout_editor_absoluteX="199dp"
+                    tools:layout_editor_absoluteY="328dp"/>
+            </LinearLayout>
+
         </android.support.constraint.ConstraintLayout>
 
     </FrameLayout>

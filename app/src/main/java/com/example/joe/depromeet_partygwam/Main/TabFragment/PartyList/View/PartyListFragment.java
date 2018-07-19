@@ -1,5 +1,6 @@
 package com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -36,6 +38,7 @@ import butterknife.OnClick;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+import static android.view.View.INVISIBLE;
 
 public class PartyListFragment extends Fragment implements PartiesContract.View {
     private static final String TAG = PartyListFragment.class.getSimpleName();
@@ -50,9 +53,12 @@ public class PartyListFragment extends Fragment implements PartiesContract.View 
     RecyclerView recyclerView;
     @BindView(R.id.fragment_party_list_none)
     FrameLayout partyListNone;
+    @BindView(R.id.party_research_string)
+    TextView researchString;
     protected PartiesAdapter adapter;
     protected PartiesPresenter presenter;
     private int sort = 0;
+    private String searchStr;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,8 +69,12 @@ public class PartyListFragment extends Fragment implements PartiesContract.View 
         ((MainActivity) getActivity()).imgWrite.setVisibility(View.VISIBLE);
         ((MainActivity) getActivity()).imgSearch.setVisibility(View.VISIBLE);
 
+        partyListNone.setVisibility(INVISIBLE);
+
         ((MainActivity) getActivity()).textSearchConfirm.setOnClickListener((v) -> {
-            String searchStr = ((MainActivity) getActivity()).editSearch.getText().toString();
+            searchStr = ((MainActivity) getActivity()).editSearch.getText().toString();
+            InputMethodManager keyboard = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            keyboard.hideSoftInputFromWindow(((MainActivity) getActivity()).editSearch.getWindowToken(), 0);
             if (searchStr.equals("")) {
                 refreshList(null, sort);
                 return;
@@ -131,26 +141,28 @@ public class PartyListFragment extends Fragment implements PartiesContract.View 
 
     @Override
     public void onUnauthorizedError() {
-        pb.setVisibility(View.INVISIBLE);
+        pb.setVisibility(INVISIBLE);
         toast("unauthorized error");
     }
 
     @Override
     public void onUnknownError() {
-        pb.setVisibility(View.INVISIBLE);
+        pb.setVisibility(INVISIBLE);
         toast("unknown error");
     }
 
     @Override
     public void onNotFound() {
-        pb.setVisibility(View.INVISIBLE);
+        pb.setVisibility(INVISIBLE);
         partyListNone.setVisibility(View.VISIBLE);
+        researchString.setText("'" + searchStr + "'");
+
         //toast("게시글이 없습니다.");
     }
 
     @Override
     public void onConnectFail() {
-        pb.setVisibility(View.INVISIBLE);
+        pb.setVisibility(INVISIBLE);
         toast("서버 연결에 실패했습니다. 다시 시도해주세요.");
     }
 
@@ -163,7 +175,7 @@ public class PartyListFragment extends Fragment implements PartiesContract.View 
 
     @Override
     public void onSuccessGetList() {
-        pb.setVisibility(View.INVISIBLE);
+        pb.setVisibility(INVISIBLE);
     }
 
     @Override
