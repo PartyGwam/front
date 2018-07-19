@@ -57,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
     public TextView textUpdateSave;
     @BindView(R.id.setting_terms_of_use_exit)
     public ImageView exitTermsOfUse;
+    @BindView(R.id.setting_question_back)
+    public ImageView exitSendQuestion;
+    @BindView(R.id.setting_question)
+    public ImageView sendQuestion;
     @BindView(R.id.main_tab1_img)
     public ImageView imgTab1;
     @BindView(R.id.main_tab2_img)

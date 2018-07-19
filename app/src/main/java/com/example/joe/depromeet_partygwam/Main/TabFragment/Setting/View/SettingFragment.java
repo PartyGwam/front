@@ -33,6 +33,8 @@ public class SettingFragment extends Fragment {
     ImageView imgProfile;
     @BindView(R.id.setting_terms_of_use)
     ImageView TermsOfUseBtn;
+    @BindView(R.id.setting_question)
+    ImageView sendQuestion;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,5 +71,11 @@ public class SettingFragment extends Fragment {
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, new SettingTermsOfUseFragment()).commit();
+    }
+    @OnClick(R.id.setting_question)
+    public void onSendQuestionClick(){
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, new SettingQuestionFragment()).commit();
     }
 }
