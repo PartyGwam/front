@@ -33,9 +33,8 @@ public class PartyEditPopupActivity extends AppCompatActivity {
 
     @OnClick(R.id.delete_party)
     public void onDeletePartyClick() {
-        //Intent intent = new Intent();
-        //intent.putExtra("Sort", 1);
-        //setResult(RESULT_OK, intent);
+        Intent intent = new Intent();
+        setResult(102, intent);
         finish();
     }
 }

@@ -67,6 +67,7 @@ public class PartyDetailPresenter
 
         if (code == ResponseCode.NOT_FOUND) {
             view.onNotFoundCommentsLoad();
+            adapterModel.clearItem();
             return;
         }
     }
@@ -173,6 +174,24 @@ public class PartyDetailPresenter
     }
 
     @Override
+    public void onSuccessDeleteParty(int code) {
+        if (code == ResponseCode.NO_CONTENT) {
+            view.onSuccessPartyDelete();
+            return;
+        }
+
+        if (code == ResponseCode.FORBIDDEN) {
+            view.onForbidden("삭제 권한이 없습니다.");
+            return;
+        }
+
+        if (code == ResponseCode.BAD_REQUEST) {
+            view.onBadRequestPartyDelete();
+            return;
+        }
+    }
+
+    @Override
     public void getPartyContents() {
         retrofitModel.getPartyContents();
     }
@@ -236,6 +255,11 @@ public class PartyDetailPresenter
     @Override
     public void leaveParty() {
         retrofitModel.leaveParty();
+    }
+
+    @Override
+    public void deleteParty() {
+        retrofitModel.deleteParty();
     }
 
     @Override

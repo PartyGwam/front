@@ -63,6 +63,12 @@ public interface RetrofitService {
             @Path("slug") String slug
     );
 
+    @DELETE("/api/parties/{slug}/")
+    Call<Void> deleteParty(
+            @Header("Authorization") String authorization,
+            @Path("slug") String slug
+    );
+
     @GET("/api/parties/created/")
     Call<PartyResponse> getCreatedParties(
             @Header("Authorization") String authorization,

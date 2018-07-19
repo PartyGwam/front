@@ -7,13 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.joe.depromeet_partygwam.Login.View.LoginActivity;
 import com.example.joe.depromeet_partygwam.R;
+import com.google.firebase.FirebaseApp;
 
 public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity);
-
+        FirebaseApp.initializeApp(this);
         Runnable r = () -> {
           for (int i = 0 ; i < 3 ; i ++) {
               try {

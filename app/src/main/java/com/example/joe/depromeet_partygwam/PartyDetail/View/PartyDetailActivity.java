@@ -169,8 +169,13 @@ public class PartyDetailActivity extends AppCompatActivity
             return;
         }
 
+        if (requestCode == 100 && resultCode == 102) {
+            pb.setVisibility(View.VISIBLE);
+            presenter.deleteParty();
+            return;
+        }
+
         if (requestCode == 200 && resultCode == 201) {
-            SLUG = data.getStringExtra("slug");
             pb.setVisibility(View.VISIBLE);
             presenter.getPartyContents();
             return;
@@ -200,7 +205,7 @@ public class PartyDetailActivity extends AppCompatActivity
         //방장 혼자일 때 파티 탈퇴
         if (requestCode == 300 && resultCode == 304) {
             pb.setVisibility(View.VISIBLE);
-            //presenter.deleteParty();
+            presenter.deleteParty();
             return;
         }
 
@@ -271,12 +276,15 @@ public class PartyDetailActivity extends AppCompatActivity
 
     @Override
     public void onSuccessPartyDelete() {
-
+        pb.setVisibility(View.INVISIBLE);
+        toast("삭제 되었습니다.");
+        finish();
     }
 
     @Override
     public void onBadRequestPartyDelete() {
-
+        pb.setVisibility(View.INVISIBLE);
+        toast("다른 참여자가 있어 삭제가 불가합니다.");
     }
 
     @Override
@@ -353,7 +361,6 @@ public class PartyDetailActivity extends AppCompatActivity
         pb.setVisibility(View.INVISIBLE);
         toast("다음 참가자로 방장이 위임되었습니다.");
         pb.setVisibility(View.VISIBLE);
-        //SLUG = newSlug;
         presenter.leaveParty();
     }
 
@@ -428,7 +435,6 @@ public class PartyDetailActivity extends AppCompatActivity
         toast("댓글이 삭제되었습니다.");
         pb.setVisibility(View.VISIBLE);
         presenter.getComments();
-
     }
 
     @Override

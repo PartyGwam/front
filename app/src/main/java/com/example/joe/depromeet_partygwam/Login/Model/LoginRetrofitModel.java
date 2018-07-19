@@ -6,6 +6,7 @@ import com.example.joe.depromeet_partygwam.Data.UserResponse.UserResponse;
 import com.example.joe.depromeet_partygwam.Retrofit.ResponseCode;
 import com.example.joe.depromeet_partygwam.Retrofit.RetrofitService;
 import com.example.joe.depromeet_partygwam.Retrofit.RetrofitServiceManager;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -29,7 +30,8 @@ public class LoginRetrofitModel {
     public void login(String email, String password) {
         String jsonStr = "{" +
                 "'email': '" + email + "'," +
-                "'password': '" + password + "'" +
+                "'password': '" + password + "'," +
+                "'fcm_token': '" + FirebaseInstanceId.getInstance().getToken() + "'" +
                 "}";
         Log.d(TAG, jsonStr);
         JsonParser jsonParser = new JsonParser();

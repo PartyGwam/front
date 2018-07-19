@@ -16,6 +16,7 @@ public interface PartyDetailModelCallback {
         void onSuccessCommentUpdate(int code);
         void onSuccessJoinedParty(int code, String msg);
         void onSuccessLeavedParty(int code, String msg);
+        void onSuccessDeleteParty(int code);
         void onSuccessOwnerLoad(int code, String owner);
         void onSuccessOwnerUpdate(int code);
 

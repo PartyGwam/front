@@ -70,6 +70,7 @@ public interface PartyDetailContract {
 
         void joinParty();
         void leaveParty();
+        void deleteParty();
 
         void getOwner();
         void updateOwner(String owner);

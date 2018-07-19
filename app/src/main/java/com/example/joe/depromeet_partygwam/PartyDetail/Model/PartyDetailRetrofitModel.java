@@ -370,4 +370,38 @@ public class PartyDetailRetrofitModel {
             }
         });
     }
+
+    public void deleteParty() {
+        Call<Void> call = retrofitService.deleteParty(token, PartyDetailActivity.SLUG);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == ResponseCode.NO_CONTENT) {
+                    callback.onSuccessDeleteParty(ResponseCode.NO_CONTENT);
+                    return;
+                }
+
+                if (response.code() == ResponseCode.BAD_REQUEST) {
+                    callback.onSuccessDeleteParty(ResponseCode.BAD_REQUEST);
+                    return;
+                }
+
+                if (response.code() == ResponseCode.FORBIDDEN) {
+                    callback.onSuccessDeleteParty(ResponseCode.FORBIDDEN);
+                    return;
+                }
+
+                if (response.code() == ResponseCode.UNAUTHORIZED) {
+                    callback.onAuthorizationError();
+                    return;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                t.printStackTrace();
+                callback.onFailure();
+            }
+        });
+    }
 }
