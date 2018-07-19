@@ -14,20 +14,20 @@ public interface PartyDetailContract {
         void onSuccessContentsLoad(Data data);
         void onNotFoundContentsLoad();
 
-        void onSuccessPartyModify();
-        void onBadRequestPartyModify();
-
         void onSuccessPartyDelete();
         void onBadRequestPartyDelete();
 
         void onSuccessParticipantsLoad(List<Participant> participants);
         void onNotFoundParticipantsLoad();
 
-        void onSuccessParticipantsJoin(String msg);
-        void onBadRequestParticipantsJoin(String msg);
+        void onSuccessPartyJoin(String msg);
+        void onBadRequestPartyJoin(String msg);
 
-        void onSuccessParticipantsCancel(String msg);
-        void onBadrequestParticipantsCancel(String msg);
+        void onSuccessPartyLeave(String msg);
+        void onBadrequestPartyLeave(String msg);
+
+        void onSuccessOwnerLoad(String owner);
+        void onBadRequestOwnerLoad();
 
         void onSuccessOwnerUpdate();
         void onBadRequestOwnerUpdate();
@@ -71,6 +71,7 @@ public interface PartyDetailContract {
         void joinParty();
         void leaveParty();
 
-        void updateOwner();
+        void getOwner();
+        void updateOwner(String owner);
     }
 }

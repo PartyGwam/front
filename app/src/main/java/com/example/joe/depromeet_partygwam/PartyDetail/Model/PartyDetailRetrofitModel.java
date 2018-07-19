@@ -1,13 +1,11 @@
 package com.example.joe.depromeet_partygwam.PartyDetail.Model;
 
-import android.util.Log;
-
 import com.example.joe.depromeet_partygwam.Data.Parties.CommentSet;
 import com.example.joe.depromeet_partygwam.Data.Parties.Data;
-import com.example.joe.depromeet_partygwam.Data.Parties.Participant.Message;
 import com.example.joe.depromeet_partygwam.Data.Parties.Participant.Participant;
 import com.example.joe.depromeet_partygwam.Data.Parties.Participant.ParticipantResponse;
 import com.example.joe.depromeet_partygwam.Data.Parties.PartyOneResponse;
+import com.example.joe.depromeet_partygwam.Data.Parties.Owner.OwnerResponse;
 import com.example.joe.depromeet_partygwam.Data.Parties.ReplyResponse;
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
 import com.example.joe.depromeet_partygwam.PartyDetail.View.PartyDetailActivity;
@@ -21,13 +19,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Converter;
 import retrofit2.Response;
 
 public class PartyDetailRetrofitModel {
@@ -297,6 +292,73 @@ public class PartyDetailRetrofitModel {
 
                 if (response.code() == ResponseCode.FORBIDDEN) {
                     callback.onSuccessCommentUpdate(ResponseCode.FORBIDDEN);
+                    return;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                t.printStackTrace();
+                callback.onFailure();
+            }
+        });
+    }
+
+    public void getOwner() {
+        Call<OwnerResponse> call = retrofitService.getOwner(token, PartyDetailActivity.SLUG);
+        call.enqueue(new Callback<OwnerResponse>() {
+            @Override
+            public void onResponse(Call<OwnerResponse> call, Response<OwnerResponse> response) {
+                if (response.code() == ResponseCode.SUCCESS) {
+                    callback.onSuccessOwnerLoad(ResponseCode.SUCCESS,
+                            response.body().getResult().getOwner().getUsername());
+                    return;
+                }
+
+                if (response.code() == ResponseCode.UNAUTHORIZED) {
+                    callback.onAuthorizationError();
+                    return;
+                }
+
+                if (response.code() == ResponseCode.BAD_REQUEST) {
+                    callback.onSuccessOwnerLoad(ResponseCode.BAD_REQUEST, null);
+                    return;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OwnerResponse> call, Throwable t) {
+                t.printStackTrace();
+                callback.onFailure();
+            }
+        });
+    }
+
+    public void updateOwner(String newOwner) {
+        String jsonStr = "{ 'party_owner': '" + newOwner + "' }";
+        JsonParser jsonParser = new JsonParser();
+        JsonObject jsonObject = (JsonObject) jsonParser.parse(jsonStr);
+        Call<Void> call = retrofitService.updateOwner(token, PartyDetailActivity.SLUG, jsonObject);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == ResponseCode.SUCCESS) {
+                    callback.onSuccessOwnerUpdate(ResponseCode.SUCCESS);
+                    return;
+                }
+
+                if (response.code() == ResponseCode.UNAUTHORIZED) {
+                    callback.onAuthorizationError();
+                    return;
+                }
+
+                if (response.code() == ResponseCode.BAD_REQUEST) {
+                    callback.onSuccessOwnerUpdate(ResponseCode.BAD_REQUEST);
+                    return;
+                }
+
+                if (response.code() == ResponseCode.FORBIDDEN) {
+                    callback.onSuccessOwnerUpdate(ResponseCode.FORBIDDEN);
                     return;
                 }
             }

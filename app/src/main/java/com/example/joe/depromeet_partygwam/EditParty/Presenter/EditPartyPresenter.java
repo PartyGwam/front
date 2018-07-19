@@ -38,14 +38,14 @@ public class EditPartyPresenter implements EditPartyContract.Presenter,
     }
 
     @Override
-    public void onSuccess(int code, String slug) {
+    public void onSuccess(int code, String slug, String msg) {
         if (code == ResponseCode.SUCCESS) {
             view.onSuccess(slug);
             return;
         }
 
         if (code == ResponseCode.BAD_REQUEST) {
-            view.onBadRequest();
+            view.onBadRequest(msg);
             return;
         }
 
