@@ -79,18 +79,19 @@
                 android:layout_height="0dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/partylist_iconred"
-                app:layout_constraintBottom_toTopOf="@+id/textView12"
+                app:layout_constraintBottom_toTopOf="@+id/main_tab1_text"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintWidth_percent="0.35"/>
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/main_tab1_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
                 android:text="파티목록"
+                android:textColor="#e86060"
                 android:textSize="7sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -112,14 +113,14 @@
                 android:layout_height="0dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/partici_icon"
-                app:layout_constraintBottom_toTopOf="@+id/textView14"
+                app:layout_constraintBottom_toTopOf="@+id/main_tab2_text"
                 app:layout_constraintDimensionRatio="1:0.65"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintWidth_percent="0.48"/>
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/main_tab2_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
@@ -145,7 +146,7 @@
                 android:layout_height="0dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/maker_icon"
-                app:layout_constraintBottom_toTopOf="@+id/textView20"
+                app:layout_constraintBottom_toTopOf="@+id/main_tab3_text"
                 app:layout_constraintDimensionRatio="1:0.70"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.6"
@@ -153,7 +154,7 @@
                 app:layout_constraintWidth_percent="0.55"/>
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/main_tab3_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
@@ -178,14 +179,14 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:src="@drawable/notice_icon"
-                app:layout_constraintBottom_toTopOf="@+id/textView21"
+                app:layout_constraintBottom_toTopOf="@+id/main_tab4_text"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintWidth_percent="0.35"/>
 
             <TextView
-                android:id="@+id/textView21"
+                android:id="@+id/main_tab4_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
@@ -211,14 +212,14 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:src="@drawable/set_icon"
-                app:layout_constraintBottom_toTopOf="@+id/textView22"
+                app:layout_constraintBottom_toTopOf="@+id/main_tab5_text"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintWidth_percent="0.35"/>
 
             <TextView
-                android:id="@+id/textView22"
+                android:id="@+id/main_tab5_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
