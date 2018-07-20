@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,8 +35,6 @@ public class PartiesViewHolder extends RecyclerView.ViewHolder {
     TextView textTitle;
     @BindView(R.id.list_party_item_today)
     ImageView imgNew;
-    @BindView(R.id.close_party_flag)
-    ImageView closedIcon;
     @BindView(R.id.list_party_item_date)
     TextView textDate;
     @BindView(R.id.list_party_item_time)
@@ -50,7 +49,12 @@ public class PartiesViewHolder extends RecyclerView.ViewHolder {
     TextView textPeopleMax;
     @BindView(R.id.party_list_item_people_num)
     ConstraintLayout pplBackground;
-    private Date today;
+    @BindView(R.id.party_list_item_closed_flag)
+    FrameLayout closedFlag;
+    @BindView(R.id.list_party_item_date2)
+    TextView textDate2;
+    @BindView(R.id.list_party_item_location_icon)
+    ImageView locationIcon;
     private SimpleDateFormat date;
     private SimpleDateFormat time;
     private Context context;
@@ -61,7 +65,7 @@ public class PartiesViewHolder extends RecyclerView.ViewHolder {
         this.onItemClickListener = onItemClickListener;
         this.onPositionListener = onPositionListener;
         this.context = context;
-        today = new Date();
+
         date = new SimpleDateFormat("yyyy-MM-dd");
         time = new SimpleDateFormat("HH:mm");
     }
@@ -74,22 +78,31 @@ public class PartiesViewHolder extends RecyclerView.ViewHolder {
         String info  = data.getPartyOwner().getUsername() + " | "
                 + createTime + " | 조회 ";
 
-        if (data.getIsNew())
+        if (data.getIsNew()){
             imgNew.setVisibility(View.VISIBLE);
+        }else{
+            imgNew.setVisibility(View.GONE);
+        }
 
-        if (startDate.equals(date) && startTime.equals(time)) {
-            textDate.setText(startDate.split("-")[1] + "." + startDate.split("-")[2]);
+        if (data.getHasStarted() == true) {
+            textDate2.setText(startDate.split("-")[1] + "." + startDate.split("-")[2]);
+            textDate2.setTextColor(0xAAb7b7b7);
+
             pplBackground.setBackground(context.getDrawable(R.drawable.people_gray2));
+
             main.setOnClickListener((v) -> {
                 Toast.makeText(context, "마감된 파티 입니다.", Toast.LENGTH_LONG).show();
             });
-            closedIcon.setVisibility(View.VISIBLE);
+
+            closedFlag.setVisibility(View.VISIBLE);
 
             textTime.setText(startTime);
             textTime.setTextColor(0xAAb7b7b7);
 
+            locationIcon.setBackground(context.getDrawable(R.drawable.ic_place_white2));
+
             textPlace.setText(data.getPlace());
-            textTime.setTextColor(0xAA4b4b4b);
+            textPlace.setTextColor(0xAA4b4b4b);
 
             textInfo.setText(info);
 
@@ -125,6 +138,7 @@ public class PartiesViewHolder extends RecyclerView.ViewHolder {
             int page = (listSize / 20) + 1;
             onPositionListener.onLoad(page);
         }
+
         Log.d(TAG, "position " + position + "/ max " + listSize);
     }
 }
