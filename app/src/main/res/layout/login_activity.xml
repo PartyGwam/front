@@ -23,28 +23,42 @@
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="invisible"/>
 
-    <ImageView
-        android:id="@+id/imageView"
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline54"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="140.5dp"
-        android:layout_marginRight="140.5dp"
-        android:layout_marginTop="59.3dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:scaleType="fitXY"
-        android:src="@drawable/logo_icon"
+        android:src="@drawable/logo_login"
+        app:layout_constraintWidth_percent="0.218"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/guideline54"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline55"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.34"/>
 
     <ImageView
         android:id="@+id/login_loginBtn"
-        android:layout_width="105dp"
-        android:layout_height="32.5dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginRight="57dp"
-        android:layout_marginTop="71.5dp"
+        app:layout_constraintWidth_percent="0.29"
+        app:layout_constraintDimensionRatio="1:0.311"
         android:text="login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@id/guideline55"
         android:src="@drawable/signin_icon2"
         android:scaleType="fitXY"/>
 
@@ -54,22 +68,23 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="81dp"
+        android:layout_marginTop="9dp"
         android:text="or"
         android:textSize="13dp"
         app:layout_constraintEnd_toStartOf="@+id/login_loginBtn"
         app:layout_constraintStart_toEndOf="@+id/login_joinBtn"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@id/guideline55" />
 
     <ImageView
         android:id="@+id/login_joinBtn"
-        android:layout_width="105dp"
-        android:layout_height="32.5dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginLeft="57dp"
-        android:layout_marginTop="71.5dp"
+        app:layout_constraintWidth_percent="0.29"
+        app:layout_constraintDimensionRatio="1:0.311"
         android:text="join"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@id/guideline55"
         android:src="@drawable/signup_icon2"
         android:scaleType="fitXY"/>
 
@@ -84,13 +99,19 @@
         app:layout_constraintBottom_toBottomOf="@+id/login_email"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline56"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.48"/>
+
     <EditText
         android:id="@+id/login_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="42dp"
         android:layout_marginRight="42dp"
-        android:layout_marginTop="52dp"
         android:paddingBottom="13.5dp"
         android:maxLines="1"
         android:textAlignment="textEnd"
@@ -98,7 +119,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_joinBtn" />
+        app:layout_constraintTop_toBottomOf="@id/guideline56" />
 
     <EditText
         android:id="@+id/login_password"
@@ -123,19 +144,28 @@
         app:layout_constraintBottom_toBottomOf="@+id/login_password"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline57"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65"/>
+
     <ImageView
         android:id="@+id/login_loginBtn2"
-        android:layout_width="223.5dp"
-        android:layout_height="41dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.62"
+        app:layout_constraintDimensionRatio="1:0.18"
         android:layout_marginLeft="68dp"
         android:layout_marginRight="68dp"
-        android:layout_marginTop="53dp"
         android:scaleType="fitXY"
+        android:background="@color/colorWhite"
         android:src="@drawable/bigsignin_white"
         android:elevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_password" />
+        app:layout_constraintTop_toBottomOf="@id/guideline57" />
 
     <TextView
         android:layout_width="wrap_content"

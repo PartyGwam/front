@@ -19,7 +19,7 @@ public class PartyListSortPopup extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.party_list_sort_popup_time)
+    @OnClick(R.id.party_list_sort_popup_time_text)
     public void onTimeSortClick() {
         Intent intent = new Intent();
         intent.putExtra("Sort", 0);
@@ -27,7 +27,7 @@ public class PartyListSortPopup extends AppCompatActivity {
         finish();
     }
 
-    @OnClick(R.id.party_list_sort_popup_regi)
+    @OnClick(R.id.party_list_sort_popup_regi_text)
     public void onRegiSortClick() {
         Intent intent = new Intent();
         intent.putExtra("Sort", 1);

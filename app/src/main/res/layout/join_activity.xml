@@ -20,21 +20,28 @@
 
     <include
         android:layout_width="match_parent"
-        android:layout_height="59dp"
+        android:layout_height="0dp"
         layout="@layout/join_toolbar"
-        android:id="@+id/join_toolbar"/>
+        android:id="@+id/join_toolbar"
+        app:layout_constraintHeight_percent="0.095"/>
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline58"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.136" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="17dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.04"
         android:layout_marginLeft="33dp"
-        android:layout_marginTop="25dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/join_toolbar">
+        app:layout_constraintTop_toTopOf="@+id/guideline58">
 
         <ImageView
             android:layout_width="14dp"
@@ -45,11 +52,13 @@
             android:src="@drawable/email_icon" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="이메일 입력"
-            android:textSize="15dp"
-            android:textColor="@color/joinTextColor"/>
+            android:textColor="@color/joinTextColor"
+            android:textSize="15dp" />
     </LinearLayout>
 
     <EditText
@@ -83,7 +92,8 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="17dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.04"
         android:layout_marginLeft="33dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="7dp"
@@ -101,8 +111,10 @@
             android:src="@drawable/password_icon" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="비밀번호(6~15자 영문자, 숫자)"
             android:textColor="@color/joinTextColor"
             android:textSize="15dp" />
@@ -140,7 +152,8 @@
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
-        android:layout_height="17dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.04"
         android:layout_marginLeft="33dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="7dp"
@@ -158,8 +171,10 @@
             android:src="@drawable/password_icon" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="비밀번호 확인"
             android:textColor="@color/joinTextColor"
             android:textSize="15dp" />
@@ -197,7 +212,8 @@
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="17dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.04"
         android:layout_marginLeft="33dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="7dp"
@@ -215,8 +231,10 @@
             android:src="@drawable/nickname_icon" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="닉네임(2~8자)"
             android:textColor="@color/joinTextColor"
             android:textSize="15dp" />
@@ -254,7 +272,8 @@
     <LinearLayout
         android:id="@+id/join_termOfUse_layout"
         android:layout_width="match_parent"
-        android:layout_height="16dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.04"
         android:layout_marginLeft="29dp"
         android:layout_marginTop="9dp"
         android:orientation="horizontal"
@@ -263,12 +282,16 @@
         app:layout_constraintTop_toBottomOf="@+id/join_nickname_invalid">
 
         <ImageView
+            android:gravity="center"
+            android:layout_gravity="center"
             android:id="@+id/join_check"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:src="@drawable/checkbox_icon" />
 
         <TextView
+            android:gravity="center"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"

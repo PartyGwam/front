@@ -84,7 +84,7 @@ public class PartiesViewHolder extends RecyclerView.ViewHolder {
             imgNew.setVisibility(View.GONE);
         }
 
-        if (data.getHasStarted() == true) {
+        if (data.getHasStarted()) {
             textDate2.setText(startDate.split("-")[1] + "." + startDate.split("-")[2]);
             textDate2.setTextColor(0xAAb7b7b7);
 
@@ -111,7 +111,7 @@ public class PartiesViewHolder extends RecyclerView.ViewHolder {
 
             textPeopleMax.setText(data.getMaxPeople() + "");
             textPeopleMax.setTextColor(0xAAffffff);
-        }else {
+        } else {
             if(startDate.equals(date)){
                 textDate.setText("오늘");
             }else{
