@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="75dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorWhite">
+    android:background="@color/colorWhite"
+    android:id="@+id/list_history_item">
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline44"

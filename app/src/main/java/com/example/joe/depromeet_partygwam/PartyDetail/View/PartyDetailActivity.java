@@ -312,8 +312,6 @@ public class PartyDetailActivity extends AppCompatActivity
     public void updateProfileImages(List<Participant> participants) {
         int i = 0;
         for (Participant participant : participants) {
-            if (i == 6)
-                break;
             if (participant.getProfilePicture() != null) {
                 Glide.with(this)
                         .load(participant.getProfilePicture())
@@ -324,6 +322,9 @@ public class PartyDetailActivity extends AppCompatActivity
             }
             i ++;
         }
+
+        if (i <= 6)
+            participantsImage[i ++].setImageDrawable(getDrawable(R.drawable.member));
 
         if (participants.get(0).getProfilePicture() != null)
             Glide.with(this)

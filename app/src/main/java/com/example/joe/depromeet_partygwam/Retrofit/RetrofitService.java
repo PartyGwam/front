@@ -1,5 +1,6 @@
 package com.example.joe.depromeet_partygwam.Retrofit;
 
+import com.example.joe.depromeet_partygwam.Data.Parties.History.HistoryResponse;
 import com.example.joe.depromeet_partygwam.Data.Parties.Participant.ParticipantResponse;
 import com.example.joe.depromeet_partygwam.Data.Parties.PartyOneResponse;
 import com.example.joe.depromeet_partygwam.Data.Parties.Owner.OwnerResponse;
@@ -153,5 +154,10 @@ public interface RetrofitService {
             @Header("Authorization") String authorization,
             @Path("slug") String slug,
             @Body JsonObject owner
+    );
+
+    @GET("/api/notifications/")
+    Call<HistoryResponse> getHistory(
+            @Header("Authorization") String authorization
     );
 }

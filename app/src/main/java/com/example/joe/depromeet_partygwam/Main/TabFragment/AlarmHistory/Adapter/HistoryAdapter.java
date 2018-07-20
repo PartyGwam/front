@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
+import com.example.joe.depromeet_partygwam.Data.Parties.History.HistoryData;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.AlarmHistory.Adapter.Holder.HistoryViewHolder;
 
 import java.util.ArrayList;
@@ -14,13 +15,12 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryViewHolder>
         implements HistoryAdapterContract.View, HistoryAdapterContract.Model{
 
     private Context context;
-    private List items;
+    private List<HistoryData> items;
     private OnItemClickListener onItemClickListener;
 
     public HistoryAdapter(Context context) {
         this.context = context;
         this.items = new ArrayList();
-        items.add(null);
     }
 
     @NonNull
@@ -33,7 +33,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryViewHolder>
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
         if (holder == null)
             return;
-        holder.onBind(/*history, position*/);
+        holder.onBind(items.get(position), position);
     }
 
     @Override
@@ -55,21 +55,24 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryViewHolder>
 
     @Override
     public void setItems(List items) {
-
+        this.items.clear();
+        this.items.addAll(items);
+        notifyDataSetChanged();
     }
 
     @Override
     public void addItems(List items) {
-
+        this.items.addAll(items);
+        notifyDataSetChanged();
     }
 
     @Override
     public List getItems() {
-        return null;
+        return items;
     }
 
     @Override
     public void clearItems() {
-
+        this.items.clear();
     }
 }

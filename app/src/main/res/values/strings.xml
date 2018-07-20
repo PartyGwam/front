@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Depromeet_PartyGwam</string>
+    <string name="app_name">Party번개(가제)</string>
     <string name="server_url">http://www.mocky.io/v2/5b31c8ce310000123b1293c0</string>
     <string name="create_new_party">새 모임 만들기</string>
     <string name="terms_of_use_text">
