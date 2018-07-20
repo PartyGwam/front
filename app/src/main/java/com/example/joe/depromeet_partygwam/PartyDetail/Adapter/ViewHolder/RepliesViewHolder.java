@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.joe.depromeet_partygwam.Data.Parties.CommentSet;
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
 import com.example.joe.depromeet_partygwam.PartyDetail.Adapter.OnItemClickLIstener;
@@ -34,12 +37,16 @@ public class RepliesViewHolder extends RecyclerView.ViewHolder {
     TextView replyContent;
     @BindView(R.id.party_detail_reply_edit)
     ImageView replyEdit;
+    @BindView(R.id.party_detail_reply_image)
+    ImageView replyImg;
+    private Context context;
     private String userName;
     private OnItemClickLIstener onItemClickLIstener;
 
     public RepliesViewHolder(final Context context, ViewGroup parent, OnItemClickLIstener onItemClickLIstener, String userName) {
         super(LayoutInflater.from(context).inflate(R.layout.party_detail_reply_item, parent, false));
         ButterKnife.bind(this, itemView);
+        this.context = context;
         this.userName = userName;
         this.onItemClickLIstener = onItemClickLIstener;
     }
@@ -58,6 +65,15 @@ public class RepliesViewHolder extends RecyclerView.ViewHolder {
             replyEdit.setVisibility(View.VISIBLE);
         } else {
             replyEdit.setVisibility(View.GONE);
+        }
+
+        if (commentSet.getAuthor().getProfilePicture() != null) {
+            Glide.with(itemView)
+                    .load(commentSet.getAuthor().getProfilePicture())
+                    .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                    .into(replyImg);
+        } else {
+            replyImg.setImageDrawable(context.getDrawable(R.drawable.member));
         }
 
         replyEdit.setOnClickListener((v) -> {

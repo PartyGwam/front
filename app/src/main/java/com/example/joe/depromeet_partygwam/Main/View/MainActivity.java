@@ -1,6 +1,7 @@
 package com.example.joe.depromeet_partygwam.Main.View;
 
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -82,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
     public TextView textTab4;
     @BindView(R.id.main_tab5_text)
     public TextView textTab5;
-
+    @BindView(R.id.main_activity_tabs)
+    public ConstraintLayout mainTab;
     private String token;
     private String uuid;
     private String email;
@@ -243,5 +245,10 @@ public class MainActivity extends AppCompatActivity {
         SharePreferenceManager.remove("Email");
         SharePreferenceManager.remove("Username");
         SharePreferenceManager.remove("ProfilePicture");
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

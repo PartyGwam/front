@@ -10,7 +10,7 @@ public class Author {
     private String username;
     @SerializedName("profile_picture")
     @Expose
-    private Object profilePicture;
+    private String profilePicture;
 
     public String getUsername() {
         return username;
@@ -20,12 +20,11 @@ public class Author {
         this.username = username;
     }
 
-    public Object getProfilePicture() {
+    public String getProfilePicture() {
         return profilePicture;
     }
 
-    public void setProfilePicture(Object profilePicture) {
+    public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
     }
-
 }

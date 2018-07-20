@@ -60,7 +60,7 @@
                     android:layout_height="0dp"
                     app:layout_constraintWidth_percent="0.12"
                     app:layout_constraintDimensionRatio="1:0.6"
-                    android:src="@drawable/right"
+                    android:src="@drawable/down_arrow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline30"
                     app:layout_constraintTop_toTopOf="parent"

@@ -2,12 +2,14 @@ package com.example.joe.depromeet_partygwam.Main.TabFragment.Setting.View;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.joe.depromeet_partygwam.Data.UserResponse.UserResponse;
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.Setting.Presenter.SettingProfileContract;
@@ -30,6 +34,7 @@ import butterknife.OnClick;
 import static android.app.Activity.RESULT_OK;
 
 public class SettingProfileFragment extends Fragment implements SettingProfileContract.View {
+    private static final String TAG = SettingProfileFragment.class.getSimpleName();
     @BindView(R.id.setting_profile_image)
     ImageView imgProfile;
     @BindView(R.id.setting_profile_nickname)
@@ -44,14 +49,15 @@ public class SettingProfileFragment extends Fragment implements SettingProfileCo
         presenter = new SettingProfilePresenter(getActivity());
         presenter.attachView(this);
         ((MainActivity) getActivity()).viewFlipper.setDisplayedChild(2);
-        imgProfile.setBackground(new ShapeDrawable(new OvalShape()));
-        imgProfile.setClipToOutline(true);
 
-        if (!SharePreferenceManager.getString("ProfilePicture").equals("dafault")) {
+        Log.d(TAG, SharePreferenceManager.getString("ProfilePicture"));
+        if (!SharePreferenceManager.getString("ProfilePicture").equals("default")) {
             Glide.with(this)
                     .load(SharePreferenceManager.getString("ProfilePicture"))
+                    .apply(RequestOptions.bitmapTransform(new CircleCrop()))
                     .into(imgProfile);
         }
+
         editNickname.setText(SharePreferenceManager.getString("Username"));
 
         ((MainActivity) getActivity()).imgUpdateBack.setOnClickListener((v) -> {
@@ -98,6 +104,10 @@ public class SettingProfileFragment extends Fragment implements SettingProfileCo
         if (requestCode == 100) {
             if (resultCode == RESULT_OK) {
                 profileTmp = data.getParcelableExtra("image");
+                Glide.with(this)
+                        .load(new BitmapDrawable(getResources(), profileTmp))
+                        .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                        .into(imgProfile);
                 imgProfile.setImageBitmap(profileTmp);
                 return;
             }

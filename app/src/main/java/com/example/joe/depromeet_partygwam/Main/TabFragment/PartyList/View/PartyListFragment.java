@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -55,6 +57,8 @@ public class PartyListFragment extends Fragment implements PartiesContract.View 
     FrameLayout partyListNone;
     @BindView(R.id.party_research_string)
     TextView researchString;
+
+
     protected PartiesAdapter adapter;
     protected PartiesPresenter presenter;
     private int sort = 0;
@@ -84,8 +88,21 @@ public class PartyListFragment extends Fragment implements PartiesContract.View 
 
         ((MainActivity) getActivity()).imgSearch.setOnClickListener((v) -> {
             ((MainActivity) getActivity()).viewFlipper.setDisplayedChild(1);
+            ((MainActivity) getActivity()).mainTab.setVisibility(View.GONE);
         });
 
+        getFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                if (((MainActivity) getActivity()).viewFlipper.getDisplayedChild() == 1) {
+                    ((MainActivity) getActivity()).mainTab.setVisibility(View.VISIBLE);
+                    ((MainActivity) getActivity()).viewFlipper.setDisplayedChild(0);
+
+                    refreshList(null, sort);
+                    return;
+                }
+            }
+        });
         adapter = new PartiesAdapter(getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);

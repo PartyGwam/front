@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
 import com.example.joe.depromeet_partygwam.Login.View.LoginActivity;
 import com.example.joe.depromeet_partygwam.Main.View.MainActivity;
@@ -49,13 +51,12 @@ public class SettingFragment extends Fragment {
 
         textNickname.setText(SharePreferenceManager.getString("Username"));
         textEmail.setText(SharePreferenceManager.getString("Email"));
-        imgProfile.setBackground(new ShapeDrawable(new OvalShape()));
-        imgProfile.setClipToOutline(true);
 
         if (!SharePreferenceManager.getString("ProfilePicture").equals("default")) {
             //사진 지정
             Glide.with(this)
                     .load(SharePreferenceManager.getString("ProfilePicture"))
+                    .apply(RequestOptions.bitmapTransform(new CircleCrop()))
                     .into(imgProfile);
         }
         return rootView;

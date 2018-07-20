@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.joe.depromeet_partygwam.Data.Parties.CommentSet;
 import com.example.joe.depromeet_partygwam.Data.Parties.Data;
 import com.example.joe.depromeet_partygwam.Data.Parties.Participant.Participant;
@@ -291,11 +293,7 @@ public class PartyDetailActivity extends AppCompatActivity
     public void onSuccessParticipantsLoad(List<Participant> participants) {
         this.participants = participants;
         isJoined = isJoined(participants);
-        /*isOwner = isOwner(participants);
-        if (isOwner)
-            editParty.setVisibility(View.VISIBLE);*/
         updateProfileImages(participants);
-        //presenter.getComments();
         presenter.getOwner();
     }
 
@@ -312,21 +310,25 @@ public class PartyDetailActivity extends AppCompatActivity
 
     @Override
     public void updateProfileImages(List<Participant> participants) {
-        for (ImageView profile : participantsImage) {
-            profile.setImageDrawable(getDrawable(R.drawable.party1));
-        }
         int i = 0;
         for (Participant participant : participants) {
             if (i == 6)
                 break;
-            if (participant.getProfilePicture() != null)
+            if (participant.getProfilePicture() != null) {
                 Glide.with(this)
                         .load(participant.getProfilePicture())
+                        .apply(RequestOptions.bitmapTransform(new CircleCrop()))
                         .into(participantsImage[i]);
+            } else {
+                participantsImage[i].setImageDrawable(getDrawable(R.drawable.member));
+            }
             i ++;
         }
-        Glide.with(this)
+
+        if (participants.get(0).getProfilePicture() != null)
+            Glide.with(this)
                 .load(participants.get(0).getProfilePicture())
+                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
                 .into(partyLeaderImage);
     }
 

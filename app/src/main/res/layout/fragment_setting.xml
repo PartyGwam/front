@@ -33,7 +33,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="fitXY"
-            android:src="@drawable/profile"
+            android:src="@drawable/smallprofile"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHeight_percent="0.59"
             app:layout_constraintStart_toStartOf="@+id/guideline"
