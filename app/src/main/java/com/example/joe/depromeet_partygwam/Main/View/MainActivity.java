@@ -7,10 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -20,11 +17,11 @@ import com.example.joe.depromeet_partygwam.Main.TabFragment.AlarmHistory.View.Hi
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.JoinedPartyFragment;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.MyCreatedPartyFragment;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.View.PartyListFragment;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.OnKeyBackPressedListener;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.Setting.View.SettingFragment;
 import com.example.joe.depromeet_partygwam.Write.View.PartyWriteActivity;
 import com.example.joe.depromeet_partygwam.R;
 
-import butterknife.BindInt;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -122,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         if(tab1_fragment == null){
             tab1_fragment = new PartyListFragment();
             fm.beginTransaction()
-                    .add(R.id.fragment_container, tab1_fragment)
+                    .add(R.id.fragment_container, tab1_fragment, "fragment1")
                     .commit();
         }
 
@@ -143,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         textTab1.setTextColor(0xAAe86060);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container, fragment1).commit();
+                .replace(R.id.fragment_container, fragment1, "fragment1").commit();
 
         imgTab2.setImageDrawable(getDrawable(R.drawable.bottom02_gray));
         imgTab3.setImageDrawable(getDrawable(R.drawable.bottom03_gray));
@@ -249,6 +246,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        if (viewFlipper.getDisplayedChild() == 1) {
+            Fragment fragment = getSupportFragmentManager().findFragmentByTag("fragment1");
+            if (fragment instanceof OnKeyBackPressedListener) {
+                ((OnKeyBackPressedListener) fragment).onBack();
+                return;
+            }
+        }
         super.onBackPressed();
     }
 }

@@ -1,12 +1,11 @@
 package com.example.joe.depromeet_partygwam.Main.TabFragment.Setting.View;
 
 import android.content.Intent;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
 import com.example.joe.depromeet_partygwam.Login.View.LoginActivity;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.OnKeyBackPressedListener;
 import com.example.joe.depromeet_partygwam.Main.View.MainActivity;
 import com.example.joe.depromeet_partygwam.R;
 
@@ -87,4 +87,5 @@ public class SettingFragment extends Fragment {
         getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
         getActivity().finish();
     }
+
 }

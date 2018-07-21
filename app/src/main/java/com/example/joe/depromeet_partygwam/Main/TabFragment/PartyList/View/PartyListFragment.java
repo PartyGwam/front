@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.joe.depromeet_partygwam.Data.Parties.Data;
+import com.example.joe.depromeet_partygwam.Main.TabFragment.OnKeyBackPressedListener;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Adapter.PartiesAdapter;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Presenter.PartiesContract;
 import com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Presenter.PartiesPresenter;
@@ -42,7 +43,7 @@ import static android.app.Activity.RESULT_OK;
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 import static android.view.View.INVISIBLE;
 
-public class PartyListFragment extends Fragment implements PartiesContract.View {
+public class PartyListFragment extends Fragment implements PartiesContract.View, OnKeyBackPressedListener {
     private static final String TAG = PartyListFragment.class.getSimpleName();
 
     @BindView(R.id.party_list_main_appbar)
@@ -212,5 +213,11 @@ public class PartyListFragment extends Fragment implements PartiesContract.View 
         super.onDetach();
         sort = 0;
         Log.d(TAG, "onDetach");
+    }
+
+    @Override
+    public void onBack() {
+        ((MainActivity) getActivity()).viewFlipper.setDisplayedChild(0);
+        ((MainActivity) getActivity()).mainTab.setVisibility(View.VISIBLE);
     }
 }
