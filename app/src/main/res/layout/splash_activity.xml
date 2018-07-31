@@ -3,21 +3,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/splash_bg">
 
-    <TextView
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline61"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.306" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="splash"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/splash_logo"
+        app:layout_constraintDimensionRatio="1:1.32"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline61"
+        app:layout_constraintWidth_percent="0.308" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline62"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.842" />
+
+    <TextView
+        android:id="@+id/splash_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:text="함께할 누군가를 찾고있나요?"
+        android:textColor="@color/colorWhite"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/splash_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/splash_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/splash_button"
+        app:layout_constraintDimensionRatio="1:0.177"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline62"
+        app:layout_constraintWidth_percent="0.813" />
 
 </android.support.constraint.ConstraintLayout>
