@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private Fragment fragment4;
     private Fragment fragment5;
 
-    public boolean isFinished = false;
-
     @BindView(R.id.main_parties_toolbar)
     public Toolbar toolbar;
     @BindView(R.id.main_search_toolbar)

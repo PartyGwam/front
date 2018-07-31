@@ -55,8 +55,8 @@ public class HistoryPresenter implements HistoryContract.Presenter, OnItemClickL
             return;
         }
 
-        if (code == ResponseCode.BAD_REQUEST) {
-            view.onBadRequestHistoryLoad();
+        if (code == ResponseCode.NOT_FOUND) {
+            view.onNotFoundHistoryLoad();
             return;
         }
 

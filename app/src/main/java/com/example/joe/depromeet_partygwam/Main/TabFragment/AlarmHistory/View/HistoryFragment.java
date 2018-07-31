@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -27,10 +28,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HistoryFragment extends Fragment implements HistoryContract.View {
+
     @BindView(R.id.history_list)
     RecyclerView recyclerView;
     @BindView(R.id.history_pb)
     ProgressBar pb;
+    @BindView(R.id.no_alarm_history_frame)
+    FrameLayout noAlarmHistory;
     private HistoryAdapter adapter;
     private HistoryPresenter presenter;
 
@@ -70,11 +74,11 @@ public class HistoryFragment extends Fragment implements HistoryContract.View {
         pb.setVisibility(View.INVISIBLE);
         presenter.setHistroyView(items);
     }
-
+    //알림내역이 없을 때
     @Override
-    public void onBadRequestHistoryLoad() {
+    public void onNotFoundHistoryLoad() {
         pb.setVisibility(View.INVISIBLE);
-        //내역이 없을 때
+        noAlarmHistory.setVisibility(View.VISIBLE);
     }
 
     @Override

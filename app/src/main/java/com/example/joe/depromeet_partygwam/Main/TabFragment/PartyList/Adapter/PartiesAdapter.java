@@ -39,8 +39,9 @@ public class PartiesAdapter extends RecyclerView.Adapter<PartiesViewHolder>
 
     @Override
     public int getItemCount() {
-        if (items == null)
+        if (items == null) {
             return 0;
+        }
         return items.size();
     }
 

@@ -10,7 +10,7 @@ public interface HistoryContract {
     interface View {
         void toast(String msg);
         void onSuccessHistoryLoad(List<HistoryData> items);
-        void onBadRequestHistoryLoad();
+        void onNotFoundHistoryLoad();
         void onForbidden(String msg);
         void onAuthorization();
         void onConnectionFail();
