@@ -103,7 +103,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/search_party_result_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -115,6 +115,7 @@
                 app:srcCompat="@drawable/noresult_icon"/>
 
             <LinearLayout
+                android:id="@+id/linearLayout9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -123,7 +124,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2">
+                app:layout_constraintTop_toBottomOf="@+id/search_party_result_img">
 
                 <TextView
                     android:id="@+id/party_research_string"
@@ -135,7 +136,7 @@
                     tools:layout_editor_absoluteY="328dp"/>
 
                 <TextView
-                    android:id="@+id/textView23"
+                    android:id="@+id/search_party_result_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -144,6 +145,17 @@
                     tools:layout_editor_absoluteX="199dp"
                     tools:layout_editor_absoluteY="328dp"/>
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/search_party_result_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout9"/>
 
         </android.support.constraint.ConstraintLayout>
 

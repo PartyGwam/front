@@ -15,6 +15,8 @@ import com.example.joe.depromeet_partygwam.R;
 
 import butterknife.ButterKnife;
 
+import static android.view.View.INVISIBLE;
+
 public class MyCreatedPartyFragment extends PartyListFragment {
 
     @Nullable
@@ -32,6 +34,16 @@ public class MyCreatedPartyFragment extends PartyListFragment {
         ((MainActivity) getActivity()).imgWrite.setVisibility(View.INVISIBLE);
         ((MainActivity) getActivity()).imgSearch.setVisibility(View.INVISIBLE);
         return view;
+    }
+
+    @Override
+    public void onNotFound() {
+        //super.onNotFound();
+        pb.setVisibility(INVISIBLE);
+        partyListNone.setVisibility(View.VISIBLE);
+        searchPartyImg.setImageDrawable(getContext().getDrawable(R.drawable.noparty));
+        searchPartyText.setText("내가 만든 파티가 없습니다.");
+        searchPartyText2.setText("파티를 만들어 보세요!");
     }
 
     @Override
