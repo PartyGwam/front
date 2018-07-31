@@ -260,7 +260,6 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         }
-        super.onBackPressed();
         long tempTime = System.currentTimeMillis();
         long intervalTime = tempTime - backPressedTime;
 
