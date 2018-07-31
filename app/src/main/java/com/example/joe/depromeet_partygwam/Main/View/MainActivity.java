@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.example.joe.depromeet_partygwam.DataStore.SharePreferenceManager;
@@ -28,11 +29,17 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
+
+    private final long FINISH_INTERVAL_TIME = 2000;
+    private long backPressedTime = 0;
+
     private Fragment fragment1;
     private Fragment fragment2;
     private Fragment fragment3;
     private Fragment fragment4;
     private Fragment fragment5;
+
+    public boolean isFinished = false;
 
     @BindView(R.id.main_parties_toolbar)
     public Toolbar toolbar;
@@ -116,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         Fragment tab1_fragment = fm.findFragmentById(R.id.fragment_container);
 
         //첫번째 탭 프래그먼트 보이기 이전에 액티비티의 레이아웃 보여주기 방지
-        if(tab1_fragment == null){
+        if (tab1_fragment == null) {
             tab1_fragment = new PartyListFragment();
             fm.beginTransaction()
                     .add(R.id.fragment_container, tab1_fragment, "fragment1")
@@ -130,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
         fragment5 = new SettingFragment();
 
         //툴바로 적용
-        toolbar = (Toolbar)findViewById(R.id.main_toolbar);
+        toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
     }
 
@@ -254,5 +261,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         super.onBackPressed();
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - backPressedTime;
+
+        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
+            super.onBackPressed();
+        } else {
+            backPressedTime = tempTime;
+            Toast.makeText(getApplicationContext(), "한번 더 누르면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

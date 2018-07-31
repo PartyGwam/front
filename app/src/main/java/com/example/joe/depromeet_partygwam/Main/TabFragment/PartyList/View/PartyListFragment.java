@@ -5,24 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewStub;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,7 +35,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static android.app.Activity.RESULT_OK;
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 import static android.view.View.INVISIBLE;
 
 public class PartyListFragment extends Fragment implements PartiesContract.View, OnKeyBackPressedListener {
@@ -56,6 +50,12 @@ public class PartyListFragment extends Fragment implements PartiesContract.View,
     RecyclerView recyclerView;
     @BindView(R.id.fragment_party_list_none)
     FrameLayout partyListNone;
+    @BindView(R.id.search_party_result_img)
+    ImageView searchPartyImg;
+    @BindView(R.id.search_party_result_text)
+    TextView searchPartyText;
+    @BindView(R.id.search_party_result_text2)
+    TextView searchPartyText2;
     @BindView(R.id.party_research_string)
     TextView researchString;
 
@@ -63,7 +63,7 @@ public class PartyListFragment extends Fragment implements PartiesContract.View,
     protected PartiesAdapter adapter;
     protected PartiesPresenter presenter;
     private int sort = 0;
-    private String searchStr;
+    private String searchStr = "";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -169,13 +169,12 @@ public class PartyListFragment extends Fragment implements PartiesContract.View,
         toast("unknown error");
     }
 
+    //검색한 게시글을 찾지 못할 경우
     @Override
     public void onNotFound() {
         pb.setVisibility(INVISIBLE);
         partyListNone.setVisibility(View.VISIBLE);
         researchString.setText("'" + searchStr + "'");
-
-        //toast("게시글이 없습니다.");
     }
 
     @Override
