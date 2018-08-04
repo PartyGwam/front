@@ -3,6 +3,7 @@ package com.example.joe.depromeet_partygwam.Main.TabFragment.PartyList.Adapter.V
 import android.content.Context;
 import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -75,12 +76,12 @@ public class PartiesViewHolder extends RecyclerView.ViewHolder {
         String startTime = data.getStartTime().split("T")[1].substring(0, 5);
         String createDate = data.getCreatedAt().split("T")[0];
         String createTime = data.getCreatedAt().split("T")[1].substring(0, 5);
-        String info  = data.getPartyOwner().getUsername() + " | "
+        String info = data.getPartyOwner().getUsername() + " | "
                 + createTime + " | 조회 ";
 
-        if (data.getIsNew()){
+        if (data.getIsNew()) {
             imgNew.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             imgNew.setVisibility(View.GONE);
         }
 
@@ -112,20 +113,31 @@ public class PartiesViewHolder extends RecyclerView.ViewHolder {
             textPeopleMax.setText(data.getMaxPeople() + "");
             textPeopleMax.setTextColor(0xAAffffff);
         } else {
-            if(startDate.equals(date)){
+            if (startDate.equals(date)) {
                 textDate.setText("오늘");
-            }else{
+            } else {
                 textDate.setText(startDate.split("-")[1] + "." + startDate.split("-")[2]);
             }
+            textDate.setTextColor(ContextCompat.getColor(context, R.color.listDateColor));
+
             main.setOnClickListener((v) -> {
                 onItemClickListener.onItemClick(data, position);
             });
             textTime.setText(startTime);
+            textTime.setTextColor(ContextCompat.getColor(context, R.color.listTimeColor));
+
             textPlace.setText(data.getPlace());
+            textPlace.setTextColor(ContextCompat.getColor(context, R.color.listPlaceColor));
 
             textInfo.setText(info);
             textPeopleNum.setText(data.getCurrentPeople() + "");
+            textPeopleNum.setTextColor(ContextCompat.getColor(context, R.color.listPeopleNumColor));
+
             textPeopleMax.setText(data.getMaxPeople() + "");
+            textPeopleMax.setTextColor(ContextCompat.getColor(context, R.color.listPeopleNumColor));
+
+            closedFlag.setVisibility(View.INVISIBLE);
+            pplBackground.setBackground(context.getDrawable(R.drawable.people_pink));
         }
 
         if (data.getTitle().length() > 13) {
