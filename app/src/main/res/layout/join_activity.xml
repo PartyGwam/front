@@ -4,92 +4,313 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:id="@+id/join_background">
+
+    <ProgressBar
+        android:id="@+id/join_pb"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/join_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/join_toolbar"
+        android:visibility="invisible"/>
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        layout="@layout/join_toolbar"
+        android:id="@+id/join_toolbar"
+        app:layout_constraintHeight_percent="0.095"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline58"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.136" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.04"
+        android:layout_marginLeft="33dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline58">
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/email_icon" />
+
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이메일 입력"
+            android:textColor="@color/joinTextColor"
+            android:textSize="15dp" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/join_emailEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:hint="이메일을 입력해주세요."
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:maxLines="1"
+        android:textSize="13sp"
+        android:textColorHint="@color/joinHintColor"
+        android:textColor="@color/joinEditColor"
+        android:backgroundTint="@color/joinEditBorder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.138" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/join_email_invalid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="2dp"
+        android:text="메일 형식으로 입력해주세요."
+        android:textColor="@color/joinInvalid"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/join_emailEdit"
+        android:visibility="invisible"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.04"
+        android:layout_marginLeft="33dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="7dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/join_email_invalid">
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/password_icon" />
+
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호(6~15자 영문자, 숫자)"
+            android:textColor="@color/joinTextColor"
+            android:textSize="15dp" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/join_pwEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="284dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:hint="비밀번호."
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:hint="비밀번호를 입력해주세요(6자~15자 영문자, 숫자)"
+        android:maxLines="1"
+        android:maxLength="15"
+        android:textSize="13sp"
+        android:textColorHint="@color/joinHintColor"
+        android:textColor="@color/joinEditColor"
+        android:backgroundTint="@color/joinEditBorder"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/join_emailEdit"
-        app:layout_constraintVertical_bias="0.139" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <TextView
+        android:id="@+id/join_pw_invalid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="2dp"
+        android:text="영문, 숫자, 특수문자를 조합하여 6~16자로 설정해주세요."
+        android:textColor="@color/joinInvalid"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/join_pwEdit" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.04"
+        android:layout_marginLeft="33dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="7dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/join_pw_invalid">
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/password_icon" />
+
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호 확인"
+            android:textColor="@color/joinTextColor"
+            android:textSize="15dp" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/join_pwConfirmEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:hint="비밀번호 확인."
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:hint="비밀번호를 다시 입력해주세요"
+        android:maxLines="1"
+        android:maxLength="15"
+        android:textSize="13sp"
+        android:textColorHint="@color/joinHintColor"
+        android:textColor="@color/joinEditColor"
+        android:backgroundTint="@color/joinEditBorder"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/join_pwEdit"
-        app:layout_constraintVertical_bias="0.236" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+
+    <TextView
+        android:id="@+id/join_pwConfirm_invalid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="2dp"
+        android:text="비밀번호가 일치하지 않습니다."
+        android:textColor="@color/joinInvalid"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/join_pwConfirmEdit" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.04"
+        android:layout_marginLeft="33dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="7dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/join_pwConfirm_invalid">
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/nickname_icon" />
+
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="닉네임(2~8자)"
+            android:textColor="@color/joinTextColor"
+            android:textSize="15dp" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/join_nicknameEdit"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:hint="닉네(2~8자)."
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:hint="닉네임을 입력해주세요"
+        android:maxLines="1"
+        android:maxLength="8"
+        android:textSize="13sp"
+        android:textColorHint="@color/joinHintColor"
+        android:textColor="@color/joinEditColor"
+        android:backgroundTint="@color/joinEditBorder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/join_pwConfirmEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
-    <Button
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/join_nickname_invalid"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="회 원 가 입"
-        android:id="@+id/join_joinBtn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="2dp"
+        android:text="닉네임은 2~8자 이내로 입력해주세요."
+        android:textColor="@color/joinInvalid"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/join_nicknameEdit" />
+
+    <LinearLayout
+        android:id="@+id/join_termOfUse_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.04"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="9dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/join_nickname_invalid">
+
+        <ImageView
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:id="@+id/join_check"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/checkbox_icon" />
+
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="이용약관과 개인정보취급방침에 동의합니다."
+            android:textColor="@color/joinTextColor"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/join_joinBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/join_termOfUse_layout"/>
 </android.support.constraint.ConstraintLayout>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "810644521072",
+    "firebase_url": "https://partygwam.firebaseio.com",
+    "project_id": "partygwam",
+    "storage_bucket": "partygwam.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810644521072:android:e6fd25e7a5112215",
+        "android_client_info": {
+          "package_name": "com.example.joe.depromeet_partygwam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "810644521072-utnic63p9hpt8l10a2cb0lbuk5mac1ko.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYMFCzhlrNCzH7UpfGpUwzin-MSFkAwCQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,6 @@
 package com.example.joe.depromeet_partygwam.Join.Presenter;
 
-import com.example.joe.depromeet_partygwam.Data.User;
+import com.example.joe.depromeet_partygwam.Data.UserResponse.User;
 import com.example.joe.depromeet_partygwam.Join.Model.JoinModelCallback;
 import com.example.joe.depromeet_partygwam.Join.Model.JoinRetrofitModel;
 import com.example.joe.depromeet_partygwam.Join.Model.RegularExpModel;
@@ -30,42 +30,57 @@ public class JoinPresenter implements JoinContract.Presenter,
     }
 
     @Override
-    public void validateMember() {
-        retrofitModel.validationMember();
+    public void validateExistEmail(String email) {
+        retrofitModel.validationEmail(email);
     }
 
     @Override
-    public void InsertMember(User user) {
-        retrofitModel.insertMember(user);
+    public void validateExistNickname(String nickname) {
+        retrofitModel.validateNickname(nickname);
     }
 
     @Override
-    public void onSuccess(int code) {
-
+    public void insertUser(User user) {
+        retrofitModel.insertUser(user);
     }
 
     @Override
-    public void onFailure(int code) {
-
+    public void onSuccessValidateEmail(int code) {
+        view.isExistEmail(code);
     }
 
     @Override
-    public void validateEmail(String email) {
+    public void onSuccessValidateNickname(int code) {
+        view.isExistNickname(code);
+    }
+
+    @Override
+    public void onSuccessJoin(int code) {
+        view.startLoginActivity(code);
+    }
+
+    @Override
+    public void onFailure() {
+        view.setProgressbar(false);
+    }
+
+    @Override
+    public void validateRegularExpEmail(String email) {
         regularExpModel.emailValidation(email);
     }
 
     @Override
-    public void validatePassword(String password) {
+    public void validateRegularExpPassword(String password) {
         regularExpModel.passwordValidation(password);
     }
 
     @Override
-    public void validatePasswordConfirm(String password) {
+    public void validateRegularExpPasswordConfirm(String password) {
         regularExpModel.passwordConfirmValidation(password);
     }
 
     @Override
-    public void validateNickname(String nickname) {
+    public void validateRegularExpNickname(String nickname) {
         regularExpModel.nicknameValidation(nickname);
     }
 
